@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -55,7 +55,10 @@ ROOT_URLCONF = 'covid_case.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,8 +122,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 BASE_URL = "https://disease.sh"
 ALL_DATA_WORLDMETERS = "/v3/covid-19/all"
 COUNTRY_DATA_WORLDMETERS = "/v3/covid-19/countries"
 COUNTRY_DATA_JHUCSSE = "/v3/covid-19/jhucsse"
+
+
+MAPBOX_PUBLIC_KEY = "pk.eyJ1IjoiY29yMTk5OSIsImEiOiJja2VsYmRwenUwbWNvMzVrNzU5ajk5bHI3In0.uUq2LLQSNHd7cvyopHRK8A"
