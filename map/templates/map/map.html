@@ -1,9 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
-<script src="https://code.highcharts.com/maps/modules/data.js"></script>
-<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
-<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+
 {% block content %}
 <div id="container">
     <div class="loading">
@@ -11,32 +8,37 @@
         Loading data from Google Spreadsheets...
     </div>
 </div>
+{% endblock %}
+{% block extra_js %}
+{{ block.super }}
 <script type="text/javascript">
-    let country_data = "{{ country_data }}";
-    // Load the data from a Google Spreadsheet
-    // https://docs.google.com/spreadsheets/d/1WBx3mRqiomXk_ks1a5sEAtJGvYukguhAkcCuRDrY1L0/pubhtml
-    Highcharts.data({
-        // googleSpreadsheetKey: '1WBx3mRqiomXk_ks1a5sEAtJGvYukguhAkcCuRDrY1L0',
+    let country_data = "{{ country_data}}"
+    var json = [{
+        "country": "Ireland",
+        "code": "IRL",
+        "Confirmed": "3000",
+        "Deaths": "100",
+        "Recovered": "2900",
+    }, {
+        "country": "England",
+        "code": "ENG",
+        "Confirmed": "3000",
+        "Deaths": "100",
+        "Recovered": "2900",
 
+    }];
+    Highcharts.data({
+        googleSpreadsheetKey: '1WBx3mRqiomXk_ks1a5sEAtJGvYukguhAkcCuRDrY1L0',
         // Custom handler when the spreadsheet is parsed
         parsed: function (columns) {
-
             // Read the columns into the data array
-            var data = [];
-            /* Highcharts.each(columns[0], function (code, i) {
-                data.push({
-                    code: code.toUpperCase(),
-                    value: parseFloat(columns[2][i]),
-                    name: columns[1][i]
-                });
-            }); */
-
-            data.push({
-                code: "IRL",
-                value: "23",
-                name: "ireland"
-            })
-
+            //Highcharts.each(columns[0], function (code, i) {
+            //    data.push({
+            //        code: code.toUpperCase(),
+            //        value: parseFloat(columns[2][i]),
+            //        name: columns[1][i]
+            //    }); 
+            // });
             // Initiate the chart
             Highcharts.mapChart('container', {
                 chart: {
@@ -84,43 +86,43 @@
 
                 colorAxis: {
                     dataClasses: [{
-                        to: 3
+                        to: 499
                     }, {
-                        from: 3,
-                        to: 10
+                        from: 500,
+                        to: 1999
                     }, {
-                        from: 10,
-                        to: 30
+                        from: 2000,
+                        to: 4999
                     }, {
-                        from: 30,
-                        to: 100
+                        from: 5000,
+                        to: 9999
                     }, {
-                        from: 100,
-                        to: 300
+                        from: 10000,
+                        to: 24999
                     }, {
-                        from: 300,
-                        to: 1000
+                        from: 25000,
+                        to: 49999
                     }, {
-                        from: 1000
+                        from: 50000
                     }]
                 },
 
                 series: [{
-                    data: data,
+                    data: createSeries(json),
                     joinBy: ['iso-a3', 'code'],
                     animation: true,
-                    name: 'Population density',
+                    name: 'Corona cases',
                     states: {
                         hover: {
                             color: '#a4edba'
                         }
                     },
                     tooltip: {
-                        valueSuffix: '/km²'
+                        valueSuffix: 'banana'
                     },
                     shadow: false
                 }]
-            });
+            })
         },
         error: function () {
             document.getElementById('container').innerHTML = '<div class="loading">' +
@@ -129,6 +131,31 @@
                 '</div>';
         }
     });
+
+
+
+
+    //Highcharts.each(columns[0], function (code, i) {
+    //    data.push({
+    //        code: code.toUpperCase(),
+    //        value: parseFloat(columns[2][i]),
+    //        name: columns[1][i]
+    //    }); 
+    // });
+    function createSeries(json) {
+        var xxx = [];
+        json.forEach(function (obj) {
+            console.log(xxx);
+            xxx.push({
+                name: obj["country"],
+                code: obj["code"],
+                Confirmed: obj["Confirmed"],
+                Deaths: obj["Deaths"],
+                Recovered: obj["Recovered"]
+            });
+        });
+        return data;
+    }
 
 </script>
 {% endblock %}

@@ -130,6 +130,3 @@ BASE_URL = "https://disease.sh"
 ALL_DATA_WORLDMETERS = "/v3/covid-19/all"
 COUNTRY_DATA_WORLDMETERS = "/v3/covid-19/countries"
 COUNTRY_DATA_JHUCSSE = "/v3/covid-19/jhucsse"
-
-
-MAPBOX_PUBLIC_KEY = "pk.eyJ1IjoiY29yMTk5OSIsImEiOiJja2VsYmRwenUwbWNvMzVrNzU5ajk5bHI3In0.uUq2LLQSNHd7cvyopHRK8A"

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block corejs %}
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/data.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+<script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+{% endblock %}
+
+
+<body>
+    {% block content %}
+    <div id="container">
+        <div class="loading">
+            <i class="icon-spinner icon-spin icon-large"></i>
+            Loading data from Google Spreadsheets...
+        </div>
+    </div>
+    {% endblock %}
+
+
+</body>
+
+</html>
+
+
+
+
+<script type="text/javascript">
+
+    var json = [{
+        "country": "Ireland",
+        "code": "IRL",
+        "Confirmed": "3000",
+        "Deaths": "100",
+        "Recovered": "2900",
+    }, {
+        "country": "England",
+        "code": "ENG",
+        "Confirmed": "3000",
+        "Deaths": "100",
+        "Recovered": "2900",
+    }];
+    var labels = ["confirmed", "deaths", "recovered"]
+
+    $('#container').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'My data'
+        },
+        xAxis: {
+            categories: labels
+        },
+        series: json
+    });
+    var chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'container',
+            type: 'line',
+            height: 500,
+            width: 500
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: 'Trend of Publications by Item Type'
+        },
+        xAxis: {
+            categories: labels,
+            title: {
+                text: '<b>Year</b>'
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '<b># of publications</b>'
+            }
+        },
+        series: json
+    });
+</script>
