@@ -1,14 +1,16 @@
 {% extends 'base.html'%}
 {% load static %}
-
 {% block content %}
 <div id="container">
     <div class="loading">
         <i class="icon-spinner icon-spin icon-large"></i>
         Loading data from Google Spreadsheets...
     </div>
+
 </div>
+{{ country_data | json_script:"country_data" }}
 {% endblock %}
 {% block extra_js %}
-<script
+{{ block.super }}
+<script src="{% static 'map/js/map.js' %}"></script>
 {% endblock %}
