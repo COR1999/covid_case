@@ -2,14 +2,14 @@
 $(document).ready(function () {
 
     let country_data = JSON.parse(document.getElementById('country_data').textContent);
-    // console.log(country_data[0])
+    console.log(createSeries(country_data))
     var my_json = [
         {
             "country": "England",
             "code": "GB",
-            "Confirmed": "3000",
-            "Deaths": "100",
-            "Recovered": "2900",
+            "cases": "3000",
+            "deaths": "100",
+            "recovered": "2900",
             "deaths_per_100k": "number of deaths/population"
 
         }, {
@@ -21,12 +21,12 @@ $(document).ready(function () {
         }, {
             "country": "France",
             "code": "FR",
-            "Confirmed": "1000",
-            "Deaths": "333",
-            "Recovered": "1"
+            "cases": "1000",
+            "deaths": "333",
+            "recovered": "1"
         }];
 
-    var confirmed_color = 'yellow'
+    var cases_color = 'blue'
     var deaths_color = 'red'
     var recovered_color = 'green'
     var json_array = [];
@@ -35,9 +35,7 @@ $(document).ready(function () {
         parseInt(my_json[i].Deaths),
         parseInt(my_json[i].Recovered)]);
     }
-    // console.log(json_array[0][0])
     let chart_container = document.getElementById("container")
-    console.log(country_data)
     var chart = Highcharts.mapChart(chart_container, {
 
         title: {
@@ -47,18 +45,35 @@ $(document).ready(function () {
         chart: {
             animation: false // Disable animation, especially for zooming
         },
+        legend: {
+            title: {
+                text: 'Cases per 1 million population',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                }
+            },
+            align: 'left',
+            verticalAlign: 'bottom',
+            floating: true,
+            layout: 'vertical',
+            valueDecimals: 0,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255, 255, 255, 0.85)',
+            symbolRadius: 0,
+            symbolHeight: 14
+        },
 
         colorAxis: {
             dataClasses: [{
-                name: 'Deaths',
-                color: deaths_color
+                to: 3000,
+                color: "green"
             }, {
-                name: 'Recovered',
-                color: recovered_color
+                from: 3000,
+                to: 10000,
+                color: "yellow"
 
             }, {
-                name: 'Confirmed',
-                color: confirmed_color,
+                from: 10000,
+                color: "red"
             }]
         },
 
@@ -76,21 +91,22 @@ $(document).ready(function () {
 
         series: [{
             mapData: Highcharts.maps['custom/world'],
-            data: createSeries(country_data["fields"]),
+            data: country_data,
             name: "test",
             borderColor: '#FFF',
             showInLegend: false,
             joinBy: ['iso-a2', 'code'],
-            keys: ['code', "country", 'Confirmed', 'Deaths', 'Recovered'],
+            colorKey: "casesPerOneMillion",
+            keys: ['code', "country", 'confirmed', 'deaths', 'recovered'],
             tooltip: {
                 headerFormat: '',
                 pointFormatter: function () {
                     var hoverCases = this.hoverCases; // Used by pie only
                     return '<b>' + this.name + ' Stats</b><br />' +
                         Highcharts.map([
-                            ['Confirmed', this.Confirmed, confirmed_color],
-                            ['Deaths', this.Deaths, deaths_color],
-                            ['Recovered', this.Recovered, recovered_color]
+                            ['Cases', this.cases, cases_color],
+                            ['Deaths', this.deaths, deaths_color],
+                            ['Recovered', this.recovered, recovered_color]
                         ], function (line) {
                             return '<span style="color:' + line[2] +
                                 // Colorized bullet
@@ -112,9 +128,13 @@ $(document).ready(function () {
             obj_out.push({
                 name: obj["country"],
                 code: obj["code"],
-                Confirmed: obj["Confirmed"],
-                Deaths: obj["Deaths"],
-                Recovered: obj["Recovered"]
+                cases: obj["cases"],
+                todayCases: obj["todayCases"],
+                deaths: obj["deaths"],
+                recovered: obj["recovered"],
+                population: obj["country_population"],
+                casesPerOneMillion: obj["casesPerOneMillion"],
+                deathsPerOneMillion: obj["deathsPerOneMillion"],
             });
         });
         // console.log("begin", obj_out);
