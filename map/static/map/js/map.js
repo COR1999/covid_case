@@ -26,9 +26,9 @@ $(document).ready(function () {
             "recovered": "1"
         }];
 
-    var cases_color = 'blue'
-    var deaths_color = 'red'
-    var recovered_color = 'green'
+    var cases_color = '#ffa600'
+    var deaths_color = '#d45087'
+    var recovered_color = '#003f5c'
     var json_array = [];
     for (i = 0; i < my_json.length; i++) {
         json_array.push([my_json[i].code, parseInt(my_json[i].Confirmed),
@@ -39,17 +39,22 @@ $(document).ready(function () {
     var chart = Highcharts.mapChart(chart_container, {
 
         title: {
-            text: 'Covid Cases'
+            text: 'Covid Cases',
+            style: {
+                color: "#026670",
+                fontWeight: "bold",
+            }
         },
 
         chart: {
-            animation: false // Disable animation, especially for zooming
+            animation: false, // Disable animation, especially for zooming
+            backgroundColor: "#CCCCCC",
         },
         legend: {
             title: {
                 text: 'Cases per 1 million population',
                 style: {
-                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                    color: "#026670"
                 }
             },
             align: 'left',
@@ -65,15 +70,15 @@ $(document).ready(function () {
         colorAxis: {
             dataClasses: [{
                 to: 3000,
-                color: "green"
+                color: "#488f31"
             }, {
                 from: 3000,
                 to: 10000,
-                color: "yellow"
+                color: "#ffa600"
 
             }, {
                 from: 10000,
-                color: "red"
+                color: "#f95d6a"
             }]
         },
 
