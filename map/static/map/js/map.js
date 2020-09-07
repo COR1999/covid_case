@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
     let country_data = JSON.parse(document.getElementById('country_data').textContent);
-    console.log(createSeries(country_data))
+    // console.log(createSeries(country_data))
     var my_json = [
         {
             "country": "England",
@@ -41,7 +41,7 @@ $(document).ready(function () {
         title: {
             text: 'Covid Cases',
             style: {
-                color: "#026670",
+                color: "#1A1A1D",
                 fontWeight: "bold",
             }
         },

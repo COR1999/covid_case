@@ -4,7 +4,23 @@ body {
 }
 
 .navbar-bg{
-    background-color: #14A098;
+    /* background-color: #14A098; */
+    background-color: #8D8741;
+}
+.navbar-light .navbar-nav .nav-link.active {
+    color: #1A1A1D;
+    font-weight: 600;
+}
+.navbar-light .navbar-nav .nav-link{
+    color: #FBEEC1;
+    font-weight: 600;
+
+}
+.navbar-light .navbar-nav .nav-link.active {
+    font-weight: 600;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+    color: #1A1A1D;
 }
 
 
