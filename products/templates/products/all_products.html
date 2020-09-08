@@ -1,0 +1,12 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<div id="container" class="mt-2">
+    {{ products }}
+    {% for product in products %}
+    <h1>{{ product.product_name }}</h1>
+    <p>Color: {{ product.color }} <br> Price: {{ product.price }}</p>
+    <img src="../{{ MEDIA_URL }}{{ product.image }}">
+    {% endfor %}
+</div>
+{% endblock %}

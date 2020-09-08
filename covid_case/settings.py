@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "map",
+    "products",
 ]
 
 MIDDLEWARE = [
@@ -125,6 +126,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 BASE_URL = "https://disease.sh"
 ALL_DATA_WORLDMETERS = "/v3/covid-19/all"

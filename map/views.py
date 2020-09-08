@@ -3,7 +3,7 @@ from django.conf import settings
 import requests
 import urllib3
 import json
-from .models import Country_stats
+# from .models import Country_stats
 
 
 def load_map(request):

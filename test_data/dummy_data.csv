@@ -1,1 +1,11 @@
-product_name,price,color,size,qty,image
+product_name,price,color,size,image
+Face-mask Pack of 2 clear,5,clear,ONE SIZE,./media/_clear
+Face-mask Pack of 2 Black,5,Black,ONE SIZE,./media/_Black
+Face-mask Pack of 2 Denim,5,Denim,ONE SIZE,./media/_Denim
+Face-mask Pack of 2 Dotted,5,Dotted,ONE SIZE,./media/_Dotted
+Face-mask Pack of 2 Multi,5,Multi,ONE SIZE,./media/_Multi
+Face-mask Pack of 2 Flourish,5,Flourish,ONE SIZE,./media/_Flourish
+Face-mask Pack of 2 Gold,5,Gold,ONE SIZE,./media/_Gold
+Face-mask Pack of 2 Leopard,5,Leopard,ONE SIZE,./media/_Leopard
+Face-mask Pack of 2 Navy,5,Navy,ONE SIZE,./media/_Navy
+Face-mask Pack of 2 White,5,White,ONE SIZE,./media/_White
