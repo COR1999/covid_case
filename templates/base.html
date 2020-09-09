@@ -40,8 +40,8 @@
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav">
-                <a href="#" class="nav-item nav-link active">Home</a>
-                <a href="#" class="nav-item nav-link">Profile</a>
+                <a href="{% url 'map' %}" class="nav-item nav-link active">Home</a>
+                <a href="{% url 'products' %}" class="nav-item nav-link">Products</a>
                 <a href="#" class="nav-item nav-link">Messages</a>
             </div>
             <div class="navbar-nav ml-auto">
@@ -54,8 +54,17 @@
 
     {% endblock%}
     {% block postloadjs %}
-
+    <script type="text/javascript">
+        var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
+        $('navbar a').each(function () {
+            console.log(this)
+            if (this.href === path) {
+                $(this).addClass('active');
+            }
+        });
+    </script>
     {% endblock %}
+
 </body>
 
 </html>

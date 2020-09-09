@@ -82,7 +82,7 @@ def write_to_json():
                 "pk": pk_id,
                 "model": "products.product",
                 "fields": {
-                    "product_name": f"Face-mask Pack of 2, {item}",
+                    "product_name": f"Face-mask Pack of 2",
                     "price":  round(random.uniform(5, 10), 2),
                     "color": item,
                     "has_size": False,
