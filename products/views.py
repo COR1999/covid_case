@@ -6,8 +6,8 @@ from django.conf import settings
 def all_products(request):
 
     products = Product.objects.all()
-    print(products)
-    print("media root", settings.MEDIA_URL)
+    # print(products)
+    # print("media root", settings.MEDIA_URL)
     context = {
         "products": products,
     }

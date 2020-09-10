@@ -1,0 +1,12 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    {% for item in products %}
+    <h5>{{ item }}</h5>
+
+    <h6 class="card-title">{{ item.color }}</h6>
+    {% endfor %}
+</div>
+{% endblock %}

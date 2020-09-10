@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block content %}
+<div class="overlay"></div>
 <div id="container" class="mt-2">
     {{ products }}
     <!-- <h1>{{ product.product_name }}</h1>
@@ -8,12 +9,10 @@
     <img src="{{MEDIA_URL}}{{ product.image }}">
     <img src="{{MEDIA_URL}}{{ product.image_2 }}"> -->
     <div class="row">
-        <!--Card-->
         {% for product in products %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <div class="card h-100 border-0">
-                <!--Card image-->
-                <!-- <div class="view view-cascade overlay"> -->
+
                 {% if product.image %}
                 <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ product.image }}" alt="{{ product.name }}"
                     onmouseover="this.src='{{MEDIA_URL}}{{ product.image_2 }}';"
@@ -21,12 +20,8 @@
                 {% else %}
                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                 {% endif %}
-                <!-- </div> -->
-                <!--/.Card image-->
 
-                <!--Card content-->
                 <div class="card-body text-center">
-                    <!--Category & Title-->
                     <h5>{{ product.product_name }}</h5>
                     {% if product.color == "" %}
                     <h6 class="card-title"><br></h6>
@@ -39,19 +34,19 @@
                     <!-- <p class="card-text">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe
                 eveniet ut et voluptates.</p> -->
 
-                    <!--Card footer-->
-                    <div class="card-footer">
-                        <span class="float-left">{{ product.price }}</span>
-                        <span class="float-right">
-                            <a class="btn btn-success" href="#">Add to Cart</a>
-                        </span>
+                    <div class="card-footer h-100">
+                        <!-- <div class="row w-100"> -->
+                        <div class="mx-auto" style="height:18%;">
+                            <h8 class="float-left mt-1">Price:</h8><span
+                                class="float-right mr-4">${{ product.price }}</span>
+                        </div>
+                        <div class="mx-auto" style="height:18%;">
+                            <h8 class="float-left mt-1">Quantity:</h8><span
+                                class="">{% include "products/add-to-cart-form.html" %}</span>
+                        </div>
                     </div>
-
                 </div>
-                <!--/.Card content-->
-
             </div>
-            <!--/.Card-->
         </div>
         {% endfor %}
 
@@ -61,5 +56,6 @@
 {% endblock %}
 {% block extra_js %}
 {{ block.super }}
+{% include 'products/includes/quantity_input_script.html' %}
 
 {% endblock %}

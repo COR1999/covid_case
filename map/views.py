@@ -36,7 +36,7 @@ def load_map(request):
                     "casesPerOneMillion": casesPerOneMillion,
                     "deathsPerOneMillion": deathsPerOneMillion,
                 }
-                print(country_population)
+                # print(country_population)
                 country_data.append(country_data_set)
 
             except Exception as e:
