@@ -3,10 +3,49 @@
 
 {% block content %}
 <div class="container">
-    {% for item in products %}
-    <h5>{{ item }}</h5>
 
-    <h6 class="card-title">{{ item.color }}</h6>
-    {% endfor %}
+    <div class="col-md-12">
+
+        <h4 class="d-flex justify-content-between align-items-center my-3">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill">{{ products | length }} Items in cart</span>
+        </h4>
+
+        <!-- Cart -->
+        <ul class="list-group mb-3 z-depth-1">
+            {% for product in products %}
+
+            <li class="list-group-item d-flex justify-content-between lh-condensed" style="max-height: 200px;">
+                {% if product.image %}
+                <div class="float-left" style="width:25%;">
+                    <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ product.image }}" alt="{{ product.name }}"
+                        onmouseover="this.src='{{MEDIA_URL}}{{ product.image_2 }}';"
+                        onmouseout="this.src='{{MEDIA_URL}}{{ product.image }}';"
+                        style="max-height: 150px; max-width:100px;">
+                    {% else %}
+                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                    {% endif %}
+                </div>
+                <div style="width:25%;">
+                    <h6 class="my-0 float-left">{{ product.name }}</h6>
+                    <br>
+                    <small class="text-muted">Color: {{ product.color }}</small>
+                </div>
+                <div style="width:25%;">
+                    <small>Price per unit: $ {{ product.price }}</small>
+                </div>
+                <div style="width:25%;">
+                    <small class="text-muted">Quantity: {{ product.quantity }}</small>
+                    <h7 class=" float-right">$ {{ product.item_total_price }}</h7>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <li class="list-group-item d-flex justify-content-between">
+            <span>Total (USD)</span>
+            <strong>$20</strong>
+        </li>
+        <!-- Cart -->
+    </div>
 </div>
 {% endblock %}

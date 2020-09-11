@@ -45,7 +45,7 @@ def load_map(request):
     # country_data = Country_stats.objects.all()[:3]
     # print("country_Data", country_data[0].country_code)
     # final_data = serializers.serialize('json', all_data)
-    print("final_data", country_data)
+    # print("final_data", country_data)
     context = {
         "country_data": country_data,
     }
