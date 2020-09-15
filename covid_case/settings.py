@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    # My Apps
     "map",
     "products",
     "shopping_bag",
@@ -45,7 +47,6 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
@@ -123,6 +124,7 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # 1 day
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400

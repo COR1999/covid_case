@@ -10,7 +10,9 @@
             <span class="text-muted">Your cart</span>
             <span class="badge badge-secondary badge-pill">{{ products | length }} Items in cart</span>
         </h4>
-
+            {% comment %} {% if products == 0 %}
+                <h1>cart is empty</h1>
+            {% endif %} {% endcomment %}
         <!-- Cart -->
         <ul class="list-group mb-3 z-depth-1">
             {% for product in products %}
@@ -43,7 +45,7 @@
         </ul>
         <li class="list-group-item d-flex justify-content-between">
             <span>Total (USD)</span>
-            <strong>$20</strong>
+            <strong>{% if grand_total %}{{ grand_total }}{% else %}$0{% endif %}</strong>
         </li>
         <!-- Cart -->
     </div>

@@ -9,7 +9,7 @@ import json
 def load_map(request):
     response = requests.get(
         settings.BASE_URL + settings.COUNTRY_DATA_WORLDMETERS)
-
+    
     if response.status_code == 200:
         all_data = json.loads(response.content.decode("utf-8"))
 
