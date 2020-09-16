@@ -44,12 +44,13 @@ def add_to_bag(request, item_id):
     # product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
-    grand_total = request.session.get("grand_total", {})
+    grand_total = request.session.get("grand_total", 0)
 
     # size = None
     print(type(quantity))
     print(type(product.price))
-    grand_total += float(product.price) * quantity
+    price = product.price
+    grand_total += float(price) * quantity
     print(grand_total)
     request.session['grand_total'] = grand_total
     print(request.session["grand_total"])

@@ -2,24 +2,38 @@
 {% load static %}
 {% block content %}
 <div class="overlay"></div>
-<div id="container" class="mt-2">
+<div class="container" class="mt-2">
     {{ products }}
     <!-- <h1>{{ product.product_name }}</h1>
     <p>Color: {{ product.color }} <br> Price: {{ product.price }}</p>
     <img src="{{MEDIA_URL}}{{ product.image }}">
     <img src="{{MEDIA_URL}}{{ product.image_2 }}"> -->
+    <div id="container" class="mt-2 mb-4" style="">
+        <div class="loading">
+            <i class="icon-spinner icon-spin icon-large"></i>
+            Loading data from our servers
+        </div>
+
+    </div>
+    {{ country_data | json_script:"country_data" }}
+
     <div class="row">
         {% for product in products %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <div class="card h-100 border-0">
 
-                {% if product.image %}
+                {% if product.image and product.image_2 %}
                 <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ product.image }}" alt="{{ product.name }}"
                     onmouseover="this.src='{{MEDIA_URL}}{{ product.image_2 }}';"
                     onmouseout="this.src='{{MEDIA_URL}}{{ product.image }}';" style="">
+                {% elif product.image %}
+                    <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ product.image }}" onmouseover="this.src='{{ MEDIA_URL }}noimage.png';"
+                    onmouseout="this.src='{{MEDIA_URL}}{{ product.image }}';"alt="{{ product.name }}" style="">
                 {% else %}
-                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" onmouseover="this.src='{{ MEDIA_URL }}noimage.png';"
+                    onmouseout="this.src='{{ MEDIA_URL }}noimage.png';"alt="{{ product.name }}">
                 {% endif %}
+
 
                 <div class="card-body text-center">
                     <h5>{{ product.product_name }}</h5>
@@ -57,5 +71,7 @@
 {% block extra_js %}
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
+<script src="{% static 'map/js/map.js' %}"></script>
 
 {% endblock %}
+
