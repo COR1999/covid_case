@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    
     # My Apps
     "map",
     "products",
@@ -47,6 +48,9 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    # Django Country Field 
+    "django_countries",
+    
 ]
 
 MIDDLEWARE = [

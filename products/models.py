@@ -9,7 +9,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(null=True, blank=True)
     image_2 = models.ImageField(null=True, blank=True)
-    number_in_stock = models.IntegerField(null=True , editable=True)
+    number_in_stock = models.IntegerField(null=True , editable=True, default=0)
     def __str__(self):
         return self.product_name
 

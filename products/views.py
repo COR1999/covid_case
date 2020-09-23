@@ -8,7 +8,7 @@ import json
 def all_products(request):
     response = requests.get(
         settings.BASE_URL + settings.COUNTRY_DATA_WORLDMETERS)
-    
+
     if response.status_code == 200:
         all_data = json.loads(response.content.decode("utf-8"))
         country_data = []
@@ -41,10 +41,9 @@ def all_products(request):
                 print("Exception:", e)
 
     products = Product.objects.all()
-    # print(products)
-    # print("media root", settings.MEDIA_URL)
-    # print("test")
+
     grand_total = request.session.get("grand_total", {})
+    quantity = request.session.get('quantity', 0)
 
     context = {
         "products": products,

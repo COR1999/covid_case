@@ -2,52 +2,84 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
+<div class="container" style="width:100%;">
+    <div class="row">
+        {% comment %} <div class="col-md-4 my-4">
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit">Submit</button>
+            </form>
+        </div> {% endcomment %}
+        <div class="col-md-12">
 
-    <div class="col-md-12">
+            <h4 class="d-flex justify-content-between align-items-center my-3">
+                <span class="text-muted">Your Bag</span>
+                <span class="badge badge-secondary badge-pill">{{ products | length }} Items in cart</span>
+            </h4>
+                {% comment %} {% if products == 0 %}
+                    <h1>cart is empty</h1>
+                {% endif %} {% endcomment %}
+            <!-- Cart -->
+            <ul class="list-group mb-3 z-depth-1">
+                {% for product in products %}
 
-        <h4 class="d-flex justify-content-between align-items-center my-3">
-            <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill">{{ products | length }} Items in cart</span>
-        </h4>
-            {% comment %} {% if products == 0 %}
-                <h1>cart is empty</h1>
-            {% endif %} {% endcomment %}
-        <!-- Cart -->
-        <ul class="list-group mb-3 z-depth-1">
-            {% for product in products %}
-
-            <li class="list-group-item d-flex justify-content-between lh-condensed" style="max-height: 200px;">
-                {% if product.image %}
-                <div class="float-left" style="width:25%;">
-                    <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ product.image }}" alt="{{ product.name }}"
-                        onmouseover="this.src='{{MEDIA_URL}}{{ product.image_2 }}';"
-                        onmouseout="this.src='{{MEDIA_URL}}{{ product.image }}';"
-                        style="max-height: 150px; max-width:100px;">
-                    {% else %}
-                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                <li class="list-group-item d-flex justify-content-between lh-condensed" style="max-height: 200px;">
+                    {% if product.image %}
+                    <div class="float-left" style="width:25%;">
+                        <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ product.image }}" alt="{{ product.name }}"
+                            onmouseover="this.src='{{MEDIA_URL}}{{ product.image_2 }}';"
+                            onmouseout="this.src='{{MEDIA_URL}}{{ product.image }}';"
+                            style="max-height: 150px; max-width:100px;">
+                        {% else %}
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                     {% endif %}
-                </div>
-                <div style="width:25%;">
-                    <h6 class="my-0 float-left">{{ product.name }}</h6>
-                    <br>
-                    <small class="text-muted">Color: {{ product.color }}</small>
-                </div>
-                <div style="width:25%;">
-                    <small>Price per unit: $ {{ product.price }}</small>
-                </div>
-                <div style="width:25%;">
-                    <small class="text-muted">Quantity: {{ product.quantity }}</small>
-                    <h7 class=" float-right">$ {{ product.item_total_price }}</h7>
-                </div>
+                    </div>
+                    <div style="width:25%;">
+                        <h6 class="my-0 float-left">{{ product.name }}</h6>
+                        <br>
+                        <small class="text-muted">Color: {{ product.color }}</small>
+                    </div>
+                    <div style="width:25%;">
+                        <small>Price per unit: $ {{ product.price }}</small>
+                    </div>
+                    <div style="width:25%;">
+                        <small class="product-quantity text-muted" id="product.quantity">Quantity: {{ product.quantity }}</small>
+                        <h7 class=" float-right">$ {{ product.item_total_price }}</h7>
+                        
+                        <br>
+                        <button class="minus-product" id="{{ product.id }}">-</button>
+                        <button class="add-product" >+</button>
+
+
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Total (USD)</span>
+                <strong>{% if grand_total %}$ {{ grand_total |floatformat:2 }}{% else %}$0{% endif %}</strong>
             </li>
-            {% endfor %}
-        </ul>
-        <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>{% if grand_total %}{{ grand_total }}{% else %}$0{% endif %}</strong>
-        </li>
-        <!-- Cart -->
+
+            <h4 class="d-flex justify-content-between align-items-center my-3">
+                <button href=""class="btn btn-primary ml-auto">Proceed to Checkout</button>
+            </h4>
+        </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(".minus-product").on("click", function(){
+        alert(this.id)
+        $.ajax({
+            url: "adjust/" + this.id,
+            data:{
+                "quantity": $(".product-quantity").val(),
+            }
+        })
+    });
+
+     $(".add-product").on("click", function(){
+        alert("minus button")
+    });
+</script>
 {% endblock %}
