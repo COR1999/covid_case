@@ -2,7 +2,6 @@ from django.db import models
 from django.conf import settings
 
 class Product(models.Model):
-
     product_name = models.CharField(max_length=254)
     color = models.CharField(max_length=254)
     has_size = models.BooleanField(default=False, null=True, blank=True)

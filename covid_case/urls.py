@@ -11,5 +11,6 @@ urlpatterns = [
     path('map/', include("map.urls")),
     path('', include("products.urls")),
     path("bag/", include("shopping_bag.urls")),
+    path("", include("profiles.urls")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "map",
     "products",
     "shopping_bag",
+    "profiles",
 
     # Allauth
     "allauth",
