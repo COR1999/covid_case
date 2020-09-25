@@ -12,10 +12,15 @@
             </form>
         </div> {% endcomment %}
         <div class="col-md-12">
-
             <h4 class="d-flex justify-content-between align-items-center my-3">
                 <span class="text-muted">Your Bag</span>
-                <span class="badge badge-secondary badge-pill">{{ products | length }} Items in cart</span>
+                    <span class="badge badge-secondary badge-pill">{{ products | length }}
+                    {% if products|length == 1 %}
+                        Item in bag
+                    {% else %}
+                        Items in bag
+                    {% endif %}
+                    </span>
             </h4>
                 {% comment %} {% if products == 0 %}
                     <h1>cart is empty</h1>
@@ -23,7 +28,6 @@
             <!-- Cart -->
             <ul class="list-group mb-3 z-depth-1">
                 {% for product in products %}
-
                 <li class="list-group-item d-flex justify-content-between lh-condensed" style="max-height: 200px;">
                     {% if product.image %}
                     <div class="float-left" style="width:25%;">
@@ -44,12 +48,12 @@
                         <small>Price per unit: $ {{ product.price }}</small>
                     </div>
                     <div style="width:25%;">
-                        <small class="product-quantity text-muted" id="product.quantity">Quantity: {{ product.quantity }}</small>
+                        <small class="product-quantity text-muted">Quantity: {{ product.quantity }}</small>
                         <h7 class=" float-right">$ {{ product.item_total_price }}</h7>
                         
                         <br>
-                        <button class="minus-product" id="{{ product.id }}">-</button>
-                        <button class="add-product" >+</button>
+                        <button class="minus-product" id="{{ product.id }}" value="{{ product.quantity }}">-</button>
+                        <button class="add-product"  id="{{ product.id }}" value="{{ product.quantity }}">+</button>
 
 
                     </div>
@@ -68,18 +72,21 @@
     </div>
 </div>
 <script type="text/javascript">
+    
     $(".minus-product").on("click", function(){
-        alert(this.id)
+        alert(this.value)
+        updated_value = this.value - 1;
         $.ajax({
-            url: "adjust/" + this.id,
-            data:{
-                "quantity": $(".product-quantity").val(),
-            }
+            url: "adjust/" + this.id + "/" + updated_value + "/",
         })
     });
 
      $(".add-product").on("click", function(){
-        alert("minus button")
+        alert(this.value)
+        updated_value = this.value + 1;
+        $.ajax({
+            url: "adjust/" + this.id + "/" + updated_value + "/",
+        })
     });
 </script>
 {% endblock %}

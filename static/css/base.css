@@ -14,6 +14,7 @@ body {
 .navbar-light .navbar-nav .nav-link{
     color: #FBEEC1;
     font-weight: 600;
+    margin: auto;
 
 }
 .navbar-light .navbar-nav .nav-link.active {
@@ -44,4 +45,59 @@ body {
 	position: fixed;
 	background: white;
 	z-index: -1;
+}
+
+
+
+.hello-msg{
+    font-size: 18px;
+    color: #FBEEC1;
+    margin: auto;
+}
+
+
+
+
+
+/* Login/Register */
+.user_card{
+    background: #FBEEC1;
+    width: 350px;
+    margin-top: 2%;
+    margin-bottom: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    margin-top: 2%;
+}
+
+
+#form-title{
+    color: #FBEEC1;
+}
+.login_btn {
+    width: 100%;
+    background: #8D8741 !important;
+    color: #FBEEC1 !important;
+}
+
+.login_container {
+    padding: 0 2rem;
+}
+.input-group-text {
+    background: #8D8741 !important;
+    color: #FBEEC1 !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
 }

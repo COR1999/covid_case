@@ -5,7 +5,9 @@ from decimal import Decimal
 from django.contrib import messages
 from products.models import Product
 # from .forms import OrderForm
+from django.views.decorators.cache import never_cache
 
+@never_cache
 def view_bag(request):
     """ A view that renders the bag contents page """
     bag = request.session.get('bag', {})
@@ -87,13 +89,21 @@ def add_to_bag(request, item_id):
 
 
 
-def adjust_bag(request, item_id):
+
+def adjust_bag(request, item_id, updated_value):
     """Adjust the quantity of the specified product to the specified amount"""
 
-    product = Product.objects.get(Product, pk=item_id)
-    quantity = int(request.POST.get('quantity'))
-    print(product.number_in_stock)
-    
+    product = get_object_or_404(Product, pk=item_id)
+    # quantity = int(request.session.get('quantity'))
+    # request.session["bag"]["quantity"] = updated_value
+    bag = request.session.get('bag', {})
+    grand_total = request.session.get("grand_total", 0)
+    print(int(updated_value))
+    # bag[item_id] == int(updated_value)
+    bag[item_id] = int(updated_value)
+    print("bag", bag)
+    request.session["bag"] = bag
+    # quantity = quantity + int(delta)
+    # print(product.number_in_stock)
 
-    
-    return redirect(reverse('view_bag'))
+    return redirect(reverse("view_bag"))

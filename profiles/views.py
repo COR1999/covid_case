@@ -15,6 +15,8 @@ def sign_up(request):
             messages.success(request, "Account was created for " + user)
 
             return redirect(reverse("login_page"))
+        else:
+            messages.info(request, "Username OR password is incorrect")
 
 
     grand_total = request.session.get("grand_total", {})
@@ -25,13 +27,15 @@ def sign_up(request):
     return render(request, 'profiles/sign_up.html', context)
 
 
+def logout_user(request):
+    logout(request)
+    return redirect(reverse("login_page"))
 
 def login_page(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = authenticate(request, username=username, password=password)
-        backend ='django.contrib.auth.backends.ModelBackend'
         if user is not None:
             login(request, user)
             return redirect("products")
