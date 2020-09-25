@@ -75,18 +75,19 @@
     
     $(".minus-product").on("click", function(){
         alert(this.value)
-        updated_value = this.value - 1;
+        
+        let updated_value = Number(this.value) - Number(1);
         $.ajax({
             url: "adjust/" + this.id + "/" + updated_value + "/",
-        })
+        });
     });
 
-     $(".add-product").on("click", function(){
+    $(".add-product").on("click", function(){
         alert(this.value)
-        updated_value = this.value + 1;
+        let updated_value = Number(this.value) + Number(1);
         $.ajax({
             url: "adjust/" + this.id + "/" + updated_value + "/",
-        })
+        });
     });
 </script>
 {% endblock %}
