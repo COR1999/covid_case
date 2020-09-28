@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from .models import Product
 from django.conf import settings
 import requests
 import urllib3
 import json
+from .forms import ProductForm
+
 
 def all_products(request):
     response = requests.get(
@@ -51,3 +53,46 @@ def all_products(request):
         "country_data": country_data
     }
     return render(request, "products/all_products.html", context)
+
+
+def create_product(request):
+    form = ProductForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect(reverse("products"))
+
+    context = {
+        "form": form,
+    }
+
+    return render(request, "products/products_form.html", context)
+
+
+
+def update_product(request, id):
+    product = Product.objects.get(id=id)
+    form = ProductForm(request.POST or None,instance=product)
+
+    if form.is_valid():
+        form.save()
+        return redirect(reverse("products"))
+    
+    context = {
+        "form": form,
+        "product": product,
+    }
+    return render(request, "products/products_form.html", context)
+
+
+def delete_product(request, id):
+    product = Product.objects.get(id=id)
+
+    if request.method == "POST":
+        product.delete()
+        return redirect(reverse("products"))
+
+    context = {
+        "product": product,
+    }
+    return render(request, "products/product_delete_confirm.html", context)

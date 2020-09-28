@@ -49,7 +49,7 @@
                     </div>
                     <div style="width:25%;">
                         <small class="product-quantity text-muted">Quantity: {{ product.quantity }}</small>
-                        <h7 class=" float-right">$ {{ product.item_total_price }}</h7>
+                        <h7 class=" float-right">$ {{ product.item_total_price |floatformat:2 }}</h7>
                         
                         <br>
                         <button class="minus-product" id="{{ product.id }}" value="{{ product.quantity }}">-</button>
@@ -73,20 +73,25 @@
 </div>
 <script type="text/javascript">
     
-    $(".minus-product").on("click", function(){
-        alert(this.value)
-        
+    $(".minus-product").on("click", function(){        
         let updated_value = Number(this.value) - Number(1);
         $.ajax({
             url: "adjust/" + this.id + "/" + updated_value + "/",
+            async: true,
+            success: function(result){
+                location.reload(true);
+            }
         });
     });
 
     $(".add-product").on("click", function(){
-        alert(this.value)
         let updated_value = Number(this.value) + Number(1);
         $.ajax({
             url: "adjust/" + this.id + "/" + updated_value + "/",
+            async: true,
+            success: function(result){
+                location.reload(true);
+            }
         });
     });
 </script>

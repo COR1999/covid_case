@@ -6,21 +6,21 @@ from django.contrib import messages
 from products.models import Product
 # from .forms import OrderForm
 from django.views.decorators.cache import never_cache
-
 @never_cache
 def view_bag(request):
     """ A view that renders the bag contents page """
     bag = request.session.get('bag', {})
     q_set_products = []
     all_products = Product.objects.all()
-
+    print("view_bag")
     grand_total = request.session.get("grand_total", {})
-
+    final_price = 0
     list_of_products = []
     for item, key in bag.items():
         bag_products = all_products.filter(pk=int(item))
         for product in bag_products:
             bag_quantity = key
+            total_price = float(product.price) * bag_quantity
             bag_set = {
                 "id": product.id,
                 "name": product.product_name,
@@ -29,21 +29,12 @@ def view_bag(request):
                 "image": product.image,
                 "image_2": product.image_2,
                 "quantity": bag_quantity,
-                "item_total_price": product.price * bag_quantity
+                "item_total_price": total_price
             }
             list_of_products.append(bag_set)
-    print(list_of_products)
-    # if request.method == "POST":
-    #     form = OrderForm(request.POST)
-    #     if form.is_valid():
-    #         first_name = form.cleaned_data["first_name"]
-    #         last_name = form.cleaned_data["last_name"]
-    #         email = form.cleaned_data["email"]
-    #         address_line_1 = form.cleaned_data["address_line_1"]
-    #         address_line_2 = form.cleaned_data["address_line_2"]
-    #         country = form.cleaned_data["country"]
-
-    # form = OrderForm()
+            final_price += total_price
+    print(grand_total)
+    grand_total = final_price
 
     context = {
         "products": list_of_products,
@@ -76,7 +67,7 @@ def add_to_bag(request, item_id):
         request.session['grand_total'] = grand_total
         request.session['bag'] = bag
     else:
-        return render(request, "not_in_stock.html")
+        messages.info(request, "Sorry not enough in stock")
 
 
     context = {
@@ -84,7 +75,6 @@ def add_to_bag(request, item_id):
         "grand_total": grand_total,
 
     }
-    # print(product)
     return redirect(redirect_url, context)
 
 
@@ -102,8 +92,11 @@ def adjust_bag(request, item_id, updated_value):
     # bag[item_id] == int(updated_value)
     bag[item_id] = int(updated_value)
     print("bag", bag)
+    
     request.session["bag"] = bag
     # quantity = quantity + int(delta)
     # print(product.number_in_stock)
 
     return redirect(reverse("view_bag"))
+
+

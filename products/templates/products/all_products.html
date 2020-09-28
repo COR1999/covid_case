@@ -10,8 +10,11 @@
         </div>
     </div>
     {{ country_data | json_script:"country_data" }}
-
+        {% for message in messages %}
+            <p class="bg-info text-center">{{ message }}</p>
+        {% endfor %}
     <div class="row">
+    
         {% for product in products %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <div class="card h-100 border-0">
@@ -44,13 +47,16 @@
                         </div>
                         <div class="mx-auto" style="height:18%;">
                             <h8 class="float-left mt-1">Quantity:</h8><span
-                                class="">{% include "products/add-to-bag-form.html" %}</span>
+                                class="">{% include "products/add_to_bag_form.html" %}</span>
                         </div>
+                        
                     </div>
+                    
                 </div>
             </div>
         </div>
         {% endfor %}
+        
 
     </div>
 </div>
@@ -58,7 +64,7 @@
 {% endblock %}
 {% block extra_js %}
 {{ block.super }}
-{% include 'products/includes/quantity_input_script.html' %}
+
 <script src="{% static 'map/js/map.js' %}"></script>
 
 {% endblock %}

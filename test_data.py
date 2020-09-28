@@ -21,13 +21,11 @@ def write_to_json():
             "fields": {
                 "product_name": f"Visor",
                 "price":  round(random.uniform(5, 10), 2),
-                "color": "",
+                "color": "None",
                 "has_size": False,
                 "image": f"_visor.jpg",
                 "image_2": f"_visor_2.jpg",
                 "number_in_stock": round(random.uniform(5, 10), 2),
-
-
             }
         }
         all_products.append(visor)

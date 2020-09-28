@@ -29,6 +29,11 @@
     <input type="hidden" name="redirect_url" value="{{ request.path }}">
     <br>
 
-    <button type="submit" class="center btn btn-success" style="padding:.3rem;">Add to cart</button>
+    {% if request.user.is_superuser %}
+        <a  class="mr-auto btn btn-info"href="{% url 'update_product' product.id %}">Update</a>
+        <button type="submit" class="ml-auto btn btn-success" style="padding:.3rem;">Add to cart</button>
+    {% else %}
+        <button type="submit" class="center btn btn-success" style="padding:.3rem;">Add to cart</button>
 
+    {% endif %}
 </form>

@@ -4,7 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-
+from .models import Customer
+from .forms import CustomerForm
 def sign_up(request):
     form = SignUpForm()
     if request.method == "POST":
@@ -43,5 +44,23 @@ def login_page(request):
     context = {
         "grand_total": grand_total
     }
-    return render(request, 'profiles/Login.html', context)
+    return render(request, 'profiles/login.html', context)
 
+def my_profile(request, user_name):
+    customer = Customer.objects.get(name=user_name)
+
+    context = {
+        "profile": customer,
+    }
+    return render(request, "profiles/my_profile.html" ,context)
+
+
+def edit_profile(request, user_name):
+    customer = Customer.objects.get(name=user_name)
+
+    form = CustomerForm(request.POST, instance=customer)
+
+    context = {
+        "form": form,
+    }
+    return render(request, "profiles/edit_profile.html", context)
