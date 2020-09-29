@@ -7,8 +7,6 @@ class SignUpForm(UserCreationForm):
     # first_name = forms.CharField(max_length=100, help_text='Last Name')
     # last_name = forms.CharField(max_length=100, help_text='Last Name')
     email = forms.EmailField(max_length=150)
-
-
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2', )
@@ -16,5 +14,5 @@ class SignUpForm(UserCreationForm):
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ["name", "phone", "email"]
+        fields = ["name", "phone", "email","address_line_1", "address_line_2"]
     

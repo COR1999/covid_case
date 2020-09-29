@@ -1,11 +1,13 @@
+from shopping_bag.forms import OrderForm
 from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404
 )
 from decimal import Decimal
 from django.contrib import messages
 from products.models import Product
-# from .forms import OrderForm
+from .forms import OrderForm
 from django.views.decorators.cache import never_cache
+from profiles.models import Customer
 @never_cache
 def view_bag(request):
     """ A view that renders the bag contents page """
@@ -68,7 +70,7 @@ def add_to_bag(request, item_id):
         request.session['bag'] = bag
     else:
         messages.info(request, "Sorry not enough in stock")
-
+        
 
     context = {
         "all_products": product,
@@ -86,17 +88,34 @@ def adjust_bag(request, item_id, updated_value):
     product = get_object_or_404(Product, pk=item_id)
     # quantity = int(request.session.get('quantity'))
     # request.session["bag"]["quantity"] = updated_value
-    bag = request.session.get('bag', {})
-    grand_total = request.session.get("grand_total", 0)
-    print(int(updated_value))
-    # bag[item_id] == int(updated_value)
-    bag[item_id] = int(updated_value)
-    print("bag", bag)
-    
-    request.session["bag"] = bag
+    if int(updated_value) >= 0:
+        if int(updated_value) <= product.number_in_stock:
+            bag = request.session.get('bag', {})
+            grand_total = request.session.get("grand_total", 0)
+            print(int(updated_value))
+            # bag[item_id] == int(updated_value)
+            bag[item_id] = int(updated_value)
+
+            request.session["bag"] = bag
+            return redirect(reverse("view_bag"))
+        else:
+            messages.info(request, "Sorry no more left in stock")
+            return HttpResponse()
+            # return redirect(reverse("view_bag"))
     # quantity = quantity + int(delta)
-    # print(product.number_in_stock)
+    # print(product.number_in_stock
+    else:
+        messages.info(request, "Sorry your item quantity cant be less then 0")
+        return HttpResponse()
+        # return redirect(reverse("view_bag"))
 
-    return redirect(reverse("view_bag"))
 
 
+def checkout(request):
+    # customer = Customer.objects.get(name=request.user)
+    # print(customer)
+    form  = OrderForm()
+    context = {
+        "form": form,
+    }
+    return render(request, 'shopping_bag/checkout.html', context)

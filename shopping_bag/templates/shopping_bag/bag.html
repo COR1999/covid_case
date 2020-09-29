@@ -11,6 +11,9 @@
                 <button type="submit">Submit</button>
             </form>
         </div> {% endcomment %}
+        {% for message in messages %}
+            <p class="bg-info text-center">{{ message }}</p>
+        {% endfor %}
         <div class="col-md-12">
             <h4 class="d-flex justify-content-between align-items-center my-3">
                 <span class="text-muted">Your Bag</span>
@@ -66,8 +69,9 @@
             </li>
 
             <h4 class="d-flex justify-content-between align-items-center my-3">
-                <button href=""class="btn btn-primary ml-auto">Proceed to Checkout</button>
+                <a href="{% url 'checkout' %}"class="btn btn-primary ml-auto">Proceed to Checkout</a>
             </h4>
+            
         </div>
     </div>
 </div>
@@ -91,6 +95,11 @@
             async: true,
             success: function(result){
                 location.reload(true);
+            },
+            error: function(data){
+                if(data.sucess == false){
+                    location.reload(false)
+                }
             }
         });
     });

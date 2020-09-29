@@ -1,37 +1,50 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block content %}
-    <div>
-        {% if product %}
-        <h1 class="text-center">Update Product</h1>
-        {% else %}
-        <h1 class="text-center">New Product</h1>
-        {% endif %}
-    </div>
-    <div class="d-flex justify-content-center form_container">
-        
-        <form method="POST">
-            {% csrf_token %}
-            {% for field in form %}
-                <div class="mt-1">
-                    {{ field.label }}
-                    <br>
-                    {{ field }}
-                </div>
-                <br>
-            {% endfor %}
-            
-            <div class="mx-auto mt-3">
-                {% if product %}
-                <button class="btn btn-info" type="submit">Update</button>
-                <a class="btn btn-danger"href="{% url 'delete_product' product.id %}">Delete</a>
-                {% else %}
-                <button class="btn btn-success" type="submit">Create</button>
 
-                {% endif %}
+    <div class="container h-100 mt-3">
+		<div class="justify-content-center h-100">
+			<div class="product_card">
+				<div class="justify-content-center">
+					{% if product %}
+                        <h3 class="text-center">Update Product</h3>
+                    {% else %}
+                        <h3 class="text-center">New Product</h3>
+                    {% endif %}
+				</div>
+				<div class="justify-content-center form_container">
+					<form class="form-group mx-auto"method="POST" action="">
+                        {% csrf_token %}
+                        {% for field in form %}
+						<div class="input-group ">
+							<div class="input-group-append mt-2 center">                                
+								    {{ field.label }}
+							</div><br>
+                            <div class="mt-2 w-100">
+							    {{ field }}
+                            </div>
+						</div>
+                        {% endfor %}
+                        <div class="d-flex justify-content-center mt-3 product_container">
+                            {% if product %}
+                                <button class="btn btn-info" type="submit">Update</button>
+                                <a class="btn btn-danger ml-2"href="{% url 'delete_product' product.id %}">Delete</a>
+                            {% else %}
+                                <button class="btn btn-success" type="submit">Create</button>
+                            {% endif %}
+                        </div>
+					</form>
+
+				</div>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+			</div>
+            <div class="mx-auto mt-3">
+                
             </div>
-        </form>
-    </div>
+		</div>
+	</div>
     
 
 {% endblock %}

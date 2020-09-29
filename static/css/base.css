@@ -3,6 +3,15 @@ body {
     /* color: #026670; */
 }
 
+label {
+    text-align: right;
+    width: 75px;
+    padding-right: 20px;
+}
+
+br {
+    clear: left;
+}
 .navbar-bg{
     /* background-color: #14A098; */
     background-color: #8D8741;
@@ -79,7 +88,7 @@ body {
 
 
 #form-title{
-    color: #FBEEC1;
+    color: #1A1A1D;
 }
 .login_btn {
     width: 100%;
@@ -87,7 +96,9 @@ body {
     color: #FBEEC1 !important;
 }
 
-.login_container {
+.login_container,
+.product_container,
+.purchase_container {
     padding: 0 2rem;
 }
 .input-group-text {
@@ -100,4 +111,30 @@ body {
 .input_pass:focus {
     box-shadow: none !important;
     outline: 0px !important;
+}
+
+
+.product_card{
+    background: #FBEEC1;
+    width: 500px;
+    margin-top: 2%;
+    margin: auto;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+
+.checkout{
+    background: #FBEEC1;
+    width: 700px;
+    margin-top: 2%;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
 }

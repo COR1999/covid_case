@@ -14,7 +14,6 @@ def sign_up(request):
             form.save()
             user = form.cleaned_data.get("username")
             messages.success(request, "Account was created for " + user)
-
             return redirect(reverse("login_page"))
         else:
             messages.info(request, "Username OR password is incorrect")
@@ -58,7 +57,10 @@ def my_profile(request, user_name):
 def edit_profile(request, user_name):
     customer = Customer.objects.get(name=user_name)
 
-    form = CustomerForm(request.POST, instance=customer)
+    form = CustomerForm(request.POST or None,instance=customer)
+    if form.is_valid():
+            form.save()
+            return redirect(reverse("products"))
 
     context = {
         "form": form,
