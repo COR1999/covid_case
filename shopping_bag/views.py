@@ -2,12 +2,17 @@ from shopping_bag.forms import OrderForm
 from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404
 )
-from decimal import Decimal
+from decimal import Decimal, Rounded
 from django.contrib import messages
 from products.models import Product
 from .forms import OrderForm
+from products.models import OrderItem, Order
 from django.views.decorators.cache import never_cache
-from profiles.models import Customer
+# from profiles.models import Customer
+from django.conf import settings
+import stripe
+
+
 @never_cache
 def view_bag(request):
     """ A view that renders the bag contents page """
@@ -88,10 +93,12 @@ def adjust_bag(request, item_id, updated_value):
     product = get_object_or_404(Product, pk=item_id)
     # quantity = int(request.session.get('quantity'))
     # request.session["bag"]["quantity"] = updated_value
+    request.session['grand_total'] = updated_value
     if int(updated_value) >= 0:
         if int(updated_value) <= product.number_in_stock:
             bag = request.session.get('bag', {})
-            grand_total = request.session.get("grand_total", 0)
+            # grand_total = request.session.get("grand_total", 0)
+            
             print(int(updated_value))
             # bag[item_id] == int(updated_value)
             bag[item_id] = int(updated_value)
@@ -101,21 +108,78 @@ def adjust_bag(request, item_id, updated_value):
         else:
             messages.info(request, "Sorry no more left in stock")
             return HttpResponse()
-            # return redirect(reverse("view_bag"))
-    # quantity = quantity + int(delta)
-    # print(product.number_in_stock
+
     else:
         messages.info(request, "Sorry your item quantity cant be less then 0")
         return HttpResponse()
-        # return redirect(reverse("view_bag"))
 
 
 
 def checkout(request):
-    # customer = Customer.objects.get(name=request.user)
-    # print(customer)
-    form  = OrderForm()
+    form = OrderForm()
+    STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
+    STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
+    print(STRIPE_SECRET_KEY)
+    stripe.api_key = STRIPE_SECRET_KEY
+    grand_total = request.session.get("grand_total", 0)
+    # intent = stripe.PaymentIntent.create(
+    #     amount=round(grand_total * 100),
+    #     currency=settings.STRIPE_CURRENCY,
+    # )
+    try:
+        firstname = request.POST.get('firstname')
+        lastname = request.POST.get('lastname')
+        user_email = request.POST.get('user_email')
+        address_1 = request.POST.get('address_1')
+        address_2 = request.POST.get('address_2')
+        city = request.POST.get('city')
+        country= request.POST.get("country")
+        card_number = request.POST.get('card_number')
+        cvc_number = request.POST.get('cvc_number')
+        exp_month = request.POST.get('exp_month')
+        exp_year = request.POST.get('exp_year')
+        print(exp_month)
+        
+        stripe_token = stripe.Token.create(
+            card={
+                
+                "number": card_number,
+                "exp_month": exp_month,
+                "exp_year": exp_year,
+                "cvc": cvc_number,
+            },
+        )
+        print(stripe_token)
+        stripe_customer = stripe.Customer.create(
+            card=stripe_token.card.id,
+            description=user_email
+        )
+
+        stripe.Charge.create(
+            amount=grand_total,
+            currency=settings.STRIPE_CURRENCY,
+            customer=stripe_customer.id
+        )
+
+        ## saving to Order
+        current_order = Order(firstname=firstname, lastname=lastname,
+        email=user_email, address_1=address_1, address_2=address_2,
+        country=country,city=city)
+        current_order.save()
+
+        orders = request.session["bag"]
+        for _orders in orders:
+            current_order_item = OrderItem(item=orders[_orders], order=current_order.id)
+            current_order_item.save()
+
+        del request.session['bag']
+        messages.success(request, "Order Successful")
+    except Exception as e:
+        messages.error(request, "Error:" + str(e))
     context = {
         "form": form,
+        "STRIPE_PUBLIC_KEY": str(STRIPE_PUBLIC_KEY),
+        # "client_secret": intent.client_secret,
     }
+
     return render(request, 'shopping_bag/checkout.html', context)

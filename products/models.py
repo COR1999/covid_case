@@ -1,4 +1,5 @@
 from django.db import models
+from django_countries.fields import CountryField
 from django.conf import settings
 
 class Product(models.Model):
@@ -15,15 +16,17 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-    # items = models.ManyToManyField(OrderItem)
+    firstname = models.CharField(max_length=254, null=True)
+    lastname = models.CharField(max_length=254, null=True)
+    email = models.CharField(max_length=254, null=True)
+    address_1 = models.CharField(max_length=1000, editable=True, null=True)
+    address_2 = models.CharField(max_length=1000, default="", editable=True, null=True)
+    city = models.CharField(max_length=1000, null=True)
+    country = CountryField(null=True)
     ordered_date = models.DateTimeField(auto_now_add=True)
-    ordered = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username
-
+        return self.firstname + self.lastname
 
 
 class OrderItem(models.Model):

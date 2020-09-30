@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from . import env
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -171,3 +172,7 @@ BASE_URL = "https://disease.sh"
 ALL_DATA_WORLDMETERS = "/v3/covid-19/all"
 COUNTRY_DATA_WORLDMETERS = "/v3/covid-19/countries"
 COUNTRY_DATA_JHUCSSE = "/v3/covid-19/jhucsse"
+
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")
+STRIPE_CURRENCY = "USD"
