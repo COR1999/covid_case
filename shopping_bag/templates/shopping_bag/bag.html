@@ -65,7 +65,7 @@
             </ul>
             <li class="list-group-item d-flex justify-content-between">
                 <span>Total (USD)</span>
-                <strong>{% if grand_total %}$ {{ grand_total |floatformat:2 }}{% else %}$0{% endif %}</strong>
+                <strong>{% if request.session.grand_total %}$ {{ grand_total |floatformat:2 }}{% else %}$0{% endif %}</strong>
             </li>
 
             <h4 class="d-flex justify-content-between align-items-center my-3">
@@ -78,9 +78,9 @@
 <script type="text/javascript">
     
     $(".minus-product").on("click", function(){        
-        let updated_value = Number(this.value) - Number(1);
+        let updated_value = Number(this.value);
         $.ajax({
-            url: "adjust/" + this.id + "/" + updated_value + "/",
+            url: "adjust/" + this.id + "/" + updated_value + "/minus",
             async: true,
             success: function(result){
                 location.reload(true);
@@ -89,9 +89,9 @@
     });
 
     $(".add-product").on("click", function(){
-        let updated_value = Number(this.value) + Number(1);
+        let updated_value = Number(this.value);
         $.ajax({
-            url: "adjust/" + this.id + "/" + updated_value + "/",
+            url: "adjust/" + this.id + "/" + updated_value + "/add",
             async: true,
             success: function(result){
                 location.reload(true);

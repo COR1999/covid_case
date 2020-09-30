@@ -1,3 +1,4 @@
+from django.http import request
 from shopping_bag.forms import OrderForm
 from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404
@@ -41,7 +42,7 @@ def view_bag(request):
             list_of_products.append(bag_set)
             final_price += total_price
     print(grand_total)
-    grand_total = final_price
+    request.session["grand_total"] = final_price
 
     context = {
         "products": list_of_products,
@@ -56,8 +57,7 @@ def add_to_bag(request, item_id):
     # print(item_id)
     product = Product.objects.get(pk=item_id)
     redirect_url = request.POST.get('redirect_url')
-    # product = get_object_or_404(Product, pk=item_id)
-    quantity = request.POST.get('quantity', 0)
+    quantity = request.POST.get('quantity')
     grand_total = request.session.get("grand_total", 0)
     bag = request.session.get('bag', {})
     price = product.price
@@ -79,7 +79,7 @@ def add_to_bag(request, item_id):
 
     context = {
         "all_products": product,
-        "grand_total": grand_total,
+        # "grand_total": grand_total,
 
     }
     return redirect(redirect_url, context)
@@ -87,45 +87,63 @@ def add_to_bag(request, item_id):
 
 
 
-def adjust_bag(request, item_id, updated_value):
+def adjust_bag(request, item_id, updated_value, delta):
     """Adjust the quantity of the specified product to the specified amount"""
 
     product = get_object_or_404(Product, pk=item_id)
-    # quantity = int(request.session.get('quantity'))
-    # request.session["bag"]["quantity"] = updated_value
-    request.session['grand_total'] = updated_value
-    if int(updated_value) >= 0:
-        if int(updated_value) <= product.number_in_stock:
-            bag = request.session.get('bag', {})
-            # grand_total = request.session.get("grand_total", 0)
-            
-            print(int(updated_value))
-            # bag[item_id] == int(updated_value)
-            bag[item_id] = int(updated_value)
 
+    bag = request.session.get('bag', {})
+    print(bag[item_id])
+    print(product.number_in_stock)
+    if int(bag[item_id]) == product.number_in_stock:
+        if delta == "minus":
+            bag[item_id] = int(updated_value) - 1
             request.session["bag"] = bag
-            return redirect(reverse("view_bag"))
+    if delta == "minus":
+        if int(updated_value) > 0:
+            if int(updated_value) <= product.number_in_stock:
+                bag[item_id] = int(updated_value) - 1
+                request.session["bag"] = bag
+            else:
+                messages.info(request, "Sorry not enough in stock")
         else:
-            messages.info(request, "Sorry no more left in stock")
-            return HttpResponse()
+            messages.info(request, "Sorry your item quantity cant be less then 0")
+    if delta == "add":
+        if int(updated_value) >= 0:
+            if int(updated_value) < product.number_in_stock:
+                bag[item_id] = int(updated_value) + 1
+                request.session["bag"] = bag
 
-    else:
-        messages.info(request, "Sorry your item quantity cant be less then 0")
-        return HttpResponse()
+    return redirect(reverse("view_bag"))
 
-
-
+    
+STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
+STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
+stripe.api_key = STRIPE_SECRET_KEY
 def checkout(request):
     form = OrderForm()
-    STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
-    STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
-    print(STRIPE_SECRET_KEY)
-    stripe.api_key = STRIPE_SECRET_KEY
     grand_total = request.session.get("grand_total", 0)
-    # intent = stripe.PaymentIntent.create(
-    #     amount=round(grand_total * 100),
-    #     currency=settings.STRIPE_CURRENCY,
-    # )
+    
+    intent = stripe.PaymentIntent.create(
+        amount=round(grand_total * 100),
+        currency=settings.STRIPE_CURRENCY,
+    )
+    context = {
+        "form": form,
+        "STRIPE_PUBLIC_KEY": str(STRIPE_PUBLIC_KEY),
+        "client_secret": intent.client_secret,
+    }
+
+    return render(request, 'shopping_bag/checkout.html', context)
+
+
+def checkout_confirm(request):
+    
+    
+    print(STRIPE_SECRET_KEY)
+    
+    grand_total = request.session.get("grand_total", 0)
+    
     try:
         firstname = request.POST.get('firstname')
         lastname = request.POST.get('lastname')
@@ -174,12 +192,8 @@ def checkout(request):
 
         del request.session['bag']
         messages.success(request, "Order Successful")
+        return HttpResponse("checkout confirmed")
     except Exception as e:
         messages.error(request, "Error:" + str(e))
-    context = {
-        "form": form,
-        "STRIPE_PUBLIC_KEY": str(STRIPE_PUBLIC_KEY),
-        # "client_secret": intent.client_secret,
-    }
 
-    return render(request, 'shopping_bag/checkout.html', context)
+    return redirect(reverse("view_bag"))

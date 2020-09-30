@@ -19,10 +19,10 @@ def sign_up(request):
             messages.info(request, "Username OR password is incorrect")
 
 
-    grand_total = request.session.get("grand_total", {})
+    # grand_total = request.session.get("grand_total", {})
     context = {
         "form": form,
-        "grand_total": grand_total
+        # "grand_total": grand_total
     }
     return render(request, 'profiles/sign_up.html', context)
 
@@ -39,13 +39,14 @@ def login_page(request):
         if user is not None:
             login(request, user)
             return redirect("products")
-    grand_total = request.session.get("grand_total", {})
+    # grand_total = request.session.get("grand_total", {})
     context = {
-        "grand_total": grand_total
+        # "grand_total": grand_total
     }
-    return render(request, 'profiles/login.html', context)
+    return render(request, 'profiles/login.html')
 
 def my_profile(request, user_name):
+    # Should be a id not user_name !!!
     customer = Customer.objects.get(name=user_name)
 
     context = {

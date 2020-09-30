@@ -44,12 +44,12 @@ def all_products(request):
 
     products = Product.objects.all()
 
-    grand_total = request.session.get("grand_total", {})
-    quantity = request.session.get('quantity', 0)
+    # grand_total = request.session.get("grand_total", {})
+    # quantity = request.session.get('quantity', 0)
 
     context = {
         "products": products,
-        "grand_total": grand_total,
+        # "grand_total": grand_total,
         "country_data": country_data
     }
     return render(request, "products/all_products.html", context)
