@@ -30,8 +30,10 @@
     <br>
 
     {% if request.user.is_superuser %}
-        <a  class="mr-auto btn btn-info"href="{% url 'update_product' product.id %}">Update</a>
-        <button type="submit" class="ml-auto btn btn-success" style="padding:.3rem;">Add to cart</button>
+    <div class="mx-auto">
+        <a  class="mt-4 float-left btn btn-info"href="{% url 'update_product' product.id %}">Update</a>
+        <button type="submit" class="mt-1 float-right btn btn-success" style="float:right;">Add to cart</button>
+    </div>
     {% else %}
         <button type="submit" class="center btn btn-success" style="padding:.3rem;">Add to cart</button>
 

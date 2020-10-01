@@ -1,6 +1,7 @@
 body {
-    background-color: #1A1A1D;
+    background-color: #bee0d3;
     /* color: #026670; */
+    color: #0C3C26;
 }
 
 label {
@@ -14,14 +15,17 @@ br {
 }
 .navbar-bg{
     /* background-color: #14A098; */
-    background-color: #8D8741;
+    background-color: #0C3C26;
+}
+a{
+    color: #fff;
 }
 .navbar-light .navbar-nav .nav-link.active {
-    color: #1A1A1D;
+    color: #fff;
     font-weight: 600;
 }
 .navbar-light .navbar-nav .nav-link{
-    color: #FBEEC1;
+    color: #fff;
     font-weight: 600;
     margin: auto;
 
@@ -30,7 +34,7 @@ br {
     font-weight: 600;
 }
 .navbar-light .navbar-nav .nav-link:hover{
-    color: #1A1A1D;
+    color: #41b085;
 }
 
 
@@ -44,7 +48,7 @@ br {
 .loading {
     margin-top: 10em;
     text-align: center;
-    color: #1A1A1D;
+    color: #41b085;
 }
 .overlay {
 	height: 100%;
@@ -60,7 +64,7 @@ br {
 
 .hello-msg{
     font-size: 18px;
-    color: #FBEEC1;
+    color: #fff;
     margin: auto;
 }
 
@@ -68,13 +72,25 @@ br {
 
 /* all products card */
 .card{
-    background-color: #FBEEC1;
+    background:#0C3C26;
+    color:#fff;
+}
+.product_price_quantity{
+    background-color: #fff;
+    color: #0C3C26;
+    padding: 2%;
+    border: 2px solid;
+    border-radius: 13%;
+}
+.card-footer:last-child {
+    border-radius: 0;
 }
 
 /* Login/Register */
 .user_card{
-    background: #FBEEC1;
-    width: 350px;
+    background: #0C3C26;
+    color: #fff;
+    width: 600px;
     margin-top: 2%;
     margin-bottom: auto;
     position: relative;
@@ -89,14 +105,16 @@ br {
     margin-top: 2%;
 }
 
-
+.btn-success{
+    /* background: #41b085; */
+}
 #form-title{
-    color: #1A1A1D;
+    color: #fff;
 }
 .login_btn {
     width: 100%;
-    background: #8D8741 !important;
-    color: #FBEEC1 !important;
+    background: #41b085 !important;
+    color: #fff !important;
 }
 
 .login_container,
@@ -105,8 +123,8 @@ br {
     padding: 0 2rem;
 }
 .input-group-text {
-    background: #8D8741 !important;
-    color: #FBEEC1 !important;
+    background: #fff !important;
+    color: #41b085 !important;
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
 }
@@ -118,7 +136,8 @@ br {
 
 
 .product_card{
-    background: #FBEEC1;
+    background: #0C3C26;
+    color: #fff;
     width: 500px;
     margin-top: 2%;
     margin: auto;
@@ -131,7 +150,8 @@ br {
 }
 
 .checkout{
-    background: #FBEEC1;
+    background: #0C3C26;
+    color: #fff;
     width: auto;
     max-width: 900px;
     margin-top: 2%;
@@ -144,7 +164,8 @@ br {
 }
 
 .profile_card{
-    background: #FBEEC1;
+    background: #0C3C26;
+    color: #fff;
     width: auto;
     max-width: 500px;
     margin-top: 2%;
@@ -155,3 +176,9 @@ br {
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
 }
+
+/* Bag */
+
+/* .bg-bag{
+    background: #41b085;
+} */
