@@ -1,5 +1,5 @@
 body {
-    /* background-color: #46344E; */
+    background-color: #1A1A1D;
     /* color: #026670; */
 }
 
@@ -66,7 +66,10 @@ br {
 
 
 
-
+/* all products card */
+.card{
+    background-color: #FBEEC1;
+}
 
 /* Login/Register */
 .user_card{
@@ -131,6 +134,19 @@ br {
     background: #FBEEC1;
     width: auto;
     max-width: 900px;
+    margin-top: 2%;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+
+.profile_card{
+    background: #FBEEC1;
+    width: auto;
+    max-width: 500px;
     margin-top: 2%;
     justify-content: center;
     padding: 10px;

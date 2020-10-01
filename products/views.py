@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect, reverse
 from .models import Product
 from django.conf import settings
 import requests
-import urllib3
+# import urllib3
+# from werkzeug.utils import secure_filename
 import json
 from .forms import ProductForm
+import os
+from django.core.files.base import ContentFile
 
 
 def all_products(request):
@@ -56,9 +59,14 @@ def all_products(request):
 
 
 def create_product(request):
-    form = ProductForm(request.POST or None)
-
+    form = ProductForm(request.POST or None, request.FILES)
+    # if file and allowed_file(file.filename):
+    #         filename = secure_filename(file.filename)
+    #         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    #         #return redirect(url_for('upload_file', filename=filename))
+    #         os.rename(UPLOAD_FOLDER + filename, <product.name>)
     if form.is_valid():
+
         form.save()
         return redirect(reverse("products"))
 

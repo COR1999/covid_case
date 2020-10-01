@@ -14,26 +14,67 @@
                         {% csrf_token %}
 						<div class="input-group mb-3">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
+								{{ form.username.label }}
 							</div>
 							{{ form.username }}
 						</div>
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								{{ form.first_name.label }}
+							</div>
+							{{ form.first_name }}
+						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+								{{ form.last_name.label }}
+							</div>
+							{{ form.last_name }}
+
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								{{ form.email.label }}
 							</div>
 							{{ form.email }}
 
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+								{{ form.phone.label }}
+							</div>
+							{{ form.phone }}
+
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								{{ form.address_line_1.label }}
+							</div>
+							{{ form.address_line_1 }}
+
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								{{ form.address_line_2.label }}
+							</div>
+							{{ form.address_line_2 }}
+
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								{{ form.country.label }}
+							</div>
+							{{ form.country }}
+
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								{{ form.password1.label }}
 							</div>
 							{{ form.password1 }}
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+								{{ form.password2.label }}
 							</div>
 							{{ form.password2 }}
                         </div>

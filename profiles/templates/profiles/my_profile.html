@@ -1,16 +1,49 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block content %}
+    <div class="container h-100 mt-3">
+		<div class="d-flex justify-content-center h-100">
+			{% comment %} <div class="profile_card">
+				<div class="d-flex justify-content-center">
+					<h3 id="card-title">Profile for {{ profile.name }}</h3>
+				</div>
+                
+				<div class="d-flex justify-content-center">
+                    <ul class="list-group">
+                        <li class="list-group-item">First name: {{ profile.first_name }}</li>
+                        <li class="list-group-item">{{ profile.last_name }}</li>
+                        <li class="list-group-item">{{ profile.email }}</li>
+                        <li class="list-group-item">{{ profile.phone }}</li>
+                        <li class="list-group-item">{{ profile.address_line_1 }}</li>
+                        <li class="list-group-item">{{ profile.address_line_2 }}</li>
+                        <li class="list-group-item">{{ profile.date_created }}</li>
+                        <li class="list-group-item">
+                            <a class="btn btn-info" href="{% url 'edit_profile' profile.name %}">Edit profile</a>
+                        </li>
+                    </ul>
+				</div>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+			</div> {% endcomment %}
+            <div class="profile_card">
+                {% comment %} <img src="img.jpg" alt="John" style="width:100%"> {% endcomment %}
+                {% if profile %}
+                    <h1>{{ profile.first_name }}</h1>
+                    <p> {{ profile.last_name }}</p>
+                    <p>{{ profile.email }}</p>
+                    <p>{{ profile.phone }}</p>
+                    <p>{{ profile.address_line_1 }}</p>
+                    <p>{{ profile.address_line_2 }}</p>
+                    <p >{{ profile.date_created }}</p>
+                <p><a class="btn btn-info" href="{% url 'edit_profile' %}">Edit profile</a></p>
+                {% else %}
+                <p><a class="btn btn-info" href="{% url 'edit_profile' %}">Create Profile</a></p>
+                {% endif %}
+                
+            </div>
+		</div>
+	</div>
 
-    <h1>Profile for {{ profile.name }}</h1>
-    <p>{{ profile.phone }}</p>
-    <p>{{ profile.email }}</p>
-    <p>{{ profile.first_name }}</p>
-    <p>{{ profile.last_name }}</p>
-    <p>{{ profile.address_line_1 }}</p>
-    <p>{{ profile.address_line_2 }}</p>
-    <p>{{ profile.date_created }}</p>
 
-
-    <a class="btn btn-info" href="{% url 'edit_profile' profile.name %}">Edit profile</a>
 {% endblock %}

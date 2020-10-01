@@ -2,6 +2,7 @@ import random
 import csv
 import json
 from time import time
+import datetime
 RECORD_COUNT = 9
 
 my_json_file = open("./products/fixtures/products.json", "w")
@@ -26,6 +27,7 @@ def write_to_json():
                 "image": f"_visor.jpg",
                 "image_2": f"_visor_2.jpg",
                 "number_in_stock": round(random.uniform(5, 10), 2),
+                "created_by": "admin",
             }
         }
         all_products.append(visor)
@@ -50,6 +52,7 @@ def write_to_json():
                     "image": f"_{item}.jpg",
                     "image_2": image_2,
                     "number_in_stock": round(random.uniform(5, 10), 2),
+                    "created_by": "admin",
                 }
             }
             all_products.append(product)

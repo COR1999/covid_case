@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     
     # My Apps
-    "map",
     "products",
     "shopping_bag",
     "profiles",
@@ -97,7 +96,7 @@ WSGI_APPLICATION = 'covid_case.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

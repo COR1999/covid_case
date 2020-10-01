@@ -3,14 +3,14 @@ from shopping_bag.forms import OrderForm
 from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404
 )
-from decimal import Decimal, Rounded
+# from decimal import Decimal, Rounded
 from django.contrib import messages
 from products.models import Product
 from .forms import OrderForm
-from products.models import OrderItem, Order
+from .models import OrderItem, Order
 from django.views.decorators.cache import never_cache
-# from profiles.models import Customer
 from django.conf import settings
+from django.views.decorators.http import require_http_methods
 import stripe
 
 
@@ -124,108 +124,122 @@ def remove_from_bag(request, item_id):
     request.session.modified = True
     return redirect((reverse("view_bag")))
 
-
-STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
-STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
-stripe.api_key = STRIPE_SECRET_KEY
 def checkout(request):
     form = OrderForm()
-    all_products = Product.objects.all()
-    bag = request.session.get('bag', {})
-    
-    grand_total = request.session.get("grand_total", 0)
-    final_price = 0
-    list_of_products = []
-    for item, key in bag.items():
-        bag_products = all_products.filter(pk=int(item))
-        for product in bag_products:
-            bag_quantity = key
-            total_price = float(product.price) * bag_quantity
-            bag_set = {
-                "id": product.id,
-                "name": product.product_name,
-                "color": product.color,
-                "price": product.price,
-                "image": product.image,
-                "image_2": product.image_2,
-                "quantity": bag_quantity,
-                "item_total_price": total_price
-            }
-            list_of_products.append(bag_set)
-            final_price += total_price
-    print(grand_total)
-    request.session["grand_total"] = final_price
-    
-    intent = stripe.PaymentIntent.create(
-        amount=round(grand_total * 100),
-        currency=settings.STRIPE_CURRENCY,
-    )
-    context = {
+    try:
+        STRIPE_PUBLIC_KEY = "pk_test_51HH4jLDjlHsBcv8nsTDlvMs1Zkdk3enUg23OOVaAJ8kliIhK4zV86NrNnNimffXD9gOrtquyNtz5DcwhxdPGBKps00vJv0uBcg"
+        STRIPE_SECRET_KEY = "sk_test_51HH4jLDjlHsBcv8n5xQRVA2Q4SLIT4c9gCUj25yNOmxHXsmCyexC56X8SfP3imAcG24BVWrI60JuBWUVgJUC360u00UQeRhPoz"
+        stripe.api_key = STRIPE_SECRET_KEY
+        grand_total = request.session.get("grand_total", 0)
+        intent = stripe.PaymentIntent.create(
+            amount=round(grand_total * 100),
+            currency=settings.STRIPE_CURRENCY,
+        )
+
+        context = {
         "form": form,
         "STRIPE_PUBLIC_KEY": str(STRIPE_PUBLIC_KEY),
         "client_secret": intent.client_secret,
-        "products": list_of_products,
-    }
+        }
+    except Exception as e:
+        print(str(e))
 
+    #return 1
     return render(request, 'shopping_bag/checkout.html', context)
 
+@require_http_methods(["POST"])
+def checkout_process(request):
+    form = OrderForm()
+    post_details = request.POST.get('form').split("&")
+    post_data = {}
+    print(request.POST)
+    print(post_details)
+    print(request.user)
 
-def checkout_confirm(request):
-    
-    print(STRIPE_SECRET_KEY)
-    
+    for _post_details in post_details:
+        _post_details = _post_details.split("=")
+        post_data[_post_details[0]] = _post_details[1]
+
+    print(post_data)
+
+    pid = request.POST.get('client_secret').split('_secret')[0]
+
+    STRIPE_PUBLIC_KEY = "pk_test_51HH4jLDjlHsBcv8nsTDlvMs1Zkdk3enUg23OOVaAJ8kliIhK4zV86NrNnNimffXD9gOrtquyNtz5DcwhxdPGBKps00vJv0uBcg"
+    STRIPE_SECRET_KEY = "sk_test_51HH4jLDjlHsBcv8n5xQRVA2Q4SLIT4c9gCUj25yNOmxHXsmCyexC56X8SfP3imAcG24BVWrI60JuBWUVgJUC360u00UQeRhPoz"
     grand_total = request.session.get("grand_total", 0)
-    
+    grand_total = round(grand_total * 100)
+    stripe.api_key = STRIPE_SECRET_KEY
+
+
     try:
-        firstname = request.POST.get('firstname')
-        lastname = request.POST.get('lastname')
-        user_email = request.POST.get('user_email')
-        address_1 = request.POST.get('address_1')
-        address_2 = request.POST.get('address_2')
-        city = request.POST.get('city')
-        country= request.POST.get("country")
-        card_number = request.POST.get('card_number')
-        cvc_number = request.POST.get('cvc_number')
-        exp_month = request.POST.get('exp_month')
-        exp_year = request.POST.get('exp_year')
-        print(exp_month)
-        
-        stripe_token = stripe.Token.create(
-            card={
-                
-                "number": card_number,
-                "exp_month": exp_month,
-                "exp_year": exp_year,
-                "cvc": cvc_number,
-            },
-        )
-        print(stripe_token)
+        firstname = post_data['firstname']
+        lastname = post_data['lastname']
+        user_email = post_data['user_email']
+        address_1 = post_data['address_1']
+        address_2 = post_data['address_2']
+        city = post_data['city']
+        country= post_data['country']
+        token = request.POST.get('token')
+
+        # check_customer = Order.objects.get(email=user_email)
+        # print(check_customer.user_email)
+        # if len(check_customer < 1):
         stripe_customer = stripe.Customer.create(
-            card=stripe_token.card.id,
+            card=token,
             description=user_email
         )
+        # else:
+        # check_customer.stripe_pid
 
-        stripe.Charge.create(
-            amount=grand_total,
+        intent = stripe.PaymentIntent.create(
+            amount=round(grand_total * 100),
             currency=settings.STRIPE_CURRENCY,
             customer=stripe_customer.id
         )
 
+        # stripe_charge = stripe.Charge.create(
+        # amount=grand_total,
+        # currency=settings.STRIPE_CURRENCY,
+        # customer=stripe_customer.id
+        # )
+
+        # print(stripe_charge)
+
         ## saving to Order
-        current_order = Order(firstname=firstname, lastname=lastname,
+        current_order = Order(stripe_pid=stripe_customer.id,firstname=firstname, lastname=lastname,
         email=user_email, address_1=address_1, address_2=address_2,
         country=country,city=city)
         current_order.save()
+        
+        print("stripe pid", stripe_customer.id)
+        print("current order id",current_order.id)
 
         orders = request.session["bag"]
+
         for _orders in orders:
-            current_order_item = OrderItem(item=orders[_orders], order=current_order.id)
+            # saving of product item
+            current_order_item = OrderItem(item=Product.objects.get(id=_orders),
+            order=Order.objects.get(id=current_order.id), quantity=orders[_orders])
             current_order_item.save()
+
+            # updating of stock
+            product_details = Product.objects.get(id=_orders)
+            product_details.number_in_stock = product_details.number_in_stock - orders[_orders]
+            product_details.save()
+
 
         del request.session['bag']
         messages.success(request, "Order Successful")
-        return HttpResponse("checkout confirmed")
+
     except Exception as e:
         messages.error(request, "Error:" + str(e))
+        print(str(e))   
 
-    return redirect(reverse("view_bag"))
+
+    context = {
+    "form": form,
+    "STRIPE_PUBLIC_KEY": str(STRIPE_PUBLIC_KEY),
+    "client_secret": intent.client_secret,
+    }
+
+    return render(request, 'shopping_bag/checkout.html', context)
