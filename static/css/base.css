@@ -44,7 +44,7 @@ br {
 .loading {
     margin-top: 10em;
     text-align: center;
-    color: gray;
+    color: #1A1A1D;
 }
 .overlay {
 	height: 100%;
@@ -129,7 +129,8 @@ br {
 
 .checkout{
     background: #FBEEC1;
-    width: 700px;
+    width: auto;
+    max-width: 900px;
     margin-top: 2%;
     justify-content: center;
     padding: 10px;

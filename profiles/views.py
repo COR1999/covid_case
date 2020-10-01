@@ -1,11 +1,12 @@
 
 from django.shortcuts import render, redirect, reverse
-from django.contrib.auth.forms import UserCreationForm
+
 from .forms import SignUpForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import Customer
 from .forms import CustomerForm
+
 def sign_up(request):
     form = SignUpForm()
     if request.method == "POST":

@@ -116,13 +116,45 @@ def adjust_bag(request, item_id, updated_value, delta):
 
     return redirect(reverse("view_bag"))
 
-    
+
+def remove_from_bag(request, item_id):
+    bag = request.session.get('bag', {})
+    print(bag)
+    del request.session["bag"][item_id]
+    request.session.modified = True
+    return redirect((reverse("view_bag")))
+
+
 STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
 STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
 stripe.api_key = STRIPE_SECRET_KEY
 def checkout(request):
     form = OrderForm()
+    all_products = Product.objects.all()
+    bag = request.session.get('bag', {})
+    
     grand_total = request.session.get("grand_total", 0)
+    final_price = 0
+    list_of_products = []
+    for item, key in bag.items():
+        bag_products = all_products.filter(pk=int(item))
+        for product in bag_products:
+            bag_quantity = key
+            total_price = float(product.price) * bag_quantity
+            bag_set = {
+                "id": product.id,
+                "name": product.product_name,
+                "color": product.color,
+                "price": product.price,
+                "image": product.image,
+                "image_2": product.image_2,
+                "quantity": bag_quantity,
+                "item_total_price": total_price
+            }
+            list_of_products.append(bag_set)
+            final_price += total_price
+    print(grand_total)
+    request.session["grand_total"] = final_price
     
     intent = stripe.PaymentIntent.create(
         amount=round(grand_total * 100),
@@ -132,13 +164,13 @@ def checkout(request):
         "form": form,
         "STRIPE_PUBLIC_KEY": str(STRIPE_PUBLIC_KEY),
         "client_secret": intent.client_secret,
+        "products": list_of_products,
     }
 
     return render(request, 'shopping_bag/checkout.html', context)
 
 
 def checkout_confirm(request):
-    
     
     print(STRIPE_SECRET_KEY)
     
