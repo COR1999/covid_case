@@ -9,7 +9,7 @@ class OrderForm(forms.Form):
     lastname = forms.CharField(max_length=254)
     user_email = forms.CharField(max_length=254)
     address_1 = forms.CharField(max_length=254)
-    address_2 = forms.CharField(max_length=254)
+    address_2 = forms.CharField(max_length=254, required=False)
     city = forms.CharField(max_length=254)
     country = CountryField(null=True).formfield()
     

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.db.models.fields import CharField
 from .models import Customer
 from django_countries.fields import Country, CountryField
 
@@ -24,7 +25,15 @@ class SignUpForm(UserCreationForm):
         'password1', 'password2', )
 
 class CustomerForm(forms.ModelForm):
+    first_name = forms.CharField(max_length=254)
+    last_name = forms.CharField(max_length=254)
+    address_line_2 = CharField(max_length=254,default="")
     class Meta:
         model = Customer
-        fields = ["name", "phone", "email","address_line_1", "address_line_2"]
+        fields = ["first_name",
+        "last_name",
+        "phone", "email",
+        "country",
+        "address_line_1",
+        "address_line_2"]
     

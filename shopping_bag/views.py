@@ -3,6 +3,7 @@ from shopping_bag.forms import OrderForm
 from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404
 )
+from profiles.models import Customer
 # from decimal import Decimal, Rounded
 from django.contrib import messages
 from products.models import Product
@@ -18,7 +19,7 @@ import stripe
 def view_bag(request):
     """ A view that renders the bag contents page """
     bag = request.session.get('bag', {})
-    q_set_products = []
+    # q_set_products = []
     all_products = Product.objects.all()
     print("view_bag")
     grand_total = request.session.get("grand_total", {})
@@ -90,7 +91,7 @@ def add_to_bag(request, item_id):
 def adjust_bag(request, item_id, updated_value, delta):
     """Adjust the quantity of the specified product to the specified amount"""
 
-    product = get_object_or_404(Product, pk=item_id)
+    product = Product.objects.get(pk=item_id)
 
     bag = request.session.get('bag', {})
     print(bag[item_id])
@@ -126,6 +127,28 @@ def remove_from_bag(request, item_id):
 
 def checkout(request):
     form = OrderForm()
+    # customer = Customer.objects.get(user=request.user)
+    # if customer:
+    #     form = OrderForm(customer)
+    bag = request.session.get('bag', {})
+    # q_set_products = []
+    all_products = Product.objects.all()
+    list_of_products = []
+    for item, key in bag.items():
+        bag_products = all_products.filter(pk=int(item))
+        for product in bag_products:
+            bag_quantity = key
+            total_price = float(product.price) * bag_quantity
+            bag_set = {
+                "id": product.id,
+                "name": product.product_name,
+                "color": product.color,
+                "price": product.price,
+                "quantity": bag_quantity,
+                "item_total_price": total_price
+            }
+            list_of_products.append(bag_set)
+    
     try:
         STRIPE_PUBLIC_KEY = "pk_test_51HH4jLDjlHsBcv8nsTDlvMs1Zkdk3enUg23OOVaAJ8kliIhK4zV86NrNnNimffXD9gOrtquyNtz5DcwhxdPGBKps00vJv0uBcg"
         STRIPE_SECRET_KEY = "sk_test_51HH4jLDjlHsBcv8n5xQRVA2Q4SLIT4c9gCUj25yNOmxHXsmCyexC56X8SfP3imAcG24BVWrI60JuBWUVgJUC360u00UQeRhPoz"
@@ -137,9 +160,10 @@ def checkout(request):
         )
 
         context = {
-        "form": form,
-        "STRIPE_PUBLIC_KEY": str(STRIPE_PUBLIC_KEY),
-        "client_secret": intent.client_secret,
+            "form": form,
+            "STRIPE_PUBLIC_KEY": str(STRIPE_PUBLIC_KEY),
+            "client_secret": intent.client_secret,
+            "products": list_of_products,
         }
     except Exception as e:
         print(str(e))
@@ -161,12 +185,11 @@ def checkout_process(request):
         post_data[_post_details[0]] = _post_details[1]
 
     print(post_data)
-
+    grand_total = request.session.get("grand_total", 0)
     pid = request.POST.get('client_secret').split('_secret')[0]
 
-    STRIPE_PUBLIC_KEY = "pk_test_51HH4jLDjlHsBcv8nsTDlvMs1Zkdk3enUg23OOVaAJ8kliIhK4zV86NrNnNimffXD9gOrtquyNtz5DcwhxdPGBKps00vJv0uBcg"
-    STRIPE_SECRET_KEY = "sk_test_51HH4jLDjlHsBcv8n5xQRVA2Q4SLIT4c9gCUj25yNOmxHXsmCyexC56X8SfP3imAcG24BVWrI60JuBWUVgJUC360u00UQeRhPoz"
-    grand_total = request.session.get("grand_total", 0)
+    STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
+    STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
     grand_total = round(grand_total * 100)
     stripe.api_key = STRIPE_SECRET_KEY
 

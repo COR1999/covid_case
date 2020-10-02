@@ -72,7 +72,8 @@ def my_profile(request):
     # Should be a id not user_name !!!
     context = {}
     customer = Customer.objects.get(name=request.user)
-    if len(customer) >= 1:
+    print(customer)
+    if customer:
         context = {
             "profile": customer,
         }

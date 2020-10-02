@@ -82,7 +82,7 @@
     
     {% endblock%}
     {% block postloadjs %}
-    <script type="text/javascript">
+    {% comment %} <script type="text/javascript">
         var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
         $('navbar a').each(function () {
             console.log(this)
@@ -90,7 +90,7 @@
                 $(this).addClass('active');
             }
         });
-    </script>
+    </script> {% endcomment %}
     {% endblock %}
 
 </body>

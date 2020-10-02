@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     # Django Country Field 
     "django_countries",
+
+    # Crispy forms
+    'crispy_forms',
     
 ]
 

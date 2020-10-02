@@ -166,7 +166,7 @@ a{
 .profile_card{
     background: #0C3C26;
     color: #fff;
-    width: auto;
+    width: 500px;
     max-width: 500px;
     margin-top: 2%;
     justify-content: center;
@@ -176,9 +176,30 @@ a{
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
 }
+/* .checkout-list{
+    background: #0C3C26;
+    color: #fff;
+    width: auto;
+
+} */
 
 /* Bag */
 
 /* .bg-bag{
     background: #41b085;
 } */
+
+#payment_form label{
+    width: 100px;
+    padding: 0;
+    text-align: left;
+}
+#profile_form label{
+    width: 150px;
+    padding: 0;
+    text-align: left;
+}
+#profile_form input{
+    width: 150px;
+
+}

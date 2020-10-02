@@ -29,16 +29,41 @@
             <div class="profile_card">
                 {% comment %} <img src="img.jpg" alt="John" style="width:100%"> {% endcomment %}
                 {% if profile %}
-                    <h1>{{ profile.first_name }}</h1>
-                    <p> {{ profile.last_name }}</p>
-                    <p>{{ profile.email }}</p>
-                    <p>{{ profile.phone }}</p>
-                    <p>{{ profile.address_line_1 }}</p>
-                    <p>{{ profile.address_line_2 }}</p>
-                    <p >{{ profile.date_created }}</p>
-                <p><a class="btn btn-info" href="{% url 'edit_profile' %}">Edit profile</a></p>
+                <div class="row">
+                        	<div class="col-md-6 mb-3">
+                                <h4>{{ profile.first_name }}</h4>
+                            </div>
+							<div class="col-md-6 mb-3">
+                                <h4>{{ profile.last_name }}</h4>
+                            </div>
+						</div>
+						<div class="row">
+                            <div class="col-md-6 mb-3">
+                                <p>{{ profile.phone }}</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <p>{{ profile.email }}</p>
+                            </div>
+						</div>
+						<div class="row">
+                            <div class="col-md-6 mb-3">
+                                <p>{{ profile.address_line_1 }}</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <p>{{ profile.address_line_2 }}</p>
+                            </div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 mb-3">
+                                <p >{{ profile.country }}</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <p >{{ profile.date_created }}</p>
+                            </div>
+						</div>
+                <p class="text-center"><a class="btn btn-info mx-auto" href="{% url 'edit_profile' %}">Edit profile</a></p>
                 {% else %}
-                <p><a class="btn btn-info" href="{% url 'edit_profile' %}">Create Profile</a></p>
+                <p class="text-center"><a class="btn btn-info" href="{% url 'edit_profile' %}">Create Profile</a></p>
                 {% endif %}
                 
             </div>
