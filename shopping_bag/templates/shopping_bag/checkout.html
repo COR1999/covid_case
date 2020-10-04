@@ -5,7 +5,7 @@
     {{ STRIPE_PUBLIC_KEY | json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
     <div class="d-flex justify-content-center h-100">
-        <div class="checkout">
+        <div class="checkout mt-4">
             <div class="d-flex justify-content-center">
                 <h3 id="form-title">Checkout</h3>
             </div>
@@ -13,7 +13,7 @@
 
                 <div class="col-md-4 order-md-2 mb-4 " style="color:#0C3C26;">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-muted" style=>Your cart</span>
+                        <span class="text-muted" style=>Your bag</span>
                         <span class="badge badge-secondary badge-pill">{{ products | length }}</span>
                     </h4>
                     <ul class="list-group mb-3 sticky-top ">
@@ -24,12 +24,12 @@
                                 <small class="text-muted">{{ product.quantity }}</small>
                                 <small class="text-muted">{{ product.color }}</small>
                             </div>
-                            <span class="text-muted">{{ product.item_total_price | floatformat:2 }}</span>
+                            <span class="text-muted">$ {{ product.item_total_price | floatformat:2 }}</span>
                         </li>
                         {% endfor %}
                         <li class="list-group-item d-flex justify-content-between">
                             <span>Total (USD)</span>
-                            <strong>{{ request.session.grand_total |floatformat:2 }}</strong>
+                            <strong>$ {{ request.session.grand_total |floatformat:2 }}</strong>
                         </li>
                     </ul>
                 </div>
@@ -51,15 +51,16 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                {{ form.city|as_crispy_field }}
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-6 mb-3">
                                 {{ form.address_1|as_crispy_field }}
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 {{ form.address_2|as_crispy_field }}
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                
+                                {{ form.city|as_crispy_field }}
                                 <div class="invalid-feedback"></div>
                             </div>
                             

@@ -1,4 +1,5 @@
 from django.http import request
+from django.http.response import HttpResponseNotAllowed
 from shopping_bag.forms import OrderForm
 from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404
@@ -21,7 +22,7 @@ def view_bag(request):
     bag = request.session.get('bag', {})
     # q_set_products = []
     all_products = Product.objects.all()
-    print("view_bag")
+    # print("view_bag")
     grand_total = request.session.get("grand_total", {})
     final_price = 0
     list_of_products = []
@@ -42,7 +43,7 @@ def view_bag(request):
             }
             list_of_products.append(bag_set)
             final_price += total_price
-    print(grand_total)
+    # print(grand_total)
     request.session["grand_total"] = final_price
 
     context = {
@@ -64,8 +65,8 @@ def add_to_bag(request, item_id):
     price = product.price
     if int(quantity) <= product.number_in_stock:
         if len(quantity) > 0:
-            print(type(quantity))
-            print(quantity)
+            # print(type(quantity))
+            # print(quantity)
             quantity = int(quantity)
             grand_total += float(price) * quantity
             if item_id in list(bag.keys()):
@@ -94,8 +95,8 @@ def adjust_bag(request, item_id, updated_value, delta):
     product = Product.objects.get(pk=item_id)
 
     bag = request.session.get('bag', {})
-    print(bag[item_id])
-    print(product.number_in_stock)
+    # print(bag[item_id])
+    # print(product.number_in_stock)
     if int(bag[item_id]) == product.number_in_stock:
         if delta == "minus":
             bag[item_id] = int(updated_value) - 1
@@ -120,7 +121,7 @@ def adjust_bag(request, item_id, updated_value, delta):
 
 def remove_from_bag(request, item_id):
     bag = request.session.get('bag', {})
-    print(bag)
+    # print(bag)
     del request.session["bag"][item_id]
     request.session.modified = True
     return redirect((reverse("view_bag")))
@@ -150,9 +151,9 @@ def checkout(request):
             list_of_products.append(bag_set)
     
     try:
-        STRIPE_PUBLIC_KEY = "pk_test_51HH4jLDjlHsBcv8nsTDlvMs1Zkdk3enUg23OOVaAJ8kliIhK4zV86NrNnNimffXD9gOrtquyNtz5DcwhxdPGBKps00vJv0uBcg"
-        STRIPE_SECRET_KEY = "sk_test_51HH4jLDjlHsBcv8n5xQRVA2Q4SLIT4c9gCUj25yNOmxHXsmCyexC56X8SfP3imAcG24BVWrI60JuBWUVgJUC360u00UQeRhPoz"
-        stripe.api_key = STRIPE_SECRET_KEY
+        stripe_public_key = settings.STRIPE_PUBLIC_KEY
+        stripe_secret_key = settings.STRIPE_SECRET_KEY
+        stripe.api_key = stripe_secret_key
         grand_total = request.session.get("grand_total", 0)
         intent = stripe.PaymentIntent.create(
             amount=round(grand_total * 100),
@@ -161,7 +162,7 @@ def checkout(request):
 
         context = {
             "form": form,
-            "STRIPE_PUBLIC_KEY": str(STRIPE_PUBLIC_KEY),
+            "STRIPE_PUBLIC_KEY": str(stripe_public_key),
             "client_secret": intent.client_secret,
             "products": list_of_products,
         }
@@ -176,22 +177,22 @@ def checkout_process(request):
     form = OrderForm()
     post_details = request.POST.get('form').split("&")
     post_data = {}
-    print(request.POST)
-    print(post_details)
-    print(request.user)
+    # print(request.POST)
+    # print(post_details)
+    # print(request.user)
 
     for _post_details in post_details:
         _post_details = _post_details.split("=")
         post_data[_post_details[0]] = _post_details[1]
 
-    print(post_data)
+    # print(post_data)
     grand_total = request.session.get("grand_total", 0)
     pid = request.POST.get('client_secret').split('_secret')[0]
-
-    STRIPE_PUBLIC_KEY = settings.STRIPE_PUBLIC_KEY
-    STRIPE_SECRET_KEY = settings.STRIPE_SECRET_KEY
-    grand_total = round(grand_total * 100)
-    stripe.api_key = STRIPE_SECRET_KEY
+    # print(type(grand_total))
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
+    stripe_grand_total = round(grand_total * 100)
+    stripe.api_key = stripe_secret_key
 
 
     try:
@@ -215,7 +216,7 @@ def checkout_process(request):
         # check_customer.stripe_pid
 
         intent = stripe.PaymentIntent.create(
-            amount=round(grand_total * 100),
+            amount=stripe_grand_total,
             currency=settings.STRIPE_CURRENCY,
             customer=stripe_customer.id
         )
@@ -229,13 +230,14 @@ def checkout_process(request):
         # print(stripe_charge)
 
         ## saving to Order
+        # pass customer into current order if created else create new customer
         current_order = Order(stripe_pid=stripe_customer.id,firstname=firstname, lastname=lastname,
         email=user_email, address_1=address_1, address_2=address_2,
-        country=country,city=city)
+        country=country,city=city, order_total=grand_total)
         current_order.save()
         
-        print("stripe pid", stripe_customer.id)
-        print("current order id",current_order.id)
+        # print("stripe pid", stripe_customer.id)
+        # print("current order id",current_order.id)
 
         orders = request.session["bag"]
 
@@ -252,17 +254,32 @@ def checkout_process(request):
 
 
         del request.session['bag']
+        del request.session["grand_total"]
+        context = {
+            "order": current_order,
+        }
         messages.success(request, "Order Successful")
+        return HttpResponse("order successful")
 
     except Exception as e:
         messages.error(request, "Error:" + str(e))
         print(str(e))   
+        # return "error"
+    
+    return HttpResponse("order done")
+    # return render(request, "shopping_bag/order_success.html", context)
+    # context = {
+    # "form": form,
+    # "STRIPE_PUBLIC_KEY": str(stripe_public_key),
+    # "client_secret": intent.client_secret,
+    # }
+
+    # return render(request, 'shopping_bag/checkout.html', context)
 
 
-    context = {
-    "form": form,
-    "STRIPE_PUBLIC_KEY": str(STRIPE_PUBLIC_KEY),
-    "client_secret": intent.client_secret,
-    }
-
-    return render(request, 'shopping_bag/checkout.html', context)
+def order_success(request):
+    # order = 
+    # context = {
+    #     "order": order,
+    # }
+    return render(request, "shopping_bag/order_success.html")

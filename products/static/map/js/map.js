@@ -2,7 +2,9 @@
 $(document).ready(function () {
 
     let country_data = JSON.parse(document.getElementById('country_data').textContent);
-    // console.log(createSeries(country_data))
+    
+    
+    // Move into Test.js
     var my_json = [
         {
             "country": "England",
@@ -37,7 +39,6 @@ $(document).ready(function () {
     }
     let chart_container = document.getElementById("container")
     var chart = Highcharts.mapChart(chart_container, {
-
         title: {
             text: 'Covid Cases',
             style: {

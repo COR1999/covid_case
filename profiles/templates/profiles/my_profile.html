@@ -55,10 +55,10 @@
 						</div>
 						<div class="row">
 							<div class="col-md-6 mb-3">
-                                <p >{{ profile.country }}</p>
+                                <p >{{ profile.country.name }}</p>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <p >{{ profile.date_created }}</p>
+                                <p>{{ profile.date_created }}</p>
                             </div>
 						</div>
                 <p class="text-center"><a class="btn btn-info mx-auto" href="{% url 'edit_profile' %}">Edit profile</a></p>

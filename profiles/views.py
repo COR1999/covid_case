@@ -21,6 +21,7 @@ def sign_up(request):
             email = form.cleaned_data.get("email")
             address_line_1 = form.cleaned_data.get("address_line_1")
             address_line_2 = form.cleaned_data.get("address_line_2")
+            city = form.cleaned_data.get("city")
             country = form.cleaned_data.get("country")
             # print(user)
             
@@ -33,6 +34,7 @@ def sign_up(request):
                 email=email,
                 address_line_1=address_line_1,
                 address_line_2=address_line_2,
+                city=city,
                 country=country,
             )
             customer.save()
@@ -68,17 +70,17 @@ def login_page(request):
     }
     return render(request, 'profiles/login.html')
 
-def my_profile(request):
-    # Should be a id not user_name !!!
-    context = {}
-    customer = Customer.objects.get(name=request.user)
-    print(customer)
-    if customer:
-        context = {
-            "profile": customer,
-        }
+# def my_profile(request):
+#     # Should be a id not user_name !!!
+#     context = {}
+#     customer = Customer.objects.get(name=request.user)
+#     print(customer)
+#     if customer:
+#         context = {
+#             "profile": customer,
+#         }
     
-    return render(request, "profiles/my_profile.html" ,context)
+#     return render(request, "profiles/my_profile.html" ,context)
 
 
 def edit_profile(request):

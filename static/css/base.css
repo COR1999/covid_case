@@ -1,6 +1,6 @@
 body {
     background-color: #bee0d3;
-    /* color: #026670; */
+
     color: #0C3C26;
 }
 
@@ -90,7 +90,7 @@ a{
 .user_card{
     background: #0C3C26;
     color: #fff;
-    width: 600px;
+    width: 800px;
     margin-top: 2%;
     margin-bottom: auto;
     position: relative;
@@ -104,17 +104,23 @@ a{
     border-radius: 5px;
     margin-top: 2%;
 }
+.user_card label{
+    width: 200px;
+    text-align: left;
+    padding: 0;
+}
 
 .btn-success{
-    /* background: #41b085; */
+    background: #41b085 !important;
+    color: #fff !important;
 }
 #form-title{
     color: #fff;
 }
 .login_btn {
-    width: 100%;
     background: #41b085 !important;
-    color: #fff !important;
+    width: 100%;
+    color: #fff;
 }
 
 .login_container,
@@ -154,7 +160,7 @@ a{
     color: #fff;
     width: auto;
     max-width: 900px;
-    margin-top: 2%;
+    /* margin-top: 2%; */
     justify-content: center;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -185,9 +191,9 @@ a{
 
 /* Bag */
 
-/* .bg-bag{
-    background: #41b085;
-} */
+.bag_bg{
+    background: #0C3C26;
+}
 
 #payment_form label{
     width: 100px;
