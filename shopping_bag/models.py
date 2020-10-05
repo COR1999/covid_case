@@ -11,11 +11,11 @@ class Order(models.Model):
     order_total = models.DecimalField(max_digits=6, decimal_places=2, null=True)
     # referance from customer model
     
-    firstname = models.CharField(max_length=settings.CONST_PROFILE_ATTR, null=True)
-    lastname = models.CharField(max_length=settings.CONST_PROFILE_ATTR, null=True)
+    first_name = models.CharField(max_length=settings.CONST_PROFILE_ATTR, null=True)
+    last_name = models.CharField(max_length=settings.CONST_PROFILE_ATTR, null=True)
     email = models.CharField(max_length=settings.CONST_PROFILE_ATTR, null=True)
-    address_1 = models.CharField(max_length=settings.CONST_PROFILE_ADDRESS, editable=True, null=True)
-    address_2 = models.CharField(max_length=settings.CONST_PROFILE_ADDRESS, default="", editable=True, null=True)
+    address_line_1 = models.CharField(max_length=settings.CONST_PROFILE_ADDRESS, editable=True, null=True)
+    address_line_2 = models.CharField(max_length=settings.CONST_PROFILE_ADDRESS, default="", editable=True, null=True)
     city = models.CharField(max_length=settings.CONST_PROFILE_ATTR, null=True)
     country = CountryField(null=True)
     
@@ -29,3 +29,4 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(null=True , editable=True, default=0)
     def __str__(self):
         return self.item
+

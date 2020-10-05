@@ -53,10 +53,17 @@
                         <small>${{ product.price }}</small>
                     </div>
                     <div class="col-md-3 text-center">
-                        <h6 class="bag-title product-quantity">Quantity: {{ product.quantity }}</h6>
+                        <h6 class="bag-title product-quantity" value="{{ product.quantity }}">Quantity: {{ product.quantity }}</h6>
                         <div class="" style="text-align:center;">
+                        {% if product.quantity == 0 %}
+                            <button class="add-product btn-secondary btn-sm my-1" style="float:right; border:none;"  id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-plus"></i></button>
+                        {% elif product.number_in_stock == product.quantity %}
+                            <button class="minus-product btn  btn-secondary btn-sm my-1" style="float:left; border:none;" id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-minus"></i></button>
+                        {% else %}
                             <button class="minus-product btn  btn-secondary btn-sm my-1" style="float:left; border:none;" id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-minus"></i></button>
                             <button class="add-product btn-secondary btn-sm my-1" style="float:right; border:none;"  id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-plus"></i></button>
+                        
+                        {% endif %}
                             <br>
                         </div>
                         <a href="{% url 'remove_from_bag' product.id %}" class="btn btn-danger btn-sm w-100">Remove</a>
@@ -82,31 +89,51 @@
     </div>
 </div>
 <script type="text/javascript">
-    
-    $(".minus-product").on("click", function(){        
-        let updated_value = Number(this.value);
-        $.ajax({
-            url: "adjust/" + this.id + "/" + updated_value + "/minus",
-            async: true,
-            success: function(result){
-                location.reload(true);
-            }
-        });
-    });
-
-    $(".add-product").on("click", function(){
-        let updated_value = Number(this.value);
-        $.ajax({
-            url: "adjust/" + this.id + "/" + updated_value + "/add",
-            async: true,
-            success: function(result){
-                location.reload(true);
-            },
-            error: function(data){
-                if(data.sucess == false){
-                    location.reload(false)
+    $(document).ready(function() {
+        $(".minus-product").on("click", function(){ 
+            let updated_value = Number(this.value);     
+            $.ajax({
+                url: "adjust/" + this.id + "/" + updated_value + "/minus",
+                async: true,
+                success: function(result){
+                        console.log(result.status)
+                        if(result.status == "success"){
+                            location.reload(true);
+                        }else{
+                            location.reload(false);
+                        }
+                    },
+                error: function(data){
+                    if(data.success == false){
+                        console.log(data)
+                        
+                    }
                 }
-            }
+            });
+            
+        });
+
+        $(".add-product").on("click", function(){
+            let updated_value = Number(this.value);
+            $.ajax({
+                url: "adjust/" + this.id + "/" + updated_value + "/add",
+                async: true,
+                success: function(result){
+                    console.log(result.status)
+                    if(result.status == "success"){
+                        location.reload(true);
+                    }else{
+                        location.reload(false);
+                    }
+                },
+                error: function(data){
+                    if(data.success == false){
+                        console.log(data)
+                        
+                    }
+                }
+            });
+            
         });
     });
 </script>

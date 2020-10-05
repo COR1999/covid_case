@@ -36,7 +36,9 @@ class SignUpForm(UserCreationForm):
 class CustomerForm(forms.ModelForm):
     first_name = forms.CharField(max_length=settings.CONST_PROFILE_ATTR)
     last_name = forms.CharField(max_length=settings.CONST_PROFILE_ATTR)
-    address_line_2 = CharField(max_length=settings.CONST_PROFILE_ADDRESS,default="")
+    phone = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=False)
+    city = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=False)
+    address_line_2 = forms.CharField(max_length=settings.CONST_PROFILE_ADDRESS, required=False)
     class Meta:
         model = Customer
         fields = ["first_name",

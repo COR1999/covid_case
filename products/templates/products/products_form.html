@@ -23,30 +23,39 @@
                                 <div class="col-md-3 mb-3">
                                     {{ form.color|as_crispy_field }}
                                 </div>
+                                <div class="col-md-3 mb-3">
+                                    {{ form.price|as_crispy_field }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    {{ form.number_in_stock|as_crispy_field }}
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                
+                                
                                 <div class="col-md-4 mb-3">
                                     {{ form.image|as_crispy_field }}
                                 </div>
                                 <div class="col-md-2 mb-3">
                                     <h8>Current image</h8>
+                                    
                                     <img class="img-fluid" style="height:100px;"src="{{ form.instance.image.url }}" />
                                 </div>
-                                
-                                
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3 mb-3">
-                                    {{ form.number_in_stock|as_crispy_field }}
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    {{ form.price|as_crispy_field }}
-                                </div>
+                                {% if product.image_2 %}
+                                    <div class="col-md-4 mb-3">
+                                        {{ form.image_2|as_crispy_field }}
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <h8>Current image</h8>
+                                        <img class="img-fluid" style="height:100px;"src="{{ form.instance.image_2.url }}" />
+                                    </div>
+                                {% else %}
                                 <div class="col-md-4 mb-3">
                                     {{ form.image_2|as_crispy_field }}
                                 </div>
-                                <div class="col-md-2 mb-3">
-                                    <h8>Current image</h8>
-                                    <img class="img-fluid" style="height:100px;"src="{{ form.instance.image_2.url }}" />
-                                </div>
+                                
+                                {% endif %}
                             </div>
                             <div class="row">
                                 <div class="col-md-4 mb-3">

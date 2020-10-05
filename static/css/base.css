@@ -1,7 +1,7 @@
 body {
     background-color: #bee0d3;
-
     color: #0C3C26;
+    font-family: 'Roboto', sans-serif;
 }
 
 label {
@@ -69,9 +69,11 @@ a{
 
 
 .hello-msg{
-    font-size: 18px;
-    color: #fff;
+    /* font-size: 18px; */
+    color: #41b085;
     margin: auto;
+    margin-right: 5px;
+    font-weight: 600;
 }
 
 
@@ -163,7 +165,7 @@ a{
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
 }
-
+/* Checkout form */
 .checkout{
     background: #0C3C26;
     color: #fff;
@@ -176,6 +178,9 @@ a{
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
+}
+.control-label{
+    width: 120px;
 }
 
 .profile_card{
@@ -203,9 +208,12 @@ a{
 .bag_bg{
     background: #0C3C26;
 }
+.product-quantity[value=0]{
+    visibility: hidden;
+}
 
 #payment_form label{
-    width: 100px;
+    /* width: 100px; */
     padding: 0;
     text-align: left;
 }
@@ -216,7 +224,6 @@ a{
 }
 #profile_form input{
     width: 150px;
-
 }
 /* Country input */
 #sign_up_country input{
@@ -225,7 +232,9 @@ a{
 #sign_up_country select{
     width: 375px;
 }
-
+#profile_country{
+    margin-top: 2px;
+}
 #profile_country input{
     width: 150px;
 }
@@ -234,10 +243,9 @@ a{
 }
 
 
-/* update product */
+
+/* update product/add product */
 .form_container label{
-    width: 150px;
-    /* width: 600px; */
     text-align: left;
 }
 #div_id_color,
@@ -249,7 +257,12 @@ a{
     width: 100px;
 }
 
-#div_id_image input{
+
+#id_number_in_stock{
+    width: 150px;
+}
+.control-label{
+    width: 150px;
 }
 
 @media(max-width: 576px){

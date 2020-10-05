@@ -39,23 +39,23 @@
                         <div class="row ">
                         {% csrf_token %}
                             <div class="col-md-6 mb-3">
-                                {{ form.firstname|as_crispy_field }}
+                                {{ form.first_name|as_crispy_field }}
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                {{ form.lastname|as_crispy_field }}
+                                {{ form.last_name|as_crispy_field }}
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                {{ form.user_email|as_crispy_field }}
+                                {{ form.email|as_crispy_field }}
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                {{ form.address_1|as_crispy_field }}
+                                {{ form.address_line_1|as_crispy_field }}
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                {{ form.address_2|as_crispy_field }}
+                                {{ form.address_line_2|as_crispy_field }}
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-6 mb-3">

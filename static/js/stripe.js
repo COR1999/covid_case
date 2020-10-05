@@ -9,12 +9,10 @@ $(document).ready(function () {
     var style = {
         base: {
             color: '#666666',
-            fontFamily: 'Philosopher, sans-serif',
             fontSmoothing: 'antialiased',
             fontSize: '16px',
             '::placeholder': {
                 color: '#666666',
-                fontFamily: 'Philosopher, sans-serif',
                 fontSize: '16px',
             }
         },
@@ -67,14 +65,15 @@ $(document).ready(function () {
                         payment_method: {
                             card: card,
                             billing_details: {
-                                name: $.trim(form.firstname),
-                                // email: $.trim(form.email.value),
-                                // phone: $.trim(form.phone_number.value),
-                                // address: {
-                                //     line1: $.trim(form.street_address.value),
-                                //     city: $.trim(form.town_or_city.value),
-                                //     country: $.trim(form.country.value),
-                                // }
+                                name: $.trim(form.first_name.value),
+                                email: $.trim(form.email.value),
+                                phone: $.trim(form.phone_number.value),
+                                address: {
+                                    line1: $.trim(form.address_line_1.value),
+                                    line2: $.trim(form.address_line_2.value),
+                                    city: $.trim(form.town_or_city.value),
+                                    country: $.trim(form.country.value),
+                                }
                             }
                         }
                     }).then(function(result) {

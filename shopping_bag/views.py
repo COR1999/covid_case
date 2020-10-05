@@ -1,5 +1,6 @@
-from django.http import request
+from django.http import request, JsonResponse
 from django.http.response import HttpResponseNotAllowed
+
 from shopping_bag.forms import OrderForm
 from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404
@@ -38,6 +39,7 @@ def view_bag(request):
                 "price": product.price,
                 "image": product.image,
                 "image_2": product.image_2,
+                "number_in_stock": product.number_in_stock,
                 "quantity": bag_quantity,
                 "item_total_price": total_price
             }
@@ -96,8 +98,7 @@ def adjust_bag(request, item_id, updated_value, delta):
     product = Product.objects.get(pk=item_id)
 
     bag = request.session.get('bag', {})
-    # print(bag[item_id])
-    # print(product.number_in_stock)
+
     if int(bag[item_id]) == product.number_in_stock:
         if delta == "minus":
             bag[item_id] = int(updated_value) - 1
@@ -107,17 +108,18 @@ def adjust_bag(request, item_id, updated_value, delta):
             if int(updated_value) <= product.number_in_stock:
                 bag[item_id] = int(updated_value) - 1
                 request.session["bag"] = bag
-            else:
-                messages.info(request, "Sorry not enough in stock")
-        else:
-            messages.info(request, "Sorry your item quantity cant be less then 0")
+            # else:
+                # messages.info(request, "Sorry not enough in stock")
+        # else:
+            # messages.info(request, "Sorry your item quantity cant be less then 0")
     if delta == "add":
         if int(updated_value) >= 0:
             if int(updated_value) < product.number_in_stock:
                 bag[item_id] = int(updated_value) + 1
                 request.session["bag"] = bag
 
-    return redirect(reverse("view_bag"))
+    # return redirect(reverse("view_bag"))
+    return JsonResponse({"status": "success",},status=200)
 
 
 def remove_from_bag(request, item_id):
@@ -129,9 +131,15 @@ def remove_from_bag(request, item_id):
 
 def checkout(request):
     form = OrderForm()
-    # customer = Customer.objects.get(user=request.user)
-    # if customer:
-    #     form = OrderForm(customer)
+    user = request.user
+
+    # Add logic for none logged in users to purchase!!!!
+
+    customer = Customer.objects.get(user_id=user.id)
+
+    if customer:
+        form = OrderForm(instance=customer)
+
     bag = request.session.get('bag', {})
     # q_set_products = []
     all_products = Product.objects.all()
@@ -197,21 +205,21 @@ def checkout_process(request):
 
 
     try:
-        firstname = post_data['firstname']
-        lastname = post_data['lastname']
-        user_email = post_data['user_email']
-        address_1 = post_data['address_1']
-        address_2 = post_data['address_2']
+        first_name = post_data['first_name']
+        last_name = post_data['last_name']
+        email = post_data['email']
+        address_line_1 = post_data['address_line_1']
+        address_line_2 = post_data['address_line_2']
         city = post_data['city']
         country= post_data['country']
         token = request.POST.get('token')
 
-        check_customer = Order.objects.get(email=user_email)
+        check_customer = Order.objects.get(email=email)
         # print(check_customer.user_email)
         if len(check_customer < 1):
             stripe_customer = stripe.Customer.create(
                 card=token,
-                description=user_email
+                description=email
             )
         else:
             stripe_customer = check_customer.stripe_pid
@@ -232,8 +240,8 @@ def checkout_process(request):
 
         ## saving to Order
         # pass customer into current order if created else create new customer
-        current_order = Order(stripe_pid=stripe_customer.id,firstname=firstname, lastname=lastname,
-        email=user_email, address_1=address_1, address_2=address_2,
+        current_order = Order(stripe_pid=stripe_customer.id,first_name=first_name, last_name=last_name,
+        email=email, address_1=address_line_1, address_line_2=address_line_2,
         country=country,city=city, order_total=grand_total)
         current_order.save()
         
