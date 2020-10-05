@@ -30,11 +30,17 @@ a{
     margin: auto;
 
 }
-.navbar-light .navbar-nav .nav-link.active {
-    font-weight: 600;
-}
+
 .navbar-light .navbar-nav .nav-link:hover{
     color: #41b085;
+}
+a:hover{
+    color: #41b085;
+    text-decoration: none;
+}
+a{
+    color: #fff;
+    font-weight: 600;
 }
 
 
@@ -113,14 +119,17 @@ a{
 .btn-success{
     background: #41b085 !important;
     color: #fff !important;
+    font-weight: 600;
 }
 #form-title{
     color: #fff;
+    text-align: center;
 }
 .login_btn {
     background: #41b085 !important;
     width: 100%;
     color: #fff;
+    font-weight: 600;
 }
 
 .login_container,
@@ -144,7 +153,7 @@ a{
 .product_card{
     background: #0C3C26;
     color: #fff;
-    width: 500px;
+    width: 70%;
     margin-top: 2%;
     margin: auto;
     justify-content: center;
@@ -208,4 +217,50 @@ a{
 #profile_form input{
     width: 150px;
 
+}
+/* Country input */
+#sign_up_country input{
+    width: 375px;
+}
+#sign_up_country select{
+    width: 375px;
+}
+
+#profile_country input{
+    width: 150px;
+}
+#profile_country select{
+    width: 150px;
+}
+
+
+/* update product */
+.form_container label{
+    width: 150px;
+    /* width: 600px; */
+    text-align: left;
+}
+#div_id_color,
+#div_id_price{
+    width: 100px;
+}
+#id_color,
+#id_price{
+    width: 100px;
+}
+
+#div_id_image input{
+}
+
+@media(max-width: 576px){
+    .bag_list{
+        padding: 2px;
+    }
+    .bag_list li{
+        padding-left: 1px;
+        padding-right: 1px;
+    }
+    .bag-title {
+        font-size: 80%;
+    }
 }

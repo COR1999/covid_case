@@ -10,9 +10,9 @@
         </div>
     </div>
     {{ country_data | json_script:"country_data" }}
-        {% for message in messages %}
-            <p class="bg-info text-center">{{ message }}</p>
-        {% endfor %}
+        {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#messageModal">
+            Launch demo modal
+        </button> {% endcomment %}
     <div class="row">
     
         {% for product in products %}
@@ -40,15 +40,32 @@
                     <h6 class="card-title">{{ product.color }}</h6>
                     {% endif %}
                     <div class=" product_price_quantity pb-2">
-                        <!-- <div class="row w-100"> -->
-                        <div class="mx-auto " style="height:18%;">
-                            <h8 class="float-left mt-1">Price:</h8><span
-                                class="float-right mr-4 mt-1">${{ product.price }}</span>
+                        <div class="row">
+                            {% comment %} <div class="" style=""> {% endcomment %}
+                            <div class="col-md-12">
+                                <h8 class="float-left ml-2">Price: </h8>
+                                <h8 class="float-right mr-2">${{ product.price }}</h8>
+                            </div>
                         </div>
-                        <br>
-                        <div class="mx-auto " style="height:20;">
-                            <h8 class="float-left mt-1">Quantity:</h8>
-                            <span class="">{% include "products/add_to_bag_form.html" %}</span>
+                        <div class="row" style="">
+                            <div class="col-md-12">
+                                <h8 class="float-left ml-2 mt-1">Quantity: </h8>
+                                <span class="float-right mr-3" style="width:40%;">{% include "products/add_to_bag_form.html" %}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% if request.user.is_superuser %}
+                            <div class="col-md-6 col-sm-12">
+                                <a class="btn btn-info btn-sm px-3 mt-1" href="{% url 'update_product' product.id %}">Update</a>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <a class="btn btn-success btn-sm add_to_bag p-1 mt-1" id="{{ product.id }}" >Add to bag</a>
+                            </div>
+                            {% else %}
+                            <div class="col-md-12">
+                                <a  class="center btn btn-success btn-sm add_to_bag" id="{{ product.id }}" style="">Add to bag</a>
+                            </div>
+                            {% endif %}
                         </div>
                         
                     </div>
@@ -62,6 +79,15 @@
     </div>
 </div>
 
+<script type="text/javascript">
+
+    $(".add_to_bag").click(function(e){
+
+        let form = $(`.add_to_bag_form_${this.id}`)
+        console.log(form)
+        form.submit()
+    });
+</script>
 {% endblock %}
 {% block extra_js %}
 {{ block.super }}

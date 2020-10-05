@@ -70,18 +70,6 @@ def login_page(request):
     }
     return render(request, 'profiles/login.html')
 
-# def my_profile(request):
-#     # Should be a id not user_name !!!
-#     context = {}
-#     customer = Customer.objects.get(name=request.user)
-#     print(customer)
-#     if customer:
-#         context = {
-#             "profile": customer,
-#         }
-    
-#     return render(request, "profiles/my_profile.html" ,context)
-
 
 def edit_profile(request):
     customer = Customer.objects.get(name=request.user)

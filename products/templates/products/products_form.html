@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 
     <div class="container h-100 mt-3">
@@ -15,16 +16,47 @@
 				<div class="justify-content-center form_container">
 					<form class="form-group mx-auto" method="POST" action="" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {% for field in form %}
-						<div class="input-group ">
-							<div class="input-group-append mt-2 center">                                
-								    {{ field.label }}
-							</div><br>
-                            <div class="mt-2 w-100">
-							    {{ field }}
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    {{ form.product_name|as_crispy_field }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    {{ form.color|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    {{ form.image|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <h8>Current image</h8>
+                                    <img class="img-fluid" style="height:100px;"src="{{ form.instance.image.url }}" />
+                                </div>
+                                
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    {{ form.number_in_stock|as_crispy_field }}
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    {{ form.price|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    {{ form.image_2|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <h8>Current image</h8>
+                                    <img class="img-fluid" style="height:100px;"src="{{ form.instance.image_2.url }}" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.has_size|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="form_errors">{{ form_errors }}</div>
+                                </div>
                             </div>
 						</div>
-                        {% endfor %}
                         <div class="d-flex justify-content-center mt-3 product_container">
                             {% if product %}
                                 <button class="btn btn-info" type="submit">Update</button>
@@ -36,15 +68,6 @@
 					</form>
 
 				</div>
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-			</div>
-            <div class="mx-auto mt-3">
-                
-            </div>
 		</div>
 	</div>
-    
-
 {% endblock %}

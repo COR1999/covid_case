@@ -57,6 +57,7 @@ def view_bag(request):
 def add_to_bag(request, item_id):
     """ Add a quantity of the specified product to the shopping bag """
     # print(item_id)
+    print(item_id)
     product = Product.objects.get(pk=item_id)
     redirect_url = request.POST.get('redirect_url')
     quantity = request.POST.get('quantity')
@@ -205,15 +206,15 @@ def checkout_process(request):
         country= post_data['country']
         token = request.POST.get('token')
 
-        # check_customer = Order.objects.get(email=user_email)
+        check_customer = Order.objects.get(email=user_email)
         # print(check_customer.user_email)
-        # if len(check_customer < 1):
-        stripe_customer = stripe.Customer.create(
-            card=token,
-            description=user_email
-        )
-        # else:
-        # check_customer.stripe_pid
+        if len(check_customer < 1):
+            stripe_customer = stripe.Customer.create(
+                card=token,
+                description=user_email
+            )
+        else:
+            stripe_customer = check_customer.stripe_pid
 
         intent = stripe.PaymentIntent.create(
             amount=stripe_grand_total,
