@@ -31,7 +31,7 @@
             <!-- Cart -->
             <ul class="list-group mb-3 z-depth-1 ">
                 {% for product in products %}
-                <li class="list-group-item d-flex justify-content-between lh-condensed" style="max-height: 200px;">
+                <li class="list-group-item d-flex justify-content-between lh-condensed" style="max-height: 200px; margin-bottom:1px;">
                     {% if product.image %}
                     <div class="float-left col-md-3" style="">
                         <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ product.image }}" alt="{{ product.name }}"

@@ -16,6 +16,7 @@ class Customer(models.Model):
     address_line_2 = models.CharField(max_length=settings.CONST_PROFILE_ADDRESS, null=True, default="")
     country = CountryField(null=True)
     
+    
     def __str__(self):
         return self.name
 

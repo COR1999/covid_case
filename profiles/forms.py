@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models.fields import CharField
+from django.http import request
 from .models import Customer
 from django_countries.fields import CountryField
 from django.conf import settings
@@ -13,9 +14,10 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=settings.CONST_PROFILE_ATTR)
     address_line_1 = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=True)
     address_line_2 = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=False)
-    phone = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=False)
+    phone = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=True)
     city = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=False)
     country = CountryField(null=True).formfield()
+
     class Meta:
         model = User
         fields = ("username",
@@ -36,7 +38,7 @@ class SignUpForm(UserCreationForm):
 class CustomerForm(forms.ModelForm):
     first_name = forms.CharField(max_length=settings.CONST_PROFILE_ATTR)
     last_name = forms.CharField(max_length=settings.CONST_PROFILE_ATTR)
-    phone = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=False)
+    phone = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=True)
     city = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=False)
     address_line_2 = forms.CharField(max_length=settings.CONST_PROFILE_ADDRESS, required=False)
     class Meta:

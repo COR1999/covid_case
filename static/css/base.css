@@ -14,7 +14,6 @@ br {
     clear: left;
 }
 .navbar-bg{
-    /* background-color: #14A098; */
     background-color: #0C3C26;
 }
 a{
@@ -45,8 +44,6 @@ a{
 
 
 #container {
-    /* height: 500px;  */
-    /* min-width: 310px; */
     max-width: 1200px;
     margin: 0 auto; 
 
@@ -71,7 +68,9 @@ a{
 .hello-msg{
     /* font-size: 18px; */
     color: #41b085;
-    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
     margin-right: 5px;
     font-weight: 600;
 }
@@ -117,15 +116,18 @@ a{
     text-align: left;
     padding: 0;
 }
-
+#form-title{
+    color: #fff;
+    text-align: center;
+}
+/* Buttons */
 .btn-success{
     background: #41b085 !important;
     color: #fff !important;
     font-weight: 600;
 }
-#form-title{
-    color: #fff;
-    text-align: center;
+.btn-success:hover{
+    background: #179967 !important;
 }
 .login_btn {
     background: #41b085 !important;
@@ -133,12 +135,17 @@ a{
     color: #fff;
     font-weight: 600;
 }
+.login_btn:hover{
+    background: #179967 !important;
+    color: #fff;
+}
 
 .login_container,
 .product_container,
 .purchase_container {
     padding: 0 2rem;
 }
+
 .input-group-text {
     background: #fff !important;
     color: #41b085 !important;
@@ -171,7 +178,6 @@ a{
     color: #fff;
     width: auto;
     max-width: 900px;
-    /* margin-top: 2%; */
     justify-content: center;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -196,12 +202,6 @@ a{
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 5px;
 }
-/* .checkout-list{
-    background: #0C3C26;
-    color: #fff;
-    width: auto;
-
-} */
 
 /* Bag */
 
@@ -213,7 +213,6 @@ a{
 }
 
 #payment_form label{
-    /* width: 100px; */
     padding: 0;
     text-align: left;
 }
@@ -240,6 +239,34 @@ a{
 }
 #profile_country select{
     width: 150px;
+}
+#id_country{
+    width: 200px;
+}
+
+/* Password reset */
+.all_auth_container{
+    text-align: center;
+    margin: auto;
+    margin-top: 2%;
+    background: #0C3C26;
+    color: #fff;
+    padding: .8rem;
+    width: 600px;
+    height: auto;
+}
+.all_auth_container label{
+    width: 200px;
+    text-align: left;
+    padding: 0;
+}
+.all_auth_container input{
+    width: 200px;
+    margin-bottom: 2%;
+}
+.all_auth_container ul{
+    font-size: 12px;
+    list-style: none;
 }
 
 
@@ -276,4 +303,24 @@ a{
     .bag-title {
         font-size: 80%;
     }
+}
+/* Modals */
+
+.modal-content{
+    background: #0C3C26;
+    color: #fff;
+}
+.modal-header{
+    border-bottom: none;
+}
+.modal-footer{
+    border-top: none;
+}
+.close {
+    color: #fff;
+    /* text-shadow: 0 1px 2px #fff; */
+}
+.close:hover {
+    color: #41b085;
+    /* text-shadow: 0 1px 2px #fff; */
 }

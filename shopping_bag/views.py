@@ -1,6 +1,6 @@
 from django.http import request, JsonResponse
 from django.http.response import HttpResponseNotAllowed
-
+import json
 from shopping_bag.forms import OrderForm
 from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404
@@ -15,6 +15,7 @@ from django.views.decorators.cache import never_cache
 from django.conf import settings
 from django.views.decorators.http import require_http_methods
 import stripe
+from django.forms.models import model_to_dict
 
 
 @never_cache
@@ -59,7 +60,7 @@ def view_bag(request):
 def add_to_bag(request, item_id):
     """ Add a quantity of the specified product to the shopping bag """
     # print(item_id)
-    print(item_id)
+    # print(item_id)
     product = Product.objects.get(pk=item_id)
     redirect_url = request.POST.get('redirect_url')
     quantity = request.POST.get('quantity')
@@ -205,24 +206,24 @@ def checkout_process(request):
 
 
     try:
-        first_name = post_data['first_name']
-        last_name = post_data['last_name']
+        # first_name = post_data['first_name']
+        # last_name = post_data['last_name']
         email = post_data['email']
-        address_line_1 = post_data['address_line_1']
-        address_line_2 = post_data['address_line_2']
-        city = post_data['city']
-        country= post_data['country']
+        # phone = post_data["phone"]
+        # address_line_1 = post_data['address_line_1']
+        # address_line_2 = post_data['address_line_2']
+        # city = post_data['city']
+        # country= post_data['country']
         token = request.POST.get('token')
 
-        check_customer = Order.objects.get(email=email)
-        # print(check_customer.user_email)
-        if len(check_customer < 1):
-            stripe_customer = stripe.Customer.create(
-                card=token,
-                description=email
-            )
-        else:
-            stripe_customer = check_customer.stripe_pid
+        # print("customer",check_customer)
+        # if len(check_customer < 1):
+        stripe_customer = stripe.Customer.create(
+            card=token,
+            description=email
+        )
+        # else:
+        # stripe_customer = check_customer.stripe_pid
 
         intent = stripe.PaymentIntent.create(
             amount=stripe_grand_total,
@@ -240,55 +241,66 @@ def checkout_process(request):
 
         ## saving to Order
         # pass customer into current order if created else create new customer
-        current_order = Order(stripe_pid=stripe_customer.id,first_name=first_name, last_name=last_name,
-        email=email, address_1=address_line_1, address_line_2=address_line_2,
-        country=country,city=city, order_total=grand_total)
+        # print(email)
+        check_customer = Customer.objects.get(user=request.user)
+        current_order = Order(user_profile=check_customer, stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
         current_order.save()
-        
-        # print("stripe pid", stripe_customer.id)
-        # print("current order id",current_order.id)
-
+ 
+ 
+        # print(current_order)
         orders = request.session["bag"]
 
+
+        #  Make a funciton !!!!!!
         for _orders in orders:
             # saving of product item
             current_order_item = OrderItem(item=Product.objects.get(id=_orders),
-            order=Order.objects.get(id=current_order.id), quantity=orders[_orders])
+                                        order=Order.objects.get(id=current_order.id), quantity=orders[_orders])
             current_order_item.save()
-
+            print(current_order.id)
             # updating of stock
             product_details = Product.objects.get(id=_orders)
             product_details.number_in_stock = product_details.number_in_stock - orders[_orders]
             product_details.save()
 
-
         del request.session['bag']
         del request.session["grand_total"]
+        # context = {
+        #     "message": "Thank you! Your purchase was successful",
+        #     "stripe_pid": current_order.stripe_pid,
+        #     "first_name": current_order.first_name,
+        #     "last_name": current_order.last_name,
+        #     "email": current_order.email,
+        #     "address_line_1": current_order.address_line_1,
+        #     "address_line_2": current_order.address_line_2,
+        #     "phone": current_order.phone,
+        #     "country": current_order.country,
+        #     "city": current_order.city,
+        #     "order_total": current_order.order_total,
+        # }
+        json_current_order = model_to_dict(current_order)
+        # print(json_current_order)
         context = {
-            "order": current_order,
+            "message": "Thank you! Your purchase was successful",
+            "order": json_current_order,
         }
-        messages.success(request, "Order Successful")
-        return HttpResponse("order successful")
 
+        # messages.info(request, "Thank you! Your purchase was successful")
+        # messages = "Thank you! Your purchase was successful"
     except Exception as e:
-        messages.error(request, "Error:" + str(e))
-        print(str(e))   
-        # return "error"
-    
-    return HttpResponse("order done")
-    # return render(request, "shopping_bag/order_success.html", context)
-    # context = {
-    # "form": form,
-    # "STRIPE_PUBLIC_KEY": str(stripe_public_key),
-    # "client_secret": intent.client_secret,
-    # }
-
-    # return render(request, 'shopping_bag/checkout.html', context)
+        # messages.error(request, "Error:" + str(e))
+        context = {
+            "message": str(e),
+        }  
+    return JsonResponse(context)
 
 
-def order_success(request):
-    # order = 
-    # context = {
-    #     "order": order,
-    # }
-    return render(request, "shopping_bag/order_success.html")
+
+def order_success(request, order_id):
+    order = Order.objects.get(id=order_id)
+    order_items = OrderItem.objects.filter(order=order)
+    context = {
+        "order": order,
+        "order_items": order_items
+    }
+    return render(request, "shopping_bag/order_success.html", context)

@@ -32,11 +32,7 @@ def write_to_json():
         }
         all_products.append(visor)
         for item in product_colors:
-            # print(item)
             pk_id += 1
-            # if image in MEDIA_URL
-            #     image = f"_{item}.jpg"
-            #     image_2 = f"_{item}.jpg"
             if item == "white":
                 image_2 = None
             else:
@@ -56,6 +52,7 @@ def write_to_json():
                 }
             }
             all_products.append(product)
+        
         json.dump(all_products, json_file)
 
 

@@ -27,10 +27,11 @@ $(document).ready(function () {
     card.mount("#card-element");
 
     var form = document.getElementById('payment_form');
-    
+    console.log(form)
     
     card.addEventListener('change', function (event) {
-        var errorDiv = document.getElementById('card-errors');
+        var errorDiv = document.getElementById('errorDiv');
+        console.log(errorDiv)
         if (event.error) {
             var html = `
                 <span class="icon" role="alert">
@@ -39,7 +40,7 @@ $(document).ready(function () {
                 <span>${event.error.message}</span>`;
             $(errorDiv).html(html);
         } else {
-            errorDiv.textContent = '';
+            errorDiv.innerHTML = '';
         }
     });
 
@@ -47,9 +48,9 @@ $(document).ready(function () {
         ev.preventDefault();
         stripe.createToken(card).then(function(result) {
             if (result.error) {
-            // Inform the customer that there was an error.
-            var errorElement = document.getElementById('card-errors');
-            errorElement.textContent = result.error.message;
+                // Inform the customer that there was an error.
+                var errorElement = document.getElementById('errorDiv');
+                errorElement.textContent = result.error.message;
             } else {
                 var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
                 var postData = {
@@ -65,41 +66,28 @@ $(document).ready(function () {
                         payment_method: {
                             card: card,
                             billing_details: {
-                                name: $.trim(form.first_name.value),
+                                name: $.trim(form.first_name.value) + $.trim(form.last_name.value),
                                 email: $.trim(form.email.value),
-                                phone: $.trim(form.phone_number.value),
-                                address: {
+                                phone: $.trim(form.phone.value),
+                                address:{
+                                    city: $.trim(form.city.value),
+                                    country: $.trim(form.country.value),
                                     line1: $.trim(form.address_line_1.value),
                                     line2: $.trim(form.address_line_2.value),
-                                    city: $.trim(form.town_or_city.value),
-                                    country: $.trim(form.country.value),
+                                    }
                                 }
                             }
-                        }
+                        })
                     }).then(function(result) {
-                        if (result.error) {
-                        // Show error to your customer (e.g., insufficient funds)
-                        console.log(result.error.message);
-                        } else {
-                        // The payment has been processed!
-                        if (result.paymentIntent.status === 'succeeded') {
-                            // Show a success message to your customer
-                            // There's a risk of the customer closing the window before callback
-                            // execution. Set up a webhook or plugin to listen for the
-                            // payment_intent.succeeded event that handles any business critical
-                            // post-payment actions.
-                                // console.log(result)
-                                // location.reload()
-                            }
-                        }
-                    });
-                });
-            }
-        });
 
+                        title_holder.textContent = result.message;
+                        $("#checkoutModal").modal("show")
+                        order_confirmed_url = `/bag/order_success/${result.order.id}`
+                        window.location.replace(order_confirmed_url);
+                    });
+                };
+            })
+        });
         
-    
         
     });
-
-});

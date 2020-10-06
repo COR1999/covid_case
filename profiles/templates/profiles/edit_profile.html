@@ -48,13 +48,16 @@
 						</div>
                         <div class="d-flex justify-content-center mt-3 login_container">
                             <button class="btn btn-success">Update Profile</button>
+                            {% if user.is_authenticated %}
+                                <div class="ml-2">
+                                    <a class="btn btn-info mx-auto my-auto" href="{% url 'account_reset_password' %}">Reset Password</a>
+                                </div>
+                            {% endif %}
                         </div>
+                        
 					</form>
-
+                    
 				</div>
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
 			</div>
 		</div>
 	</div>

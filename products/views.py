@@ -97,10 +97,11 @@ def delete_product(request, id):
     product = Product.objects.get(id=id)
 
     if request.method == "POST":
+        print(product)
         product.delete()
         return redirect(reverse("products"))
 
     context = {
         "product": product,
     }
-    return render(request, "products/product_delete_confirm.html", context)
+    # return render(request, "products/product_delete_confirm.html", context)

@@ -134,6 +134,7 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+
 # 1 day
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400
 
@@ -173,7 +174,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 BASE_URL = "https://disease.sh"
 ALL_DATA_WORLDMETERS = "/v3/covid-19/all"
 COUNTRY_DATA_WORLDMETERS = "/v3/covid-19/countries"
-COUNTRY_DATA_JHUCSSE = "/v3/covid-19/jhucsse"
+# COUNTRY_DATA_JHUCSSE = "/v3/covid-19/jhucsse"
 
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")

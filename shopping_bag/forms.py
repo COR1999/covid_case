@@ -17,5 +17,6 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ["first_name", "last_name",
-                    "email", "address_line_1",
+                    "email",
+                    "phone", "address_line_1",
                     "address_line_2", "city", "country"]

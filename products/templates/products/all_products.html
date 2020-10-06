@@ -41,13 +41,13 @@
                             {% comment %} <div class="" style=""> {% endcomment %}
                             <div class="col-md-12">
                                 <h8 class="float-left ml-2">Price: </h8>
-                                <h8 class="float-right mr-2">${{ product.price }}</h8>
+                                <h8 class="float-right " style="margin-right:1rem;">${{ product.price }}</h8>
                             </div>
                         </div>
                         <div class="row" style="">
                             <div class="col-md-12">
                                 <h8 class="float-left ml-2 mt-1">Quantity: </h8>
-                                <span class="float-right mr-3" style="width:40%;">{% include "products/add_to_bag_form.html" %}</span>
+                                <span class="float-right mr-3" style="margin-right:1rem;width:25%;">{% include "products/add_to_bag_form.html" %}</span>
                             </div>
                         </div>
                         <div class="row">
@@ -79,7 +79,6 @@
 <script type="text/javascript">
 
     $(".add_to_bag").click(function(e){
-
         let form = $(`.add_to_bag_form_${this.id}`)
         console.log(form)
         form.submit()
