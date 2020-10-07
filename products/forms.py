@@ -1,18 +1,21 @@
 from django import forms
-from .models import Product
+from .models import Product, Supplier
 from crispy_forms.helper import FormHelper
 
 class ProductForm(forms.ModelForm):
     image = forms.ImageField(required=False, widget=forms.FileInput)
     image_2 = forms.ImageField(required=False, widget=forms.FileInput)
+    # forms.ChoiceField
+    # supplier = forms.ChoiceField(choices=("Supplier 1","Supplier 2","Supplier 3"))
+    supplier = forms.ModelChoiceField(queryset=Supplier.objects.all(), label='Supplier', widget=forms.Select)
+    use_required_attribute = False
     class Meta:
         model = Product
-        fields = ["product_name", "color", "has_size",
-        "price","image", "image_2", "number_in_stock"]
+        fields = ["product_name", "color",
+        "price","image", "image_2", "number_in_stock", "supplier"]
     
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
-
-        for fieldname in ["product_name", "color", "has_size",
-        "price","image", "image_2", "number_in_stock"]:
+        for fieldname in ["product_name", "color",
+        "price","image", "image_2", "number_in_stock", "supplier"]:
             self.fields[fieldname].helper = FormHelper()

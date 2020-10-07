@@ -48,7 +48,6 @@ $(document).ready(function () {
         ev.preventDefault();
         stripe.createToken(card).then(function(result) {
             if (result.error) {
-                // Inform the customer that there was an error.
                 var errorElement = document.getElementById('errorDiv');
                 errorElement.textContent = result.error.message;
             } else {
@@ -79,10 +78,8 @@ $(document).ready(function () {
                             }
                         })
                     }).then(function(result) {
-
-                        title_holder.textContent = result.message;
-                        $("#checkoutModal").modal("show")
-                        order_confirmed_url = `/bag/order_success/${result.order.id}`
+                        
+                        order_confirmed_url = `/bag/order_success/${result.order_id}`
                         window.location.replace(order_confirmed_url);
                     });
                 };

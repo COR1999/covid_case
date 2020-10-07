@@ -19,6 +19,9 @@ br {
 a{
     color: #fff;
 }
+.btn {
+    font-weight: 600;
+}
 .navbar-light .navbar-nav .nav-link.active {
     color: #fff;
     font-weight: 600;
@@ -203,6 +206,14 @@ a{
     border-radius: 5px;
 }
 
+@media(max-width:820px){
+    .billing_info{
+        text-align: center;
+    }
+}
+
+
+
 /* Bag */
 
 .bag_bg{
@@ -275,19 +286,19 @@ a{
 .form_container label{
     text-align: left;
 }
-#div_id_color,
+/* #div_id_color,
 #div_id_price{
     width: 100px;
 }
 #id_color,
 #id_price{
     width: 100px;
-}
+} */
 
-
+/* 
 #id_number_in_stock{
     width: 150px;
-}
+} */
 .control-label{
     width: 150px;
 }
@@ -323,4 +334,49 @@ a{
 .close:hover {
     color: #41b085;
     /* text-shadow: 0 1px 2px #fff; */
+}
+
+
+/* Order confirmed */
+.order-confirmed-page{
+    background-color: #0C3C26;
+    padding: .5rem;
+    width: auto;
+    margin: auto;
+    color: #fff;
+    margin-top: 2%;
+}
+#order-confirmed-title{
+    color: #41b085;
+}
+.order-confirmed-page p{
+    font-size: 16px;
+}
+.order-confirmed-table{
+    color: #fff;
+    width: auto;
+    /* text-align: center; */
+    padding-left: .5rem;
+    margin: auto;
+    margin-bottom: .4rem;
+    margin-top: .4rem;
+}
+.order-confirmed-table th{
+    color: #41b085;
+
+}
+@media(max-width: 820px){
+    .order-confirmed-table th{
+        padding: .3rem;
+    }
+}
+
+.delivery-information ul{
+    padding: 1.2rem;
+}
+.order-confirmed-label{
+    color: #41b085;
+}
+.order-summary{
+    padding: 1.2rem;
 }

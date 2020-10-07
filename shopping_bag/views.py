@@ -22,9 +22,7 @@ from django.forms.models import model_to_dict
 def view_bag(request):
     """ A view that renders the bag contents page """
     bag = request.session.get('bag', {})
-    # q_set_products = []
     all_products = Product.objects.all()
-    # print("view_bag")
     grand_total = request.session.get("grand_total", {})
     final_price = 0
     list_of_products = []
@@ -46,21 +44,20 @@ def view_bag(request):
             }
             list_of_products.append(bag_set)
             final_price += total_price
-    # print(grand_total)
     request.session["grand_total"] = final_price
 
     context = {
         "products": list_of_products,
         "grand_total": grand_total,
-        # "form": form,
+
     }
     return render(request, 'shopping_bag/bag.html', context)
 
 
 def add_to_bag(request, item_id):
     """ Add a quantity of the specified product to the shopping bag """
-    # print(item_id)
-    # print(item_id)
+
+
     product = Product.objects.get(pk=item_id)
     redirect_url = request.POST.get('redirect_url')
     quantity = request.POST.get('quantity')
@@ -69,8 +66,7 @@ def add_to_bag(request, item_id):
     price = product.price
     if int(quantity) <= product.number_in_stock:
         if len(quantity) > 0:
-            # print(type(quantity))
-            # print(quantity)
+
             quantity = int(quantity)
             grand_total += float(price) * quantity
             if item_id in list(bag.keys()):
@@ -85,8 +81,6 @@ def add_to_bag(request, item_id):
 
     context = {
         "all_products": product,
-        # "grand_total": grand_total,
-
     }
     return redirect(redirect_url, context)
 
@@ -119,13 +113,13 @@ def adjust_bag(request, item_id, updated_value, delta):
                 bag[item_id] = int(updated_value) + 1
                 request.session["bag"] = bag
 
-    # return redirect(reverse("view_bag"))
+
     return JsonResponse({"status": "success",},status=200)
 
 
 def remove_from_bag(request, item_id):
-    bag = request.session.get('bag', {})
-    # print(bag)
+
+
     del request.session["bag"][item_id]
     request.session.modified = True
     return redirect((reverse("view_bag")))
@@ -136,13 +130,17 @@ def checkout(request):
 
     # Add logic for none logged in users to purchase!!!!
 
-    customer = Customer.objects.get(user_id=user.id)
+    if request.user.is_anonymous:
+        form = OrderForm()
+        # print(form)
 
-    if customer:
+    else:
+        customer = Customer.objects.get(user_id=user.id)
         form = OrderForm(instance=customer)
 
+
     bag = request.session.get('bag', {})
-    # q_set_products = []
+
     all_products = Product.objects.all()
     list_of_products = []
     for item, key in bag.items():
@@ -179,26 +177,25 @@ def checkout(request):
     except Exception as e:
         print(str(e))
 
-    #return 1
+
     return render(request, 'shopping_bag/checkout.html', context)
 
 @require_http_methods(["POST"])
 def checkout_process(request):
-    form = OrderForm()
+
+    # print(request.POST)
     post_details = request.POST.get('form').split("&")
     post_data = {}
-    # print(request.POST)
-    # print(post_details)
-    # print(request.user)
+
 
     for _post_details in post_details:
         _post_details = _post_details.split("=")
         post_data[_post_details[0]] = _post_details[1]
 
-    # print(post_data)
+
     grand_total = request.session.get("grand_total", 0)
     pid = request.POST.get('client_secret').split('_secret')[0]
-    # print(type(grand_total))
+
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     stripe_grand_total = round(grand_total * 100)
@@ -206,15 +203,41 @@ def checkout_process(request):
 
 
     try:
-        # first_name = post_data['first_name']
-        # last_name = post_data['last_name']
-        email = post_data['email']
-        # phone = post_data["phone"]
-        # address_line_1 = post_data['address_line_1']
-        # address_line_2 = post_data['address_line_2']
-        # city = post_data['city']
-        # country= post_data['country']
+        email = post_data['email'].replace("%40", "@")
         token = request.POST.get('token')
+        print(post_data)
+        # Orders for users that arnt logged in not working !!
+        current_customer_id = 0
+        if request.user.is_anonymous:
+            # if request.method == "POST":
+            print(request.user)
+            first_name = post_data['first_name']
+            print(first_name)
+            last_name = post_data['last_name'].replace("%20", " ")
+            print(last_name)
+            phone = post_data['phone']
+            address_line_1 = post_data['address_line_1'].replace("%20", " ")
+            address_line_2 = post_data['address_line_2'].replace("%20", " ")
+            city = post_data['city'].replace("%20", " ")
+            country = post_data['country']
+            
+            customer = Customer(
+                # user=request.user,
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
+                phone=phone,
+                address_line_1=address_line_1,
+                address_line_2=address_line_2,
+                city=city,
+                country=country,
+            )
+            
+            customer.save()
+            print(customer.id)
+            current_customer_id = customer.id
+            print("saved customer", customer)
+        
 
         # print("customer",check_customer)
         # if len(check_customer < 1):
@@ -222,73 +245,50 @@ def checkout_process(request):
             card=token,
             description=email
         )
-        # else:
-        # stripe_customer = check_customer.stripe_pid
 
         intent = stripe.PaymentIntent.create(
             amount=stripe_grand_total,
             currency=settings.STRIPE_CURRENCY,
             customer=stripe_customer.id
         )
-
-        # stripe_charge = stripe.Charge.create(
-        # amount=grand_total,
-        # currency=settings.STRIPE_CURRENCY,
-        # customer=stripe_customer.id
-        # )
-
-        # print(stripe_charge)
-
+        print(email)
         ## saving to Order
-        # pass customer into current order if created else create new customer
-        # print(email)
-        check_customer = Customer.objects.get(user=request.user)
-        current_order = Order(user_profile=check_customer, stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
+        if request.user.is_anonymous:
+            curret_customer = Customer.objects.get(id=current_customer_id)
+            current_order = Order(user_profile=curret_customer,stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
+        else:
+            check_customer = Customer.objects.get(user=request.user)
+            current_order = Order(user_profile=check_customer, stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
         current_order.save()
- 
- 
-        # print(current_order)
+        print(current_order.id)
+
+
         orders = request.session["bag"]
 
 
-        #  Make a funciton !!!!!!
-        for _orders in orders:
+
+        for item in orders:
             # saving of product item
-            current_order_item = OrderItem(item=Product.objects.get(id=_orders),
-                                        order=Order.objects.get(id=current_order.id), quantity=orders[_orders])
+            current_order_item = OrderItem(item=Product.objects.get(id=item),
+                                        order=Order.objects.get(id=current_order.id), quantity=orders[item])
             current_order_item.save()
             print(current_order.id)
             # updating of stock
-            product_details = Product.objects.get(id=_orders)
-            product_details.number_in_stock = product_details.number_in_stock - orders[_orders]
+            product_details = Product.objects.get(id=item)
+            product_details.number_in_stock = product_details.number_in_stock - orders[item]
             product_details.save()
 
         del request.session['bag']
         del request.session["grand_total"]
-        # context = {
-        #     "message": "Thank you! Your purchase was successful",
-        #     "stripe_pid": current_order.stripe_pid,
-        #     "first_name": current_order.first_name,
-        #     "last_name": current_order.last_name,
-        #     "email": current_order.email,
-        #     "address_line_1": current_order.address_line_1,
-        #     "address_line_2": current_order.address_line_2,
-        #     "phone": current_order.phone,
-        #     "country": current_order.country,
-        #     "city": current_order.city,
-        #     "order_total": current_order.order_total,
-        # }
-        json_current_order = model_to_dict(current_order)
-        # print(json_current_order)
+
+        order_id = current_order.id
+        print(order_id)
         context = {
             "message": "Thank you! Your purchase was successful",
-            "order": json_current_order,
+            "order_id": str(order_id),
         }
-
-        # messages.info(request, "Thank you! Your purchase was successful")
-        # messages = "Thank you! Your purchase was successful"
     except Exception as e:
-        # messages.error(request, "Error:" + str(e))
+        print(str(e))
         context = {
             "message": str(e),
         }  
@@ -297,6 +297,7 @@ def checkout_process(request):
 
 
 def order_success(request, order_id):
+    print(order_id)
     order = Order.objects.get(id=order_id)
     order_items = OrderItem.objects.filter(order=order)
     context = {

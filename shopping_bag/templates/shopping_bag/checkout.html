@@ -32,7 +32,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-8 order-md-1">
+                <div class="col-md-8 order-md-1 billing_info">
                     <h4 class="mb-3">Billing address</h4>
                     <form id="payment_form" method="POST" action="{% url 'checkout_process' %}">
                         <div class="row ">
@@ -64,10 +64,10 @@
                             </div>
                             
                             <div class="col-md-6 mb-3">
-                                <div style="width:100px;">
+                                {% comment %} <div style="width:100px;"> {% endcomment %}
                                     {{ form.country|as_crispy_field }}
 
-                                </div>
+                                {% comment %} </div> {% endcomment %}
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-6 mb-3">

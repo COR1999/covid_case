@@ -15,13 +15,12 @@ class Order(models.Model):
     ordered_date = models.DateTimeField(auto_now_add=True)
     order_total = models.DecimalField(max_digits=6, decimal_places=2, null=True)
     order_confirmed = models.BooleanField(default=False)
-
     
 
 class OrderItem(models.Model):
     item = models.ForeignKey(Product, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     quantity = models.IntegerField(null=True , editable=True, default=0)
-    def __str__(self):
-        return self.item.color
+    def line_total(self):
+        return self.quantity * self.item.price
 

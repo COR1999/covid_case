@@ -12,33 +12,35 @@ def sign_up(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data("username")
-            print(username)
-            first_name = form.cleaned_data.get("first_name")
-            last_name = form.cleaned_data.get("last_name")
-            phone = form.cleaned_data.get("phone")
-            email = form.cleaned_data.get("email")
-            address_line_1 = form.cleaned_data.get("address_line_1")
-            address_line_2 = form.cleaned_data.get("address_line_2")
-            city = form.cleaned_data.get("city")
-            country = form.cleaned_data.get("country")
+            # print(form)
+            username = form.cleaned_data["username"]
+            # print(username)
+            # first_name = form.cleaned_data["first_name"]
+            # last_name = form.cleaned_data["last_name"]
+            # phone = form.cleaned_data["phone"]
+            # email = form.cleaned_data["email"]
+            # address_line_1 = form.cleaned_data["address_line_1"]
+            # address_line_2 = form.cleaned_data["address_line_2"]
+            # city = form.cleaned_data["city"]
+            # country = form.cleaned_data["country"]
             # print(user)
             
-            customer = Customer(
-                user=User.Objects.get(user=username),
-                name=username,
-                first_name=first_name,
-                last_name=last_name,
-                phone=phone,
-                email=email,
-                address_line_1=address_line_1,
-                address_line_2=address_line_2,
-                city=city,
-                country=country,
-            )
-            customer.save()
-            messages.success(request, "Account was created for " + customer)
+            form.save()
+            # user = User(user=request.user)
+            # customer = Customer(
+            #     user=request.user,
+            #     name=username,
+            #     first_name=first_name,
+            #     last_name=last_name,
+            #     # phone=phone,
+            #     email=email,
+            #     # address_line_1=address_line_1,
+            #     # address_line_2=address_line_2,
+            #     # city=city,
+            #     # country=country,
+            # )
+            # customer.save()
+            messages.success(request, "Account was created for " + username)
             return redirect(reverse("login_page"))
         else:
             messages.info(request, "Username OR password is incorrect")
@@ -72,12 +74,48 @@ def login_page(request):
 
 
 def edit_profile(request):
-    customer = Customer.objects.get(name=request.user)
+    # customer = Customer.objects.get(name=request.user)
+    customer = Customer.objects.filter(user=request.user).first()
+    if customer:
+        form = CustomerForm(request.POST or None,instance=customer)
+        if form.is_valid():
+                form.save()
+                return redirect(reverse("products"))
+        
+        print("we have a customer")
+    else:
+        form = CustomerForm(instance=request.user)
+        if request.method == "POST":
+            form = CustomerForm(request.POST)
+            if form.is_valid():
+                form.save()
+                first_name = form.cleaned_data["first_name"]
+                last_name = form.cleaned_data["last_name"]
+                email = form.cleaned_data["email"]
+                phone = form.cleaned_data["phone"]
+                address_line_1 = form.cleaned_data["address_line_1"]
+                address_line_2 = form.cleaned_data["address_line_2"]
+                country = form.cleaned_data["country"]
+                city = form.cleaned_data["city"]
+                print("form is valid")
+                customer = Customer(
+                    user=request.user,
+                    name=request.user.username,
+                    first_name=first_name,
+                    last_name=last_name,
+                    email=email,
+                    phone=phone,
+                    address_line_1=address_line_1,
+                    address_line_2=address_line_2,
+                    country=country,
+                    city=city,
+                )
+                customer.save()
+                print("customer saved", customer)
+                    
+                return redirect(reverse("products"))
 
-    form = CustomerForm(request.POST or None,instance=customer)
-    if form.is_valid():
-            form.save()
-            return redirect(reverse("products"))
+    
 
     context = {
         "form": form,

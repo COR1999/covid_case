@@ -1,4 +1,5 @@
-
+//  https://www.highcharts.com/demo/maps/map-pies
+//  changed this example to my needs
 $(document).ready(function () {
 
     let country_data = JSON.parse(document.getElementById('country_data').textContent);

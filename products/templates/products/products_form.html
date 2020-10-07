@@ -17,25 +17,42 @@
 					<form class="form-group mx-auto" method="POST" action="" enctype="multipart/form-data">
                         {% csrf_token %}
                             <div class="row">
-                                <div class="col-md-3 mb-3">
-                                    {{ form.product_name|as_crispy_field }}
+                                <div class="col-md-5 mb-3">
+                                    {{ form.product_name.label }}
+                                    <br>
+                                    {{ form.product_name }}
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    {{ form.color|as_crispy_field }}
+                                
+                                <div class="col-md-5 mb-3">
+                                    {{ form.price.label }}
+                                    <br>
+                                    {{ form.price }}
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    {{ form.price|as_crispy_field }}
+                                <div class="col-md-2 mb-3">
+                                    {{ form.supplier.label }}
+                                    <br>
+                                    {{ form.supplier }}
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    {{ form.number_in_stock|as_crispy_field }}
-                                </div>
+                                
                                 
                             </div>
                             <div class="row">
-                                
-                                
+                                <div class="col-md-5 mb-3">
+                                    {{ form.color.label }}
+                                    <br>
+                                    {{ form.color }}
+                                </div>
                                 <div class="col-md-4 mb-3">
-                                    {{ form.image|as_crispy_field }}
+                                    {{ form.number_in_stock.label }}
+                                    <br>
+                                    {{ form.number_in_stock }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    {{ form.image.label }}
+                                    <br>
+                                    {{ form.image }}
                                 </div>
                                 <div class="col-md-2 mb-3">
                                     <h8>Current image</h8>
@@ -44,7 +61,9 @@
                                 </div>
                                 {% if product.image_2 %}
                                     <div class="col-md-4 mb-3">
-                                        {{ form.image_2|as_crispy_field }}
+                                        {{ form.image_2.label }}
+                                        <br>
+                                        {{ form.image_2 }}
                                     </div>
                                     <div class="col-md-2 mb-3">
                                         <h8>Current image</h8>
@@ -52,15 +71,14 @@
                                     </div>
                                 {% else %}
                                 <div class="col-md-4 mb-3">
-                                    {{ form.image_2|as_crispy_field }}
+                                    {{ form.image_2.label }}
+                                    <br>
+                                    {{ form.image_2 }}
                                 </div>
                                 
                                 {% endif %}
                             </div>
                             <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    {{ form.has_size|as_crispy_field }}
-                                </div>
                                 <div class="col-md-4 mb-3">
                                     <div class="form_errors">{{ form_errors }}</div>
                                 </div>
