@@ -3,9 +3,10 @@ from django_resized import ResizedImageField
 from django.conf import settings
 
 class Supplier(models.Model):
-    suplier_name = models.CharField(max_length=settings.CONST_PROFILE_ATTR)
+    supplier_name = models.CharField(max_length=settings.CONST_PROFILE_ATTR)
     description = models.CharField(max_length=settings.CONST_PROFILE_ATTR)
-
+    def __str__(self):
+        return self.supplier_name
 
 class Product(models.Model):
     product_name = models.CharField(max_length=settings.CONST_PROFILE_ATTR)

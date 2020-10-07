@@ -49,34 +49,43 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-5 mb-3">
                                     {{ form.image.label }}
                                     <br>
                                     {{ form.image }}
                                 </div>
-                                <div class="col-md-2 mb-3">
-                                    <h8>Current image</h8>
-                                    
-                                    <img class="img-fluid" style="height:100px;"src="{{ form.instance.image.url }}" />
-                                </div>
-                                {% if product.image_2 %}
-                                    <div class="col-md-4 mb-3">
-                                        {{ form.image_2.label }}
-                                        <br>
-                                        {{ form.image_2 }}
-                                    </div>
-                                    <div class="col-md-2 mb-3">
-                                        <h8>Current image</h8>
-                                        <img class="img-fluid" style="height:100px;"src="{{ form.instance.image_2.url }}" />
-                                    </div>
-                                {% else %}
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-5 mb-3">
                                     {{ form.image_2.label }}
                                     <br>
                                     {{ form.image_2 }}
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 mb-3">
+                                    <h8>Current image</h8>
+                                    <br>
+                                    <img class="img-fluid" style="height:100px;" src="{{ form.instance.image.url }}" />
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <h8>Selected image</h8>
+                                    <br>
+                                    <img class="img-fluid" style="height:100px;" id="id_image_image"/>
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <h8>Current image</h8>
+                                    <br>
+                                    <img class="img-fluid" style="height:100px;" src="{{ form.instance.image_2.url }}" />
+                                    
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <h8>Selected image</h8>
+                                    <br>
+                                    <img class="img-fluid" style="height:100px;" id="id_image_2_image"/>
+                                </div>
+                            </div>
+                            <div class="row">
                                 
-                                {% endif %}
+                                
                             </div>
                             <div class="row">
                                 <div class="col-md-4 mb-3">
@@ -126,6 +135,25 @@
     $(".delete-form").click(function(){
         form.submit()
     })
-    
+
+    $("#id_image").change(function(input){
+        readURL(this)
+    })
+    $("#id_image_2").change(function(input){
+        readURL(this)
+    })
+
+    function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        output = "#" + input.id + "_image"
+        reader.onload = function(e) {
+            $(output).attr('src', e.target.result);
+        }
+        
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+
     </script>
 {% endblock %}

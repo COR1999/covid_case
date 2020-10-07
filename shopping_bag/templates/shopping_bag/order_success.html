@@ -1,5 +1,7 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load tz %}
+{% get_current_timezone as TIME_ZONE %}
 {% block content %}
 
     <div class="d-flex justify-content-center h-100 ">
@@ -50,7 +52,9 @@
                     <h6 class="text-center">Summary</h6>
                     <div class="order-summary">
                         <p><span class="order-confirmed-label">Order Total: </span><span class="float-right">$ {{ order.order_total }}</span></p>
-                        <p><span class="order-confirmed-label">Order Date: </span><span class="float-right">{{ order.ordered_date }}</span></p>
+                        {% localtime on %}
+                            <p><span class="order-confirmed-label">Order Date: </span><span class="float-right">{{ order.ordered_date }}</span></p>
+                        {% endlocaltime %}
                         <p><span class="order-confirmed-label">Order ID: </span><span class="float-right">{{ order.id }}</span></p>
                         <div>
                             <a class="btn btn-success btn-sm" href="{% url 'products' %}">Home</a>

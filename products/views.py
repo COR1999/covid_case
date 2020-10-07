@@ -79,9 +79,10 @@ def create_product(request):
 
 
 def update_product(request, id):
+    # F
     product = Product.objects.get(id=id)
     form = ProductForm(request.POST or None,instance=product)
-
+    print(form)
     if form.is_valid():
         form.save()
         return redirect(reverse("products"))

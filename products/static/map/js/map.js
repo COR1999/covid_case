@@ -43,14 +43,14 @@ $(document).ready(function () {
         title: {
             text: 'Covid Cases',
             style: {
-                color: "#1A1A1D",
+                color: "#41b085",
                 fontWeight: "bold",
             }
         },
 
         chart: {
             animation: false, // Disable animation, especially for zooming
-            backgroundColor: "#CCCCCC",
+            backgroundColor: "#bee0d3",
         },
         legend: {
             title: {
