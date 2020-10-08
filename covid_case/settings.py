@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 from . import env
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -187,3 +188,5 @@ STRIPE_CURRENCY = "USD"
 
 CONST_PROFILE_ATTR = 200
 CONST_PROFILE_ADDRESS = 1000
+
+django_heroku.settings(locals())
