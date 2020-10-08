@@ -28,28 +28,6 @@
 							<div class="col-md-6 mb-3">
 								{{ form.last_name|as_crispy_field }}
 							</div>
-							{% comment %} <div class="col-md-6 mb-3">
-								{{ form.phone|as_crispy_field }}
-							</div> {% endcomment %}
-						</div>
-						
-						<div class="row">
-							{% comment %} <div class="col-md-6 mb-3">
-								{{ form.address_line_1|as_crispy_field }}
-							</div>
-							<div class="col-md-6 mb-3">
-								{{ form.address_line_2|as_crispy_field }}
-							</div> {% endcomment %}
-						</div>
-						<div class="row">
-							{% comment %} <div class="col-md-6 mb-3 center">
-								{{ form.city|as_crispy_field }}
-							</div>
-							<div class="col-md-6 mb-3 center">
-								<div id="sign_up_country">
-									{{ form.country|as_crispy_field }}
-								</div>
-							</div> {% endcomment %}
 						</div>
 						<div class="row">
 							<div class="col-md-6 mb-3">
@@ -64,7 +42,7 @@
 						</div>
 					</form>
 				</div>
-                {% comment %} {{ form.errors }} {% endcomment %}
+                {{ form.errors }}
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
 						Already have an account? <a href="{% url 'login_page' %}" class="ml-2"><b>Login</b></a>
@@ -82,10 +60,10 @@
 		var form_fields = document.getElementsByTagName('input')
 		form_fields[1].placeholder='Username..';
 		form_fields[2].placeholder='Email..';
-		form_fields[3].placeholder='Enter password...';
-		form_fields[4].placeholder='Re-enter Password...';
-
-
+		form_fields[3].placeholder='First Name...';
+		form_fields[4].placeholder='Last Name...';
+		form_fields[5].placeholder='Enter password...';
+		form_fields[6].placeholder='Re-enter Password...';
 		for (var field in form_fields){	
 			form_fields[field].className += ' form-control'
 		}

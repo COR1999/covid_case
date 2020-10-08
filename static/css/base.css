@@ -48,16 +48,16 @@ a{
 .navbar-light .navbar-nav .nav-link:hover{
     color: #41b085;
 }
+.navbar-toggler{
+    background: #41b085;
+}
 /* footer */
 .page-footer{
     background: #0C3C26;
     width: 100%;
     color: #fff;
     position: absolute;
-    clear: both;
-    /* margin-top: -40px; */
-    /* height: 40px; */
-
+    /* clear: both; */
 }
 
 a:hover{
@@ -110,11 +110,16 @@ a{
     color:#fff;
 }
 .product_price_quantity{
-    background-color: #fff;
+    background-color: #bee0d3;
     color: #0C3C26;
     padding: 2%;
     border: 2px solid;
     border-radius: 13%;
+}
+.qty_input{
+    background: #bee0d3;
+    /* color: #179967; */
+    border: 1px solid #0C3C26;
 }
 .card-footer:last-child {
     border-radius: 0;
@@ -379,19 +384,23 @@ a{
 .order-confirmed-table{
     color: #fff;
     width: auto;
-    /* text-align: center; */
-    padding-left: .5rem;
     margin: auto;
     margin-bottom: .4rem;
     margin-top: .4rem;
 }
 .order-confirmed-table th{
     color: #41b085;
+    font-size: 14px;
+    padding: .5rem
+}
+.order-confirmed-table td{
+    font-size: 12px;
+    padding: .5rem
 
 }
 @media(max-width: 820px){
     .order-confirmed-table th{
-        padding: .3rem;
+        /* padding: .3rem; */
     }
 }
 

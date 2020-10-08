@@ -1,7 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block content %}
-{% comment %} <div class="overlay"></div> {% endcomment %}
 <div class="container" class="mt-2">
     <div id="container" class="mt-2 mb-4" style="">
         <div class="loading">
@@ -10,9 +9,6 @@
         </div>
     </div>
     {{ country_data | json_script:"country_data" }}
-        {% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#messageModal">
-            Launch demo modal
-        </button> {% endcomment %}
     <div class="row">
     
         {% for product in products %}
@@ -38,10 +34,9 @@
                     {% endif %}
                     <div class=" product_price_quantity pb-2">
                         <div class="row">
-                            {% comment %} <div class="" style=""> {% endcomment %}
                             <div class="col-md-12">
                                 <h8 class="float-left ml-2">Price: </h8>
-                                <h8 class="float-right " style="margin-right:1rem;">${{ product.price }}</h8>
+                                <h8 class="float-right " style="margin-right:1.6rem;">${{ product.price }}</h8>
                             </div>
                         </div>
                         <div class="row" style="">

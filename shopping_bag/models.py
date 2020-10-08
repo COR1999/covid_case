@@ -1,7 +1,5 @@
 from django.db import models
-from django.utils import tree
 from profiles.models import Customer
-from django_countries.fields import CountryField
 from products.models import Product
 from django.conf import settings
 

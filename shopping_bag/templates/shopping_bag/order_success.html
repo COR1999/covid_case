@@ -19,7 +19,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Color</th>
                             <th scope="col">Quantity</th>
-                            <th scope="col">Item Total</th>
+                            <th scope="col">Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,7 +29,7 @@
                             <td>{{ item.item.product_name }}</td>
                             <td>{{ item.item.color }}</td>
                             <td>{{ item.quantity }}</td>
-                            <td>{{ item.line_total }}</td>
+                            <td>$ {{ item.line_total }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

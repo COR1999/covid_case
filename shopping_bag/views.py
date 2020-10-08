@@ -1,12 +1,9 @@
 from django.http import request, JsonResponse
-from django.http.response import HttpResponseNotAllowed
-import json
 from shopping_bag.forms import OrderForm
 from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404
 )
 from profiles.models import Customer
-# from decimal import Decimal, Rounded
 from django.contrib import messages
 from products.models import Product
 from .forms import OrderForm
@@ -15,8 +12,6 @@ from django.views.decorators.cache import never_cache
 from django.conf import settings
 from django.views.decorators.http import require_http_methods
 import stripe
-from django.forms.models import model_to_dict
-
 
 @never_cache
 def view_bag(request):
@@ -57,7 +52,6 @@ def view_bag(request):
 def add_to_bag(request, item_id):
     """ Add a quantity of the specified product to the shopping bag """
 
-
     product = Product.objects.get(pk=item_id)
     redirect_url = request.POST.get('redirect_url')
     quantity = request.POST.get('quantity')
@@ -78,7 +72,6 @@ def add_to_bag(request, item_id):
     else:
         messages.info(request, "Sorry not enough in stock")
         
-
     context = {
         "all_products": product,
     }
@@ -93,7 +86,6 @@ def adjust_bag(request, item_id, updated_value, delta):
     product = Product.objects.get(pk=item_id)
 
     bag = request.session.get('bag', {})
-
     if int(bag[item_id]) == product.number_in_stock:
         if delta == "minus":
             bag[item_id] = int(updated_value) - 1
@@ -103,10 +95,6 @@ def adjust_bag(request, item_id, updated_value, delta):
             if int(updated_value) <= product.number_in_stock:
                 bag[item_id] = int(updated_value) - 1
                 request.session["bag"] = bag
-            # else:
-                # messages.info(request, "Sorry not enough in stock")
-        # else:
-            # messages.info(request, "Sorry your item quantity cant be less then 0")
     if delta == "add":
         if int(updated_value) >= 0:
             if int(updated_value) < product.number_in_stock:
@@ -128,12 +116,8 @@ def checkout(request):
     form = OrderForm()
     user = request.user
 
-    # Add logic for none logged in users to purchase!!!!
-
     if request.user.is_anonymous:
         form = OrderForm()
-        # print(form)
-
     else:
         customer = Customer.objects.get(user_id=user.id)
         form = OrderForm(instance=customer)
@@ -182,47 +166,33 @@ def checkout(request):
 
 @require_http_methods(["POST"])
 def checkout_process(request):
-
-    # print(request.POST)
     post_details = request.POST.get('form').split("&")
     post_data = {}
-
 
     for _post_details in post_details:
         _post_details = _post_details.split("=")
         post_data[_post_details[0]] = _post_details[1]
-
-
+    
     grand_total = request.session.get("grand_total", 0)
     pid = request.POST.get('client_secret').split('_secret')[0]
-
-    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-    stripe_grand_total = round(grand_total * 100)
     stripe.api_key = stripe_secret_key
 
 
     try:
         email = post_data['email'].replace("%40", "@")
         token = request.POST.get('token')
-        print(post_data)
-        # Orders for users that arnt logged in not working !!
         current_customer_id = 0
         if request.user.is_anonymous:
-            # if request.method == "POST":
-            print(request.user)
             first_name = post_data['first_name']
-            print(first_name)
             last_name = post_data['last_name'].replace("%20", " ")
-            print(last_name)
             phone = post_data['phone']
             address_line_1 = post_data['address_line_1'].replace("%20", " ")
             address_line_2 = post_data['address_line_2'].replace("%20", " ")
             city = post_data['city'].replace("%20", " ")
             country = post_data['country']
-            
             customer = Customer(
-                # user=request.user,
                 first_name=first_name,
                 last_name=last_name,
                 email=email,
@@ -232,26 +202,13 @@ def checkout_process(request):
                 city=city,
                 country=country,
             )
-            
             customer.save()
-            print(customer.id)
             current_customer_id = customer.id
-            print("saved customer", customer)
         
-
-        # print("customer",check_customer)
-        # if len(check_customer < 1):
         stripe_customer = stripe.Customer.create(
             card=token,
             description=email
         )
-
-        intent = stripe.PaymentIntent.create(
-            amount=stripe_grand_total,
-            currency=settings.STRIPE_CURRENCY,
-            customer=stripe_customer.id
-        )
-        print(email)
         ## saving to Order
         if request.user.is_anonymous:
             curret_customer = Customer.objects.get(id=current_customer_id)
@@ -260,19 +217,15 @@ def checkout_process(request):
             check_customer = Customer.objects.get(user=request.user)
             current_order = Order(user_profile=check_customer, stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
         current_order.save()
-        print(current_order.id)
-
 
         orders = request.session["bag"]
-
-
 
         for item in orders:
             # saving of product item
             current_order_item = OrderItem(item=Product.objects.get(id=item),
                                         order=Order.objects.get(id=current_order.id), quantity=orders[item])
             current_order_item.save()
-            print(current_order.id)
+
             # updating of stock
             product_details = Product.objects.get(id=item)
             product_details.number_in_stock = product_details.number_in_stock - orders[item]
@@ -282,13 +235,12 @@ def checkout_process(request):
         del request.session["grand_total"]
 
         order_id = current_order.id
-        print(order_id)
+        
         context = {
             "message": "Thank you! Your purchase was successful",
             "order_id": str(order_id),
         }
     except Exception as e:
-        print(str(e))
         context = {
             "message": str(e),
         }  
@@ -297,7 +249,6 @@ def checkout_process(request):
 
 
 def order_success(request, order_id):
-    print(order_id)
     order = Order.objects.get(id=order_id)
     order_items = OrderItem.objects.filter(order=order)
     context = {

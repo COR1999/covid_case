@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect, reverse
 from .models import Product
 from django.conf import settings
 import requests
-# import urllib3
-# from werkzeug.utils import secure_filename
 import json
 from .forms import ProductForm
 import os
@@ -39,20 +37,14 @@ def all_products(request):
                     "casesPerOneMillion": casesPerOneMillion,
                     "deathsPerOneMillion": deathsPerOneMillion,
                 }
-                # print(country_population)
                 country_data.append(country_data_set)
 
             except Exception as e:
                 print("Exception:", e)
 
     products = Product.objects.all()
-
-    # grand_total = request.session.get("grand_total", {})
-    # quantity = request.session.get('quantity', 0)
-
     context = {
         "products": products,
-        # "grand_total": grand_total,
         "country_data": country_data
     }
     return render(request, "products/all_products.html", context)
@@ -60,13 +52,7 @@ def all_products(request):
 
 def create_product(request):
     form = ProductForm(request.POST or None, request.FILES)
-    # if file and allowed_file(file.filename):
-    #         filename = secure_filename(file.filename)
-    #         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    #         #return redirect(url_for('upload_file', filename=filename))
-    #         os.rename(UPLOAD_FOLDER + filename, <product.name>)
     if form.is_valid():
-
         form.save()
         return redirect(reverse("products"))
 
@@ -79,13 +65,13 @@ def create_product(request):
 
 
 def update_product(request, id):
-    # F
     product = Product.objects.get(id=id)
-    form = ProductForm(request.POST or None,instance=product)
-    print(form)
-    if form.is_valid():
-        form.save()
-        return redirect(reverse("products"))
+    form = ProductForm(request.POST or None ,instance=product)
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES,instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("products"))
     
     context = {
         "form": form,
@@ -101,8 +87,3 @@ def delete_product(request, id):
         print(product)
         product.delete()
         return redirect(reverse("products"))
-
-    context = {
-        "product": product,
-    }
-    # return render(request, "products/product_delete_confirm.html", context)

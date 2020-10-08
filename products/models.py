@@ -11,7 +11,6 @@ class Supplier(models.Model):
 class Product(models.Model):
     product_name = models.CharField(max_length=settings.CONST_PROFILE_ATTR)
     color = models.CharField(max_length=settings.CONST_PROFILE_ATTR)
-    # has_size = models.BooleanField(default=False, null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = ResizedImageField(size=[400, 500], crop=['middle', 'center'],quality=100, upload_to='', default='noimage.png')
     image_2 = ResizedImageField(size=[400, 500], crop=['middle', 'center'],quality=100, upload_to='', default='noimage.png', null=True)
