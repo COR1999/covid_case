@@ -18,6 +18,7 @@
                 <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ product.image }}" alt="{{ product.name }}"
                     onmouseover="this.src='{{MEDIA_URL}}{{ product.image_2 }}';"
                     onmouseout="this.src='{{MEDIA_URL}}{{ product.image }}';" style="">
+                
                 {% else %}
                     <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ product.image }}" onmouseover="this.src='{{ MEDIA_URL }}noimage.png';"
                     onmouseout="this.src='{{ MEDIA_URL }}{{ product.image }}';"alt="{{ product.name }}" style="">
@@ -32,12 +33,12 @@
                     <div class=" product_price_quantity pb-2">
                         <div class="row">
                             <div class="col-md-12">
-                                <h8 ><span class="float-left ml-2">Price:</span><span class="float-right" style="margin-right:1.6rem;"> ${{ product.price }}</span></h8>
+                                <h8><span class="float-left ml-2">Price:</span><span class="float-right" style="margin-right:1.6rem;"> ${{ product.price }}</span></h8>
                             </div>
                         </div>
                         <div class="row" style="">
                             <div class="col-md-12">
-                                <h8 class="float-left ml-2 mt-1">Quantity: </h8>
+                                <h8><span  class="float-left ml-2 mt-1">Quantity: </span></h8>
                                 {% include "products/add_to_bag_form.html" %}
                             </div>
                         </div>

@@ -96,15 +96,9 @@
     
     {% endblock%}
     <footer class="page-footer font-small fixed-bottom">
-
-        <!-- Copyright -->
         <div class="footer-copyright text-center py-3">
-            {% comment %} <p> {% endcomment %}
             © 2020 <span>Covid Cases</span>
-            {% comment %} </p> {% endcomment %}
         </div>
-        <!-- Copyright -->
-
     </footer>
     {% for message in messages %}
         <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -120,9 +114,6 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    {% comment %} <div class="modal-body">
-                        
-                    </div> {% endcomment %}
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
@@ -133,7 +124,7 @@
     
     {% block postloadjs %}
     <script type="text/javascript">
-        message = document.getElementById('message-modal').textContent;
+        message = document.getElementById('message-modal');
         if (message != ""){
             $("#messageModal").modal("show")
         }else{
