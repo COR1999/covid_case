@@ -248,6 +248,7 @@ a{
 .bag_bg{
     background: #0C3C26;
 }
+
 .product-quantity[value=0]{
     visibility: hidden;
 }

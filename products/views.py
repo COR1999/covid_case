@@ -66,12 +66,14 @@ def create_product(request):
 
 def update_product(request, id):
     product = Product.objects.get(id=id)
-    form = ProductForm(request.POST or None ,instance=product)
     if request.method == "POST":
-        form = ProductForm(request.POST, request.FILES,instance=product)
+        form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
             return redirect(reverse("products"))
+    else:
+        form = ProductForm(request.POST or None, instance=product)
+
     
     context = {
         "form": form,
