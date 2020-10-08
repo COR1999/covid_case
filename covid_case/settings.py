@@ -24,7 +24,7 @@ if DEVELOPMENT:
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '3qk%&$yahqdh&2gy(7=mggn)=ki@5^26=4&sh%o@oula7it$d&'
+# SECRET_KEY = '3qk%&$yahqdh&2gy(7=mggn)=ki@5^26=4&sh%o@oula7it$d&'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
