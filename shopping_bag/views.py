@@ -60,7 +60,6 @@ def add_to_bag(request, item_id):
     price = product.price
     if int(quantity) <= product.number_in_stock:
         if len(quantity) > 0:
-
             quantity = int(quantity)
             grand_total += float(price) * quantity
             if item_id in list(bag.keys()):
@@ -256,3 +255,62 @@ def order_success(request, order_id):
         "order_items": order_items
     }
     return render(request, "shopping_bag/order_success.html", context)
+
+
+
+
+def order_history(request):
+    customer = Customer.objects.filter(user=request.user).first()
+    all_orders = Order.objects.all()
+    users_orders = []
+    # order_items = []
+    orders = []
+
+    for order in all_orders:
+        if order.user_profile == customer:
+            users_orders.append(order)
+            order_items = OrderItem.objects.filter(order=order.id)
+            customers_order = {
+                "order": order,
+                "order_items": list(order_items),
+            }
+            orders.append(customers_order)
+            # for item in order_items:
+            #     if item.id == order.id:
+            #         order_items = item
+                    # print("order", order)
+                    # print("item", item)
+            # print(customers_order)
+            # users_orders.append(customers_order)
+    context = {
+        "customer": customer,
+        "customers_order": orders,
+    }
+    return render(request, "shopping_bag/order_history.html", context)
+
+    # print(order_items)
+    # print(users_orders)
+
+
+
+def place_order_again(request, order_id):
+    order = Order.objects.get(id=order_id)
+    order_items = OrderItem.objects.filter(order=order)
+    bag = request.session.get("bag", {})
+    grand_total = request.session.get("grand_total", 0)
+    for item in order_items:
+        quantity = item.quantity
+        if quantity <= item.item.number_in_stock:
+            item_id = item.item.id
+            
+            grand_total += float(item.item.price) * quantity
+            
+            bag[item_id] = quantity
+            request.session["bag"] = bag
+            request.session["grand_total"] = grand_total
+        else:
+            messages.info(request, "Sorry cant replace this order item is out of stock")
+        
+
+    print(bag)
+    return redirect((reverse("products")))

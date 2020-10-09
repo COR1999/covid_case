@@ -47,13 +47,26 @@
                             <div class="col-md-6 col-sm-12">
                                 <a class="btn btn-info btn-sm px-3 mt-1" href="{% url 'update_product' product.id %}">Update</a>
                             </div>
-                            <div class="col-md-6 col-sm-12">
-                                <a class="btn btn-success btn-sm add_to_bag p-1 mt-1" id="{{ product.id }}" >Add to bag</a>
-                            </div>
+                            {% if product.number_in_stock == 0 %}
+                                <div class="col-md-6 col-sm-12">
+                                    <a class="center btn btn-danger btn-sm add_to_bag  p-1 mt-1" disabled="disabled">Not in stock</a>
+                                </div>
+                                {% else %}
+                                <div class="col-md-6 col-sm-12">
+                                    <a class="btn btn-success btn-sm add_to_bag p-1 mt-1" id="{{ product.id }}" >Add to bag</a>
+                                </div>
+                            {% endif %}
+                            
                             {% else %}
-                            <div class="col-md-12">
-                                <a  class="center btn btn-success btn-sm add_to_bag" id="{{ product.id }}" style="">Add to bag</a>
-                            </div>
+                                {% if product.number_in_stock == 0 %}
+                                    <div class="col-md-12">
+                                        <a class="center btn btn-danger btn-sm add_to_bag" disabled="disabled">Add to bag</a>
+                                    </div>
+                                    {% else %}
+                                    <div class="col-md-12">
+                                        <a  class="center btn btn-success btn-sm add_to_bag" id="{{ product.id }}" style="">Add to bag</a>
+                                    </div>
+                                {% endif %}
                             {% endif %}
                         </div>
                         

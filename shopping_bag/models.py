@@ -13,6 +13,7 @@ class Order(models.Model):
     ordered_date = models.DateTimeField(auto_now_add=True)
     order_total = models.DecimalField(max_digits=6, decimal_places=2, null=True)
     order_confirmed = models.BooleanField(default=False)
+    date_dispatched = models.DateTimeField(null=True)
     
 
 class OrderItem(models.Model):
