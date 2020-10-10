@@ -42,7 +42,7 @@ def all_products(request):
             except Exception as e:
                 print("Exception:", e)
 
-    products = Product.objects.all()
+    products = Product.objects.all().order_by("-number_in_stock")
     context = {
         "products": products,
         "country_data": country_data

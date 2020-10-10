@@ -261,21 +261,18 @@ def order_success(request, order_id):
 
 def order_history(request):
     customer = Customer.objects.filter(user=request.user).first()
-    all_orders = Order.objects.all()
-    users_orders = []
-    orders = []
-    for order in all_orders:
-        if order.user_profile == customer:
-            users_orders.append(order)
-            order_items = OrderItem.objects.filter(order=order.id)
-            customers_order = {
-                "order": order,
-                "order_items": list(order_items),
-            }
-            orders.append(customers_order)
+    all_orders = Order.objects.filter(user_profile=customer).order_by("-ordered_date")
+    customers_orders = []
+    for item in all_orders:
+        order_items = OrderItem.objects.filter(order=item.id)
+        customers_order = {
+            "order": item,
+            "order_items": list(order_items),
+        }
+        customers_orders.append(customers_order)
     context = {
         "customer": customer,
-        "customers_order": orders,
+        "customers_order": customers_orders,
     }
     return render(request, "shopping_bag/order_history.html", context)
 
