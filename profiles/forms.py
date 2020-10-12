@@ -8,54 +8,32 @@ from django.conf import settings
 
 
 class SignUpForm(UserCreationForm):
-    # first_name = forms.CharField(max_length=settings.CONST_PROFILE_ATTR,widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
-    # last_name = forms.CharField(max_length=settings.CONST_PROFILE_ATTR)
+
     email = forms.EmailField(max_length=settings.CONST_PROFILE_ATTR)
-    # address_line_1 = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=True)
-    # address_line_2 = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=False)
-    # phone = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=True)
-    # city = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=False)
-    # country = CountryField(null=True).formfield()
 
     class Meta:
         model = User
         fields = (
-            "username",
             'first_name',
             "last_name",
             'email',
             'password1',
             'password2', )
-        # fields = (
-        #     "username",
-        #     'first_name',
-        #     "last_name",
-        #     "phone",
-        #     "address_line_1",
-        #     "address_line_2",
-        #     "country",
-        #     "city",
-        #     'email',
-        #     'password1',
-        #     'password2', )
     
     def save(self, commit=True):
         user = super(SignUpForm,self).save(commit=False)
-        user.first_name = self.cleaned_data["first_name"]
-        user.last_name = self.cleaned_data["last_name"]
-        user.email = self.cleaned_data["email"]
+        user.username = self.cleaned_data["email"]
         
         if commit:
             user.save()
         
         return user
-
+        
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
 
-        for fieldname in ['username', "first_name","last_name", 'password1', 'password2']:
+        for fieldname in [ "first_name","email","last_name", 'password1', 'password2']:
             self.fields[fieldname].help_text = None
-            # self.fields[fieldname].widget.attrs['placeholder'] = ''
 
 
 
@@ -70,7 +48,8 @@ class CustomerForm(forms.ModelForm):
         model = Customer
         fields = ("first_name",
         "last_name",
-        "phone", "email",
+        "phone",
+        "email",
         "country",
         "address_line_1",
         "address_line_2",

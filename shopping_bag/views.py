@@ -114,11 +114,10 @@ def remove_from_bag(request, item_id):
 def checkout(request):
     form = OrderForm()
     user = request.user
-
     if request.user.is_anonymous:
         form = OrderForm()
     else:
-        customer = Customer.objects.get(user_id=user.id)
+        customer = Customer.objects.get(email=user.email)
         form = OrderForm(instance=customer)
 
 

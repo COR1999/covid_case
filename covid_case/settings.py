@@ -157,7 +157,6 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-site_name = "Covid-Cases"
 
 
 # 1 day
@@ -202,9 +201,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 BASE_URL = "https://disease.sh"
-ALL_DATA_WORLDMETERS = "/v3/covid-19/all"
+# ALL_DATA_WORLDMETERS = "/v3/covid-19/all"
 COUNTRY_DATA_WORLDMETERS = "/v3/covid-19/countries"
-# COUNTRY_DATA_JHUCSSE = "/v3/covid-19/jhucsse"
 
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")

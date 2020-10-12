@@ -9,7 +9,7 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=settings.CONST_PROFILE_ATTR, null=True)
     last_name = models.CharField(max_length=settings.CONST_PROFILE_ATTR, null=True)
     phone = models.CharField(max_length=settings.CONST_PROFILE_ATTR, null=True)
-    email = models.CharField(max_length=settings.CONST_PROFILE_ATTR, null=True,unique=True)
+    email = models.CharField(max_length=settings.CONST_PROFILE_ATTR, null=True, unique=True)
     city = models.CharField(max_length=settings.CONST_PROFILE_ATTR, null=True)
     address_line_1 = models.CharField(max_length=settings.CONST_PROFILE_ADDRESS, null=True)
     address_line_2 = models.CharField(max_length=settings.CONST_PROFILE_ADDRESS, null=True, default="")
