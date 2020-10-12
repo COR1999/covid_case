@@ -26,7 +26,9 @@ I selected products that minimized consumer decision making by using visual pict
 ## Future Enhancements
 1. Search/filter functionality would be a good addition
 2. Customer reviews
+
 ## Technologies Used
+### Programming Languages
 1. [Django framework](https://www.djangoproject.com/)
     1. 
     2. 
@@ -39,9 +41,27 @@ I selected products that minimized consumer decision making by using visual pict
 3. [CSS3](https://en.wikipedia.org/wiki/CSS)
     1. CSS was used to style the HTML.
     2. The style sheet was mostly kept separate from the html.
-4. [Bootstrap Version 4.4.1](https://getbootstrap.com/)
+4. [JQuery](https://jquery.com/)
+    1. 
+5. [Python](https://www.python.org/)
+    1. 
+6. [Markdown](https://www.markdownguide.org/)
+    1. Documentation within the readme was generated using markdown
+ 
+
+
+### Django Extension and tools
+1. [dj-database-url](https://pypi.org/project/dj-database-url/)
+    1.  allows use of environment variable for database connections
+2. [django-crispy-forms](https://pypi.org/project/django-crispy-forms/)
+    1. Crispy forms where used to style most of my forms
+3. [stripe](https://pypi.org/project/stripe/)
+    1. This libary allowed me to talk with strips api
+4. [gunicorn](https://pypi.org/project/gunicorn/)
+    1. Python WSGI HTTP Server for UNIX so you can host your application on heroku
+5. [Bootstrap Version 4.4.1](https://getbootstrap.com/)
     1. Bootstrap components such as grid, card, button, table, navbar where used in my project to simplify creating responsive web application.
-5. Database
+6. Database
     1. DB was used to store all users information and models.
     2. [SQLite](https://www.sqlite.org/index.html) for dev
     3. [Postgres](https://www.postgresql.org/) DB as part of Heroku was used for production
@@ -53,6 +73,15 @@ I selected products that minimized consumer decision making by using visual pict
     1. Font-awesome was used to get some icons.
 10. [Heroku](https://heroku.com/)
     1. I used heroku to host my application on a public URL
+
+### APIs
+1. [Stripe](https://stripe.com/en-ie)
+    1. 
+2. [Disease.sh](https://disease.sh/docs/)
+    1. 
+3. 
+4. 
+
 ## Testing
 1. I used Chrome Dev Tools for debug Testing. !!REVIEW
 i. I used the inspect feature to check different elements on my page.
@@ -85,4 +114,5 @@ Acknowledgements
 
 
 ## Color Choice
+For this project these where my choice of colors
 ![https://coolors.co/ffffff-bee0d3-179967-41b085-0c3c26](/media/covidCasesColorPallet.png)
