@@ -108,16 +108,21 @@ ii. I ran all my tests on localhost (root website) then pushed it onto github (w
 iii. I checked on mobile to see that everything was working correctly.
 iv. I ran into some problems trying to get blueprints to work and i solved this problem by changing how I initialised my DB.
 v. I ran into some problems with basic html i solved them by googling.
-Deployment
+## Deployment
 I used Live Server on my windows PC and once I was happy I committed to github to check that everything ran smoothly there as well.
 I used XYZ to help me move my product from development into production x was used to help me do y and z 
-Credits
-Content
+## Credits
+## Content
 I used Bootstrap Version 4.4.1 grid system. I used StackOverflow to solve problems that I couldn't figure out. I used Favicon for my favicon
 I used django’s documention a lot to figure out solutions to my problems 
-I found Mozzilla documention very helpful https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django
-Media
+I found [Mozzilla](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django) documention very helpful
+## Media
 My product images and information were taken from Dunnes Stores website
+
+## Color Choice
+For this project these where my choice of colors
+![https://coolors.co/ffffff-bee0d3-179967-41b085-0c3c26](/readmeimage/covidCasesColorPallet.png)
+
 
 Acknowledgements
 
@@ -125,6 +130,7 @@ Acknowledgements
 
 
 
-## Color Choice
-For this project these where my choice of colors
-![https://coolors.co/ffffff-bee0d3-179967-41b085-0c3c26](/media/covidCasesColorPallet.png)
+![](/readmeimage/iphone6smobileimage2.png)
+![](/readmeimage/iphone6smobileimage1.png)
+![](/readmeimage/motog4.png)
+![](/readmeimage/database_schema.png)

@@ -210,10 +210,10 @@ def checkout_process(request):
         ## saving to Order
         if request.user.is_anonymous:
             curret_customer = Customer.objects.get(id=current_customer_id)
-            current_order = Order(user_profile=curret_customer,stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
+            current_order = Order(customer_profile=curret_customer,stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
         else:
             check_customer = Customer.objects.get(user=request.user)
-            current_order = Order(user_profile=check_customer, stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
+            current_order = Order(customer_profile=check_customer, stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
         current_order.save()
 
         orders = request.session["bag"]
@@ -260,7 +260,7 @@ def order_success(request, order_id):
 
 def order_history(request):
     customer = Customer.objects.filter(email=request.user.email).first()
-    all_orders = Order.objects.filter(user_profile=customer).order_by("-ordered_date")
+    all_orders = Order.objects.filter(customer_profile=customer).order_by("-ordered_date")
     customers_orders = []
     for item in all_orders:
         order_items = OrderItem.objects.filter(order=item.id)
