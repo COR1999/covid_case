@@ -85,4 +85,4 @@ Acknowledgements
 
 
 ## Color Choice
-<a href="https://coolors.co/ffffff-bee0d3-179967-41b085-0c3c26"></a>
+![https://coolors.co/ffffff-bee0d3-179967-41b085-0c3c26](/media/colorsPallet)
