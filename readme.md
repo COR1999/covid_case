@@ -5,18 +5,43 @@ The business part of the website is to sell facemasks and other corona virus rel
 The user has the ability to sign in and purchase.
 
 ## UX
-In my user design I wish to create a application that is an intuitive shopping experience. The application navigation is very simple and easy to understand.
-I selected products that minimized consumer decision making by using visual pictures of the products rather than lengthy descriptions.
+My user design aims to create an application that is an intuitive shopping experience. 
+The web design links the need to purchase masks with the number of COVID-19 cases per country. The interactive map gives you more information about each country when you hover over it and there are a number of masks available to purchase underneath it. Hovering over the product will give you another view of the item.
+
+The application navigation is very simple and easy to understand. The consumer decision making is simplified by using visual pictures of the products rather than lengthy descriptions. If the consumer doesn't already have an account when they order a product they can sign up at a later date and still see their order history. 
+
 
 
 # Features
 ## Existing Functionality
-### Admin
-* **Nav Bar -** When signed in as a admin the admin has the ability to add products by clicking the Add products link on the navbar 
-* **Home Page -** The admin has the ability to update and delete products from the home page.
+### Navbar
+* **Usage -** The navbar is used to navigate through the site. depending on whether the user is a admin or not.
+##### Admin
+* When signed in as a admin the admin has the ability to navigate to add products page 
+* 
+##### End User
+* Has the ability to visit the home page though the navbar, login, sign up and view shopping bag.
+* When the end user is logged in they have the ability to edit profile and view order history.
+
+### Home Page
+* **Usage -** On the home page the user has the ability to see the world map
+##### Admin
+* When the admin is on the home page he has the ability to edit products.
+* 
+##### End User
+* 
+* 
+
+
+
+
+
+* **Add Products-** 
+* **Home Page -** 
 * **Add Product -** On the add product page the admin has the ability to create and new product. they also can see a preview of the image they uploaded.
+* **Edit Product -** 
+* **Delete Product -** On the edit product page the admin has the ability to delete the chosen product
 ### End User
-* **Nav Bar -** for a user who isn't signed in contains the home page, sign up, login and view bag links.
 * **Nav Bar Signed in -** When the user is signed in the user has the ability to view the home page, user profile, Orders, logout, and view bag 
 * **Home Page -** On the home page the user can see the highcharts map with a world map with the countrys color coded if they are high or low on the covid-19 green list.
 The user also has the ability to add products to thier bag and view the product images. the user can see clearly if the product is out of stock.
@@ -25,19 +50,13 @@ The user also has the ability to add products to thier bag and view the product 
 * **Sign up -** on this page the user can fill out the displayed form and register an account with covid-case and if they clicked the wrong page there is a link to log in on the sign up form
 * **Login -** The user has the ability to log into their created account and reset password if they have forgot it.
 * **View bag -** When the user clicks the little bag icon on the nav bar they will be taken to an overview of their shopping bag. They can increase and decrease the quantity of their products and also remove them from the bag. The user can also continue to the checkout page
-* **Checkout -**
+* **Checkout -** 
+* **Order Summary -** 
 
-* Ability to reset password (Requires email server)
-* The ability to view user profile
-* Add products to cart, validates that product is in stock
-* Edit products in the user cart
-* Checkout functionality
-* Overview of ordered products
-* View order history!!!!!!!!!!!!
 ## Future Enhancements
 1. Search/filter functionality would be a good addition
 2. Customer reviews
-
+3. 
 ## Technologies Used
 ### Programming Languages
 1. [Django framework](https://www.djangoproject.com/)
@@ -109,8 +128,10 @@ iii. I checked on mobile to see that everything was working correctly.
 iv. I ran into some problems trying to get blueprints to work and i solved this problem by changing how I initialised my DB.
 v. I ran into some problems with basic html i solved them by googling.
 ## Deployment
-I used Live Server on my windows PC and once I was happy I committed to github to check that everything ran smoothly there as well.
-I used XYZ to help me move my product from development into production x was used to help me do y and z 
+<!-- I used Live Server on my windows PC and once I was happy I committed to github to check that everything ran smoothly there as well.
+I used XYZ to help me move my product from development into production x was used to help me do y and z  -->
+
+
 ## Credits
 ## Content
 I used Bootstrap Version 4.4.1 grid system. I used StackOverflow to solve problems that I couldn't figure out. I used Favicon for my favicon

@@ -58,40 +58,12 @@ def login_page(request):
 
 
 def edit_profile(request):
-    customer = Customer.objects.filter(email=request.user.email).first()
-    if customer:
-        form = CustomerForm(request.POST or None,instance=customer)
-        if form.is_valid():
-                form.save()
-                return redirect(reverse("products"))
-        
-        print("we have a customer")
-    else:
-        form = CustomerForm(instance=request.user)
-        if request.method == "POST":
-            form = CustomerForm(request.POST)
-            if form.is_valid():
-                form.save()
-                # first_name = form.cleaned_data["first_name"]
-                # last_name = form.cleaned_data["last_name"]
-                # phone = form.cleaned_data["phone"]
-                # address_line_1 = form.cleaned_data["address_line_1"]
-                # address_line_2 = form.cleaned_data["address_line_2"]
-                # country = form.cleaned_data["country"]
-                # city = form.cleaned_data["city"]
-                print("form is valid")
-                # customer.first_name = first_name
-                # customer.last_name = last_name
-                # customer.phone = phone
-                # customer.address_line_1 = address_line_1
-                # customer.address_line_2 = address_line_2
-                # customer.country = country
-                # customer.city = city
-                # customer.save()
-                print("customer saved", customer)
-                    
-                return redirect(reverse("products"))
-    
+    customer = Customer.objects.filter(email=request.user.username).first()
+    form = CustomerForm(request.POST or None,instance=customer)
+    if form.is_valid():
+            form.save()
+            return redirect(reverse("products"))
+            
     context = {
         "form": form,
     }
