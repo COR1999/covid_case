@@ -260,7 +260,7 @@ def order_success(request, order_id):
 
 
 def order_history(request):
-    customer = Customer.objects.filter(user=request.user).first()
+    customer = Customer.objects.filter(email=request.user.email).first()
     all_orders = Order.objects.filter(user_profile=customer).order_by("-ordered_date")
     customers_orders = []
     for item in all_orders:

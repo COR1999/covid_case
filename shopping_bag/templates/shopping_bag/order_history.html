@@ -3,13 +3,17 @@
 {% load tz %}
 {% block content %}
 <div class="container">
+    <h2 class="text-center">Order History</h2>
     <div class="row">
         {% for order in customers_order %}
         {% if order.order_items %}
         <div class="card col-sm-6 col-md-4 col-lg-4 col-xl-4 mt-2 mb-2 mx-auto" style="max-width:340px;">
-                    <h3 class="text-center">Order Id {{ order.order.id }}</h3>
+                    <h6 class="mt-2"><span class="order-confirmed-label">Order ID </span> <span class="float-right">{{ order.order.id }}</span></h6>
+                    {% localtime on %}
+                    <h6><span class="order-confirmed-label">Date Ordered</span> <span class="float-right">{{ order.order.ordered_date }}</span></h6>
+                    {% endlocaltime %}
                     <div class="h-100" style=>
-                        <h6 class="text-center mt-2">Items Ordered</h6>
+                        {% comment %} <h6 class="text-center mt-2">Items Ordered</h6> {% endcomment %}
                         <table class="table table-borderless order-confirmed-table">
                             <thead>
                                 <tr>
@@ -33,9 +37,7 @@
                             </tbody>
                         </table>
                         <div class="" style="vertical-align:bottom;">
-                            {% localtime on %}
-                            <p><span class="order-confirmed-label">Ordered Date</span> <span class="float-right">{{ order.order.ordered_date }}</span></p>
-                            {% endlocaltime %}
+                            
                             
                             <p><span class="order-confirmed-label">Order Total</span> <span class="float-right">$ {{ order.order.order_total }}</span></p>
                             <p><span class="order-confirmed-label">Date Dispatched</span> <span class="float-right">{{ order.order.date_dispatched }}</span></p>
