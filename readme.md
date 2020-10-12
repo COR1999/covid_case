@@ -12,17 +12,21 @@ I selected products that minimized consumer decision making by using visual pict
 # Features
 ## Existing Functionality
 ### Admin
-1. Ability to add, edit and remove products when logged in
-2. 
+1. **Nav Bar** When signed in as a admin the admin has the ability to add products by clicking the Add products link on the navbar 
+2. **Home Page -** The admin has the ability to update and delete products from the home page.
 ### End User
-3. Ability to log in and register logout
-4. Ability to reset password (Requires email server)
-5. The ability to view user profile
-6. Add products to cart, validates that product is in stock
-7. Edit products in the user cart
-8. Checkout functionality
-9. Overview of ordered products
-10. View order history!!!!!!!!!!!!
+* **Nav Bar -** for a user who isn't signed in contains the home page, sign up, login and view bag links.
+* **Nav Bar Signed in -** When the user is signed in the user has the ability to view the home page, user profile, Orders, logout, and view bag 
+* **Home Page -** On the home page the user can see the highcharts map with a world map with the countrys color coded if they are high or low on the covid-19 green list.
+The user also has the ability to add products to thier bag and view the product images. the user can see clearly if the product is out of stock.
+
+* Ability to reset password (Requires email server)
+* The ability to view user profile
+* Add products to cart, validates that product is in stock
+* Edit products in the user cart
+* Checkout functionality
+* Overview of ordered products
+* View order history!!!!!!!!!!!!
 ## Future Enhancements
 1. Search/filter functionality would be a good addition
 2. Customer reviews
@@ -79,7 +83,8 @@ I selected products that minimized consumer decision making by using visual pict
     1. 
 2. [Disease.sh](https://disease.sh/docs/)
     1. 
-3. 
+3. [HIGHCHARTS](https://www.highcharts.com/)
+    1. Highcharts where used to present the information from Disase.sh api to the user
 4. 
 
 ## Testing
