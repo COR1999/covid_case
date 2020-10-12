@@ -4,9 +4,6 @@
 {% block content %}
 <div class="container " style="width:100%;">
     <div class="row">
-        {% for message in messages %}
-            <p class="bg-info text-center">{{ message }}</p>
-        {% endfor %}
         <div class="col-md-12 mt-4 bag_bg bag_list">
             <h4 class="d-flex justify-content-between align-items-center my-3">
                 <span class="text-muted">Your Bag</span>
@@ -49,10 +46,10 @@
                             <button class="add-product btn-secondary btn-sm my-1" style="float:right; border:none;"  id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-plus"></i></button>
                         {% elif product.number_in_stock == product.quantity %}
                             <button class="minus-product btn  btn-secondary btn-sm my-1" style="float:left; border:none;" id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-minus"></i></button>
+                            <p class="my-1 p-1 bg-secondary" style="float:right; color:#fff;">Not Enough in Stock</p>
                         {% else %}
                             <button class="minus-product btn  btn-secondary btn-sm my-1" style="float:left; border:none;" id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-minus"></i></button>
                             <button class="add-product btn-secondary btn-sm my-1" style="float:right; border:none;"  id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-plus"></i></button>
-                        
                         {% endif %}
                             <br>
                         </div>
@@ -70,11 +67,15 @@
                 <span>Total (USD)</span>
                 <strong>{% if request.session.grand_total %}$ {{ request.session.grand_total |floatformat:2 }}{% else %}$0{% endif %}</strong>
             </li>
-
+            {% if products|length >= 1 %}
             <h4 class="d-flex justify-content-between align-items-center my-3">
                 <a href="{% url 'checkout' %}"class="btn btn-success ml-auto">Proceed to Checkout</a>
             </h4>
-            
+            {% else %}
+            <h4 class="d-flex justify-content-between align-items-center my-3">
+                <a href="{% url 'products' %}"class="btn btn-success ml-auto">Back to Shopping</a>
+            </h4>
+            {% endif  %}
         </div>
     </div>
 </div>

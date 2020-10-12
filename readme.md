@@ -12,13 +12,20 @@ I selected products that minimized consumer decision making by using visual pict
 # Features
 ## Existing Functionality
 ### Admin
-1. **Nav Bar** When signed in as a admin the admin has the ability to add products by clicking the Add products link on the navbar 
-2. **Home Page -** The admin has the ability to update and delete products from the home page.
+* **Nav Bar -** When signed in as a admin the admin has the ability to add products by clicking the Add products link on the navbar 
+* **Home Page -** The admin has the ability to update and delete products from the home page.
+* **Add Product -** On the add product page the admin has the ability to create and new product. they also can see a preview of the image they uploaded.
 ### End User
 * **Nav Bar -** for a user who isn't signed in contains the home page, sign up, login and view bag links.
 * **Nav Bar Signed in -** When the user is signed in the user has the ability to view the home page, user profile, Orders, logout, and view bag 
 * **Home Page -** On the home page the user can see the highcharts map with a world map with the countrys color coded if they are high or low on the covid-19 green list.
 The user also has the ability to add products to thier bag and view the product images. the user can see clearly if the product is out of stock.
+* **My Profile -** The user has the ability to view the current information associated with there profile and edit this information as well. The user can also reset there password from this page
+* **My Orders -** The user can see there full order history and have the ability to add this order to there bag if in stock.
+* **Sign up -** on this page the user can fill out the displayed form and register an account with covid-case and if they clicked the wrong page there is a link to log in on the sign up form
+* **Login -** The user has the ability to log into their created account and reset password if they have forgot it.
+* **View bag -** When the user clicks the little bag icon on the nav bar they will be taken to an overview of their shopping bag. They can increase and decrease the quantity of their products and also remove them from the bag. The user can also continue to the checkout page
+* **Checkout -**
 
 * Ability to reset password (Requires email server)
 * The ability to view user profile
