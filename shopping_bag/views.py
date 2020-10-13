@@ -182,25 +182,31 @@ def checkout_process(request):
         token = request.POST.get('token')
         current_customer_id = 0
         if request.user.is_anonymous:
-            first_name = post_data['first_name']
-            last_name = post_data['last_name'].replace("%20", " ")
-            phone = post_data['phone']
-            address_line_1 = post_data['address_line_1'].replace("%20", " ")
-            address_line_2 = post_data['address_line_2'].replace("%20", " ")
-            city = post_data['city'].replace("%20", " ")
-            country = post_data['country']
-            customer = Customer(
-                first_name=first_name,
-                last_name=last_name,
-                email=email,
-                phone=phone,
-                address_line_1=address_line_1,
-                address_line_2=address_line_2,
-                city=city,
-                country=country,
-            )
-            customer.save()
-            current_customer_id = customer.id
+            check_customer = Customer.objects.filter(email=email).first()
+            if check_customer:
+                check_customer.save()
+                current_customer_id = check_customer.id
+            else:
+                first_name = post_data['first_name']
+                last_name = post_data['last_name'].replace("%20", " ")
+                phone = post_data['phone']
+                address_line_1 = post_data['address_line_1'].replace("%20", " ")
+                address_line_2 = post_data['address_line_2'].replace("%20", " ")
+                city = post_data['city'].replace("%20", " ")
+                country = post_data['country']
+                customer = Customer(
+                    first_name=first_name,
+                    last_name=last_name,
+                    email=email,
+                    phone=phone,
+                    address_line_1=address_line_1,
+                    address_line_2=address_line_2,
+                    city=city,
+                    country=country,
+                )
+                customer.save()
+                print(customer)
+                current_customer_id = customer.id
         
         stripe_customer = stripe.Customer.create(
             card=token,

@@ -20,6 +20,7 @@ def sign_up(request):
             print(customer)
             form.save()
             user = User.objects.get(email=email)
+            print(user)
             if customer:
                 customer.user = user
                 customer.save()
