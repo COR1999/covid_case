@@ -161,7 +161,7 @@ v. I ran into some problems with basic html i solved them by googling.
 5. Then we need to import the env file we do this by first adding<br/>from os import path<br/> 
 Then we check if the path exists <br/>
 if path.exists("env.py"):<br/>
-    import env
+&nbsp;&nbsp;&nbsp;&nbsp;import env
 
 
 
