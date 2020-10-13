@@ -213,10 +213,10 @@ def checkout_process(request):
         )
         ## saving to Order
         if request.user.is_anonymous:
-            curret_customer = Customer.objects.filter(id=current_customer_id).first()
+            curret_customer = Customer.objects.get(id=current_customer_id)
             current_order = Order(customer_profile=curret_customer,stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
         else:
-            check_customer = Customer.objects.filter(user=request.user).first()
+            check_customer = Customer.objects.get(user=request.user)
             current_order = Order(customer_profile=check_customer, stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
         current_order.save()
 
