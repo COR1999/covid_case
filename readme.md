@@ -157,11 +157,18 @@ v. I ran into some problems with basic html i solved them by googling.
 2. create a file name .gitignore add env.py to this file
 3. in your env file we need to import os.
 4. a signing you enviorment variables is easy its as simple as doing the following:<br/>
+```python
     os.environ["Variable Name Here"] = "Value of Variable Goes Here"
-5. Then we need to import the env file we do this by first adding<br/>from os import path<br/> 
-Then we check if the path exists <br/>
-if path.exists("env.py"):<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;import env
+```
+5. Then we need to import the env file we do this by first adding
+Then we check if the path exists
+```python
+    import os.path
+    if os.path.exists("./covid_case/env.py"):
+        from . import env
+    
+```
+
 
 
 
