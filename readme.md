@@ -71,7 +71,7 @@ The application navigation is very simple and easy to understand. The customer's
 1. Search/filter functionality would be a good addition
 2. Customer reviews
 3. List of all orders received that admins can see
-4.
+4. The application could be improved with Internationalization for coving date, time and currency format
 
 ## Technologies Used
 1. [VSCODE](https://code.visualstudio.com/) - VSCODE was used as the development environment.
