@@ -12,15 +12,17 @@ def sign_up(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            print(request.user)            
+            email = form.cleaned_data["email"]
+            user = User.objects.filter(username=email).first()
+            if user:
+                messages.info(request, "Account with this email is already exists")
+                return redirect(reverse("sign_up"))
+
             first_name = form.cleaned_data["first_name"]
             last_name = form.cleaned_data["last_name"]
-            email = form.cleaned_data["email"]
             customer = Customer.objects.filter(email=email).first()
-            print(customer)
             form.save()
-            user = User.objects.get(email=email)
-            print(user)
+            user = User.objects.get(username=email).first()
             if customer:
                 customer.user = user
                 customer.save()
@@ -60,6 +62,7 @@ def login_page(request):
 
 def edit_profile(request):
     customer = Customer.objects.filter(email=request.user.username).first()
+    print(customer)
     form = CustomerForm(request.POST or None,instance=customer)
     if form.is_valid():
             form.save()

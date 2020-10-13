@@ -10,7 +10,28 @@
                 <h3 id="order-confirmed-title">Thanks for you order</h3>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6 delivery-information mt-2">
+                    <div class="order-summary">
+                        <p class="mb-0"><span class="order-confirmed-label">Order ID: </span><span class="float-right">{{ order.id }}</span></p>
+                        {% localtime on %}
+                        <p class="mb-0"><span class="order-confirmed-label">Order Date: </span><span class="float-right">{{ order.ordered_date }}</span></p>
+                        {% endlocaltime %}
+                    </div>
+                    <h6 class="text-center" >Delivery Information</h6>
+                    <ul class="list-unstyled">
+                        <li><span class="order-confirmed-label">First name: </span><span class="float-right">{{ order.customer_profile.first_name }}</span></li>
+                        <li><span class="order-confirmed-label">Last name: </span><span class="float-right">{{ order.customer_profile.last_name }}</span></li>
+
+                        <li><span class="order-confirmed-label">Address line 1: </span><span class="float-right">{{ order.customer_profile.address_line_1 }}</span></li>
+                        <li><span class="order-confirmed-label">Address line 2: </span><span class="float-right">{{ order.customer_profile.address_line_2 }}</span></li>
+                        <li><span class="order-confirmed-label">Email: </span><span class="float-right">{{ order.customer_profile.email }}</span></li>
+                        <li><span class="order-confirmed-label">Phone: </span><span class="float-right">{{ order.customer_profile.phone }}</span></li>
+                        <li><span class="order-confirmed-label">Country: </span><span class="float-right">{{ order.customer_profile.country.name }}</span></li>
+                    </ul>              
+                            
+
+                </div>
+                <div class="col-md-6 mx-auto ">
                     <h6 class="text-center mt-2">Items Ordered</h6>
                     <table class="table table-borderless order-confirmed-table">
                         <thead>
@@ -34,38 +55,15 @@
                         {% endfor %}
                         </tbody>
                     </table>
+                    <p><span class="order-confirmed-label">Order Total: </span><span class="float-right">$ {{ order.order_total }}</span></p>
                 </div>
-                <div class="col-md-6 mx-auto delivery-information mt-2">
-                    <h6 class="text-center" >Delivery Information</h6>
-                    <ul class="list-unstyled">
-                        <li><span class="order-confirmed-label">First name: </span><span class="float-right">{{ order.customer_profile.first_name }}</span></li>
-                        <li><span class="order-confirmed-label">Last name: </span><span class="float-right">{{ order.customer_profile.last_name }}</span></li>
 
-                        <li><span class="order-confirmed-label">Address line 1: </span><span class="float-right">{{ order.customer_profile.address_line_1 }}</span></li>
-                        <li><span class="order-confirmed-label">Address line 2: </span><span class="float-right">{{ order.customer_profile.address_line_2 }}</span></li>
-                        <li><span class="order-confirmed-label">Email: </span><span class="float-right">{{ order.customer_profile.email }}</span></li>
-                        <li><span class="order-confirmed-label">Phone: </span><span class="float-right">{{ order.customer_profile.phone }}</span></li>
-                        <li><span class="order-confirmed-label">Country: </span><span class="float-right">{{ order.customer_profile.country.name }}</span></li>
-                    </ul>
-                </div>
-                <div class="col-md-6 mt-2">
-                    <h6 class="text-center">Summary</h6>
-                    <div class="order-summary">
-                        <p><span class="order-confirmed-label">Order Total: </span><span class="float-right">$ {{ order.order_total }}</span></p>
-                        {% localtime on %}
-                            <p><span class="order-confirmed-label">Order Date: </span><span class="float-right">{{ order.ordered_date }}</span></p>
-                        {% endlocaltime %}
-                        <p><span class="order-confirmed-label">Order ID: </span><span class="float-right">{{ order.id }}</span></p>
-                        <div>
-                            <a class="btn btn-success btn-sm" href="{% url 'products' %}">Home</a>
-                            {% if user.is_authenticated %}
-                                <a class="btn btn-info btn-sm float-right" href="{% url 'edit_profile' %}">My Profile</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                    
-                </div>
+                
             </div>
+                <a class="btn btn-success btn-sm" href="{% url 'products' %}">Home</a>
+                {% if user.is_authenticated %}
+                    <a class="btn btn-info btn-sm float-right" href="{% url 'edit_profile' %}">My Profile</a>
+                {% endif %}
         </div>
     </div>
 {% endblock %}

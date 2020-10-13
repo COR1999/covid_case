@@ -74,7 +74,7 @@
             <div class="navbar-nav ml-auto">
                 
                 {% if user.is_authenticated %}
-                    <span class="nav-item hello-msg">Hello, {{ request.user }}</span>
+                    <span class="nav-item hello-msg">Hello, {{ request.user.first_name }}</span>
                     <a href="{% url 'logout_user' %}" class="nav-item nav-link">Logout</a>
                 {% else %}
                     <a href="{% url 'login_page' %}" class="nav-item nav-link">Login</a>

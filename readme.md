@@ -36,15 +36,15 @@ The application navigation is very simple and easy to understand. The customer's
 ### Add Products - ADMIN
 * Admins can find the "Add Products" page in the nav bar.
 * Here they add a product and define all of the features related to the product, which will then get added to the home page.
-* They also can see a preview of the image they uploaded.
+* They also can see a preview of the images they uploaded.
 
 ### My Profile
 * The user has the ability to view the current information associated with their profile.
 * They can also edit this information here.
-* The user can also reset their password from this page.
+* The user can also reset their password from this page. They are sent a email which contain a reset password link.
 
 ### My Orders
-* The user can see their full order history, and have the ability to add this order to their bag (if the product is still in stock).
+* The user can see their full order history, and have the ability to reorder the items from this order (if the product(s) is still in stock).
 
 ### Sign up
 * On this page the user can fill out the form to register an account with Covid-Case.
