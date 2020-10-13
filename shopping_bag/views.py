@@ -184,7 +184,6 @@ def checkout_process(request):
         if request.user.is_anonymous:
             check_customer = Customer.objects.filter(email=email).first()
             if check_customer:
-                check_customer.save()
                 current_customer_id = check_customer.id
             else:
                 first_name = post_data['first_name']
@@ -214,10 +213,10 @@ def checkout_process(request):
         )
         ## saving to Order
         if request.user.is_anonymous:
-            curret_customer = Customer.objects.get(id=current_customer_id)
+            curret_customer = Customer.objects.filter(id=current_customer_id).first()
             current_order = Order(customer_profile=curret_customer,stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
         else:
-            check_customer = Customer.objects.get(user=request.user)
+            check_customer = Customer.objects.filter(user=request.user).first()
             current_order = Order(customer_profile=check_customer, stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
         current_order.save()
 
