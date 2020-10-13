@@ -1,7 +1,7 @@
 # Covid Case
 ## Overview
-In this project users can visually see the statistics for coronavirus for each country. Simple thresholds are used to determine the safety level of each country, displayed using a traffic light system (green, orange, red).
-The website's business function is to sell facemasks and other coronavirus-related products, such as hand sanitizers and visors.
+In this project users can visually see the statistics for corona virus for each country. Simple thresholds are used to determine the safety level of each country, displayed using a traffic light system (green, orange, red).
+The website's business function is to sell facemasks and other corona virus-related products, such as hand sanitizers and visors.
 The user has the ability to sign in and purchase these items.
 
 ## UX
@@ -77,6 +77,9 @@ The application navigation is very simple and easy to understand. The consumer d
 5. [Font-awesome Version 5.11.1](https://fontawesome.com/) - 
 6. [Heroku](https://heroku.com/) - This is a cloud based application platform that allows deployment of an application to the web and connection to the database.
 7. [AWS S3](https://aws.amazon.com/s3/) - Amazon S3 is an object storage service that offers industry-leading scalability, data availability, security, and performance.
+8. [StackOverflow](https://stackoverflow.com/) - Stack Overflow is a question and answer site for professional and enthusiast programmers.
+9. [Mozilla](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django) - I found Mozilla documentation for django very helpful when solving problems.
+10. [favicon.io](https://favicon.io/) - I used favicon.io to generate my favicon.
 
 
 ### Programming Languages
@@ -90,16 +93,13 @@ The application navigation is very simple and easy to understand. The consumer d
 
 
 ### Django Extension and tools
-1. [dj-database-url](https://pypi.org/project/dj-database-url/)
-    1. allows use of environment variable for database connections
-2. [django-crispy-forms](https://pypi.org/project/django-crispy-forms/)
-    1. Crispy forms where used to style most of my forms
+1. [dj-database-url](https://pypi.org/project/dj-database-url/) - Allows use of environment variable for database connections
+2. [django-crispy-forms](https://pypi.org/project/django-crispy-forms/) - Crispy forms where used to style most of my forms
 3. [stripe](https://pypi.org/project/stripe/) - This libary allowed me to talk with stripes api
 4. [gunicorn](https://pypi.org/project/gunicorn/) - Python WSGI HTTP Server for UNIX so you can host your application on heroku
-5. Database
-    1. DB was used to store all users information and models.
-    2. [SQLite](https://www.sqlite.org/index.html) I used SQLite for dev
-    3. [Postgres](https://www.postgresql.org/) DB as part of Heroku was used for production
+5. Thease Database's where used to store all users information and models.
+    * [SQLite](https://www.sqlite.org/index.html) I used SQLite for dev
+    * [Postgres](https://www.postgresql.org/) DB as part of Heroku was used for production
 6. [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) - Jinja is a modern and designer-friendly templating language for Python, modelled after Django’s templates.
 
 ### APIs
@@ -152,7 +152,7 @@ v. I ran into some problems with basic html i solved them by googling.
 1. create a file named env.py in root of your project. use this file to define you environment variables
 2. create a file name .gitignore add env.py to this file
 3. in your env file we need to import os.
-4. To asign your enviorment variables is easy its as simple as doing the following:
+4. To assign your environment variables is easy its as simple as doing the following:
 ```python
     import os
     os.environ["Variable Name Here"] = "Value of Variable Goes Here"
@@ -196,12 +196,11 @@ v. I ran into some problems with basic html i solved them by googling.
 
 ## Credits
 ## Content
-I used Bootstrap Version 4.4.1 grid system. I used StackOverflow to solve problems that I couldn't figure out. I used Favicon for my favicon
-I used django’s documention a lot to figure out solutions to my problems
-I found [Mozzilla](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django) documention very helpful
+
+
 ## Media
 My product images and information were taken from Dunnes Stores website
-Favicon was created using [favicon.io](https://favicon.io/)
+Favicon was created using 
 
 ## Color Choice
 For this project these where my choice of colors
