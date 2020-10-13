@@ -71,62 +71,58 @@ The application navigation is very simple and easy to understand. The consumer d
 4.
 
 ## Technologies Used
+1. [VSCODE](https://code.visualstudio.com/) - VSCODE was used as the development environment.
+3. [Bootstrap Version 4.4.1](https://getbootstrap.com/) - Bootstrap components such as grid, card, button, table, navbar where used in my project to simplify creating responsive web application.
+4. [Github](https://github.com/) - GitHub has been used for version control of the code by using Git functions in the control panel.
+5. [Font-awesome Version 5.11.1](https://fontawesome.com/) - 
+6. [Heroku](https://heroku.com/) - This is a cloud based application platform that allows deployment of an application to the web and connection to the database.
+7. [AWS S3](https://aws.amazon.com/s3/) - Amazon S3 is an object storage service that offers industry-leading scalability, data availability, security, and performance.
+
+
 ### Programming Languages
-1. [Django framework](https://www.djangoproject.com/)
-    1.
-    2.
-    3.
-    4.
-    5.
-    6.
-2. [HTML5](https://en.wikipedia.org/wiki/HTML5)
-    1. I used HTML for the basic structure of the website.
-3. [CSS3](https://en.wikipedia.org/wiki/CSS)
-    1. CSS was used to style the HTML.
-    2. The style sheet was mostly kept separate from the html.
-4. [JQuery](https://jquery.com/)
-    1.
-5. [Python](https://www.python.org/)
-    1.
-6. [Markdown](https://www.markdownguide.org/)
-    1. Documentation within the readme was generated using markdown
- 
+1. [Python 3.8.2](https://www.python.org/) - Python is an interpreted, high-level and general-purpose programming language.
+2. [Django 3.1.1](https://www.djangoproject.com/) - Django is designed to help developers take applications from concept to completion as quickly as possible.
+3. [HTML5](https://en.wikipedia.org/wiki/HTML5) - HTML is the standard markup language for documents designed to be displayed in a web browser.
+3. [CSS3](https://en.wikipedia.org/wiki/CSS) - CSS is a style language used for describing the presentation of a document.
+4. [JavaScript](https://www.javascript.com/) - JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions.
+5. [jQuery](https://jquery.com/) - jQuery is a JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling.
+6. [Markdown](https://www.markdownguide.org/) - Markdown is a lightweight markup language with plain-text-formatting syntax.
 
 
 ### Django Extension and tools
 1. [dj-database-url](https://pypi.org/project/dj-database-url/)
-    1.  allows use of environment variable for database connections
+    1. allows use of environment variable for database connections
 2. [django-crispy-forms](https://pypi.org/project/django-crispy-forms/)
     1. Crispy forms where used to style most of my forms
-3. [stripe](https://pypi.org/project/stripe/)
-    1. This libary allowed me to talk with strips api
-4. [gunicorn](https://pypi.org/project/gunicorn/)
-    1. Python WSGI HTTP Server for UNIX so you can host your application on heroku
-5. [Bootstrap Version 4.4.1](https://getbootstrap.com/)
-    1. Bootstrap components such as grid, card, button, table, navbar where used in my project to simplify creating responsive web application.
-6. Database
+3. [stripe](https://pypi.org/project/stripe/) - This libary allowed me to talk with stripes api
+4. [gunicorn](https://pypi.org/project/gunicorn/) - Python WSGI HTTP Server for UNIX so you can host your application on heroku
+5. Database
     1. DB was used to store all users information and models.
-    2. [SQLite](https://www.sqlite.org/index.html) for dev
+    2. [SQLite](https://www.sqlite.org/index.html) I used SQLite for dev
     3. [Postgres](https://www.postgresql.org/) DB as part of Heroku was used for production
-7. [VSCODE](https://code.visualstudio.com/)
-    1. VSCODE was used as the development environment.
-8. [Github](https://github.com/)
-    1. Github was used for my version control in the project.
-9. [Font-awesome Version 5.11.1](https://fontawesome.com/)
-    1. Font-awesome was used to get some icons.
-10. [Heroku](https://heroku.com/)
-    1. I used heroku to host my application on a public URL
+6. [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) - Jinja is a modern and designer-friendly templating language for Python, modelled after Django’s templates.
 
 ### APIs
-1. [Stripe](https://stripe.com/en-ie)
-    1.
-2. [Disease.sh](https://disease.sh/docs/)
-    1.
-3. [HIGHCHARTS](https://www.highcharts.com/)
-    1. Highcharts where used to present the information from Disase.sh api to the user
-4.
+1. [Stripe](https://stripe.com/) - Stripes APIs allow you to accept credit cards, manage subscriptions, send money, run a marketplace.
+2. [Disease.sh](https://disease.sh/docs/) - An open API for disease-related statistics
+3. [HIGHCHARTS](https://www.highcharts.com/) - Highcharts where used to present the information from Disase.sh api to the user
+
 
 ## Testing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 1. I used Chrome Dev Tools for debug Testing. !!REVIEW
 i. I used the inspect feature to check different elements on my page.
 ii. I used the coverage tab to check my css was being used on the given page.
@@ -149,19 +145,19 @@ v. I ran into some problems with basic html i solved them by googling.
 5. The repository can be cloned by clicking Clone or Download on the main page of the repository
 6. In the Clone with HTTPs section, click the clipboard icon to copy the clone URL for the repository
 7. Open Git Bash Terminal
-8. Type git clone, and then paste the URL
-9. Press Enter. A local clone will be created.
+8. Type git clone, and then paste the URL, Press Enter. A local clone will be created.
+9. 
 
 #### Environment variables:
 1. create a file named env.py in root of your project. use this file to define you environment variables
 2. create a file name .gitignore add env.py to this file
 3. in your env file we need to import os.
-4. a signing you enviorment variables is easy its as simple as doing the following:<br/>
+4. To asign your enviorment variables is easy its as simple as doing the following:
 ```python
     import os
     os.environ["Variable Name Here"] = "Value of Variable Goes Here"
 ```
-5. Then we need to import the env file we do this by importing os.path then checking if "./covid_case/env.py" exists if it dose import it
+5. Then we need to import the env file we do this by importing os.path then checking if "./covid_case/env.py" exists if it dose import it. Like in the following example:
 ```python
     import os.path
     if os.path.exists("./covid_case/env.py"):
@@ -205,6 +201,7 @@ I used django’s documention a lot to figure out solutions to my problems
 I found [Mozzilla](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django) documention very helpful
 ## Media
 My product images and information were taken from Dunnes Stores website
+Favicon was created using [favicon.io](https://favicon.io/)
 
 ## Color Choice
 For this project these where my choice of colors
