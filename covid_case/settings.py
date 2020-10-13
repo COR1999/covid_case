@@ -14,13 +14,14 @@ from pathlib import Path
 import os
 import django_heroku
 import dj_database_url
+import os.path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-DEVELOPMENT = False
-if DEVELOPMENT:
+if os.path.exists("./covid_case/env.py"):
     from . import env
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -28,12 +29,11 @@ if DEVELOPMENT:
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# if os.environ.get('DEBUG') == "True":
-#     DEBUG = True
-# else:
-#     DEBUG = False
-DEBUG = True
-
+if os.environ.get('DEBUG') == "True":
+    DEBUG = True
+else:
+    DEBUG = False
+    
 ALLOWED_HOSTS = ['0.0.0.0',
                 'localhost',
                 '127.0.0.1',

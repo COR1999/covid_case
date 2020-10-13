@@ -141,8 +141,24 @@ iii. I checked on mobile to see that everything was working correctly.
 iv. I ran into some problems trying to get blueprints to work and i solved this problem by changing how I initialised my DB.
 v. I ran into some problems with basic html i solved them by googling.
 ## Deployment
-<!-- I used Live Server on my windows PC and once I was happy I committed to github to check that everything ran smoothly there as well.
-I used XYZ to help me move my product from development into production x was used to help me do y and z  -->
+#### To deploy the project to Github the following steps were taken:
+1. created a master branch in Github repository
+2. Committed files to the staging area using bash terminal commands: git status; git add (specify directory); git commit -m"add message"
+3. Pushed files to the working environment using git push, which then updates the repository.
+4. Published site from master branch using settings tab in the main page of the repository, select source as master branch, then save
+5. The repository can be cloned by clicking Clone or Download on the main page of the repository
+6. In the Clone with HTTPs section, click the clipboard icon to copy the clone URL for the repository
+7. Open Git Bash Terminal
+8. Type git clone, and then paste the URL
+9. Press Enter. A local clone will be created.
+
+#### Env variables:
+1. create a file named env.py in root of your project. use this file to define you environment variables
+2. create a file name .gitignore add env.py to this file
+3. in your env file we need to import os.
+4. a signing you enviorment variables is easy its as simple as doing the following:
+    os.environ["Variable Name Here"] = "Value of Variable Goes Here"
+
 
 
 ## Credits
