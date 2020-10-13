@@ -17,11 +17,11 @@
                 {% if product.image and product.image_2 %}
                 <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ product.image }}" alt="{{ product.name }}"
                     onmouseover="this.src='{{MEDIA_URL}}{{ product.image_2 }}';"
-                    onmouseout="this.src='{{MEDIA_URL}}{{ product.image }}';" style="">
+                    onmouseout="this.src='{{MEDIA_URL}}{{ product.image }}';">
                 
                 {% else %}
                     <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ product.image }}" onmouseover="this.src='{{ MEDIA_URL }}noimage.png';"
-                    onmouseout="this.src='{{ MEDIA_URL }}{{ product.image }}';"alt="{{ product.name }}" style="">
+                    onmouseout="this.src='{{ MEDIA_URL }}{{ product.image }}';" alt="{{ product.name }}">
                 {% endif %}
                 <div class="card-body text-center">
                     <h5>{{ product.product_name }}</h5>
@@ -33,12 +33,13 @@
                     <div class=" product_price_quantity pb-2">
                         <div class="row">
                             <div class="col-md-12">
-                                <h8><span class="float-left ml-2">Price:</span><span class="float-right" style="margin-right:1.6rem;"> ${{ product.price }}</span></h8>
+                                <span class="float-left ml-2">Price:</span>
+                                <span  class="float-right" style="margin-right:1.6rem;">${{ product.price }}</span>
                             </div>
                         </div>
                         <div class="row" style="">
                             <div class="col-md-12">
-                                <h8><span  class="float-left ml-2 mt-1">Quantity: </span></h8>
+                                <span  class="float-left ml-2 mt-1">Quantity: </span>
                                 {% include "products/add_to_bag_form.html" %}
                             </div>
                         </div>
@@ -64,7 +65,7 @@
                                     </div>
                                     {% else %}
                                     <div class="col-md-12">
-                                        <a  class="center btn btn-success btn-sm add_to_bag" id="{{ product.id }}" style="">Add to bag</a>
+                                        <a class="center btn btn-success btn-sm add_to_bag" id="{{ product.id }}">Add to bag</a>
                                     </div>
                                 {% endif %}
                             {% endif %}

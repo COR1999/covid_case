@@ -67,15 +67,16 @@
                 <span>Total (USD)</span>
                 <strong>{% if request.session.grand_total %}$ {{ request.session.grand_total |floatformat:2 }}{% else %}$0{% endif %}</strong>
             </li>
-            {% if products|length >= 1 %}
-            <h4 class="d-flex justify-content-between align-items-center my-3">
-                <a href="{% url 'checkout' %}"class="btn btn-success ml-auto">Proceed to Checkout</a>
-            </h4>
-            {% else %}
-            <h4 class="d-flex justify-content-between align-items-center my-3">
-                <a href="{% url 'products' %}"class="btn btn-success ml-auto">Back to Shopping</a>
-            </h4>
-            {% endif  %}
+            <div class="row">
+                <h4 class="col-md-6 my-3">
+                    <a href="{% url 'products' %}"class="btn btn-success float-left">Back to Shopping</a>
+                </h4>
+                {% if products|length >= 1 %}
+                <h4 class="col-md-6 my-3">
+                    <a href="{% url 'checkout' %}"class="btn btn-success float-right">Proceed to Checkout</a>
+                </h4>
+                {% endif  %}
+            </div>
         </div>
     </div>
 </div>
