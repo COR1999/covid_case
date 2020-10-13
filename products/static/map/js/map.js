@@ -109,7 +109,7 @@ $(document).ready(function () {
                 headerFormat: '',
                 pointFormatter: function () {
                     var hoverCases = this.hoverCases; // Used by pie only
-                    return '<b>' + this.name + ' Stats</b><br />' +
+                    return '<b>' + this.name + '</b><br />' +
                         Highcharts.map([
                             ['Cases', this.cases, cases_color],
                             ['Deaths', this.deaths, deaths_color],
