@@ -10,10 +10,10 @@ $(document).ready(function () {
         base: {
             color: '#666666',
             fontSmoothing: 'antialiased',
-            fontSize: '16px',
+            fontSize: '1rem',
             '::placeholder': {
                 color: '#666666',
-                fontSize: '16px',
+                fontSize: '1rem',
             }
         },
         invalid: {

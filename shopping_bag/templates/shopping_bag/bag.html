@@ -18,15 +18,15 @@
             <!-- Cart -->
             <ul class="list-group mb-3 z-depth-1 ">
                 {% for product in products %}
-                <li class="list-group-item d-flex justify-content-between lh-condensed" style="max-height: 200px; margin-bottom:1px;">
+                <li class="list-group-item d-flex justify-content-between lh-condensed" style="max-height: 12.5rem; margin-bottom: 0.06rempx;">
                     {% if product.image %}
                     <div class="float-left col-md-3" style="">
                         <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ product.image }}" alt="{{ product.name }}"
                             onmouseover="this.src='{{MEDIA_URL}}{{ product.image_2 }}';"
                             onmouseout="this.src='{{MEDIA_URL}}{{ product.image }}';"
-                            style="max-height: 150px; max-width:100px;">
+                            style="max-height: 9.375rem; max-width: 6.25rem;">
                         {% else %}
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" style="max-height: 9.375rem; max-width: 6.25rem;">
                     {% endif %}
                     </div>
                     <div class="col-md-2">
@@ -43,7 +43,7 @@
                         <h6 class="bag-title product-quantity" value="{{ product.quantity }}">Quantity: {{ product.quantity }}</h6>
                         <div class="" style="text-align:center;">
                         {% if product.quantity == 0 %}
-                            <button class="add-product btn-secondary btn-sm my-1" style="float:right; border:none;"  id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-plus"></i></button>
+                            <button class="add-product btn-secondary btn-sm my-1" style="float:right; border:none;" id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-plus"></i></button>
                         {% elif product.number_in_stock == product.quantity %}
                             <button class="minus-product btn  btn-secondary btn-sm my-1" style="float:left; border:none;" id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-minus"></i></button>
                             <p class="my-1 p-1 bg-secondary" style="float:right; color:#fff;">Not Enough in Stock</p>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-md-2" style="text-align:right;">
                         <h6 class="bag-title my-0">Total Price</h6>
-                        <small class="" style="margin-top:10px;">${{ product.item_total_price |floatformat:2 }}</small>
+                        <small class="" style="margin-top: 0.625rem;">${{ product.item_total_price |floatformat:2 }}</small>
                     </div>
                 </li>
                 {% endfor %}

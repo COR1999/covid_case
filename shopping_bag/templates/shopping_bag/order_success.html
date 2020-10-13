@@ -25,7 +25,7 @@
                         <tbody>
                         {% for item in order_items %}
                             <tr>
-                            <td scope="row"><img class="img-fluid" style="max-width:40px;" src="{{ MEDIA_URL }}{{ item.item.image }}"/></td>
+                            <td scope="row"><img class="img-fluid" style="max-width: 2.5rem;" src="{{ MEDIA_URL }}{{ item.item.image }}"/></td>
                             <td>{{ item.item.product_name }}</td>
                             <td>{{ item.item.color }}</td>
                             <td>{{ item.quantity }}</td>

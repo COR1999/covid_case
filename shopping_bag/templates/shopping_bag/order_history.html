@@ -7,7 +7,7 @@
     <div class="row">
         {% for order in customers_order %}
         {% if order.order_items %}
-        <div class="card col-sm-6 col-md-4 col-lg-4 col-xl-4 mt-2 mb-2 mx-auto" style="max-width:340px;">
+        <div class="card col-sm-6 col-md-4 col-lg-4 col-xl-4 mt-2 mb-2 mx-auto" style="max-width:21.25rem;">
                     <h6 class="mt-2"><span class="order-confirmed-label">Order ID </span> <span class="float-right">{{ order.order.id }}</span></h6>
                     {% localtime on %}
                     <h6><span class="order-confirmed-label">Date Ordered</span> <span class="float-right">{{ order.order.ordered_date }}</span></h6>
@@ -27,7 +27,7 @@
                             <tbody>
                                 {% for item in order.order_items %}
                                 <tr>
-                                <td scope="row"><img class="img-fluid" style="max-width:40px;" src="{{ MEDIA_URL }}{{ item.item.image }}"/></td>
+                                <td scope="row"><img class="img-fluid" style="max-width: 2.5rem;" src="{{ MEDIA_URL }}{{ item.item.image }}"/></td>
                                 <td>{{ item.item.product_name }}</td>
                                 <td>{{ item.item.color }}</td>
                                 <td>{{ item.quantity }}</td>
