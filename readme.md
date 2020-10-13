@@ -3,12 +3,15 @@
 In this project users can visually see the statistics for corona virus for each country. Simple thresholds are used to determine the safety level of each country, displayed using a traffic light system (green, orange, red).
 The website's business function is to sell facemasks and other corona virus-related products, such as hand sanitizers and visors.
 The user has the ability to sign in and purchase these items.
+Below you will find admin login details
+Email: testUser@gmail.com
+Password: Ask me
 
 ## UX
 The user design aims to create an application that is an intuitive shopping experience.
-The web design links the need to purchase masks with the number of COVID-19 cases per country. The interactive map gives you more information about each country when you hover over it and there are a number of related items available to purchase underneath it. Hovering over the product will give you another view of the item.
+The web design links the need to purchase masks with the number of COVID-19 cases per country. The interactive map gives you more information about each country when you hover over it. There are a number of COVID-19 related products available to purchase underneath it. Hovering over the product will show you an alternative image of the product if there is one available.
 
-The application navigation is very simple and easy to understand. The consumer decision making is simplified by using visual pictures of the products rather than lengthy descriptions. The customer does not need to have an account to view and purchase the products. If they don't already have an account when they place an order, they can sign up at a later date and still see their order history.
+The application navigation is very simple and easy to understand. The customer's decision making is simplified by using visual pictures of the products rather than lengthy descriptions. The customer does not need to have an account to view and purchase the products. The user can sign up at a later date and still see their order history from before they registered.
 
 # Features
 ## Existing Functionality
@@ -21,16 +24,16 @@ The application navigation is very simple and easy to understand. The consumer d
 
 ### Home Page
 * The home page contains the world map and the products users can buy.
-* You can zoom in on the Highcharts world map to find the number of cases, deaths and number recovered for each country. You can also print or export the map in different formats.
+* You can zoom in on the Highcharts world map to find the number of cases, deaths and number recovered for each country. You can also print or export the map in different formats. The countries are categorized green, orange or red depending on the thresholds.
 * Underneath this is a gallery of the different products for sale, each containing a picture, description, price, quantity and buttons to interact with it. This also clearly shows if any products are out of stock.
-* All users can choose "Add to Bag" to place the item in their checkout basket.
+* Users can choose "Add to Bag" to place the item in their checkout basket.
 * Admins can also click "Update" to be taken to the "Update Product" page.
 
-### Update Product
-* Here they can update the product fields such as name, price, colour, number in stock etc.
+### Update Product - ADMIN
+* An admin can update the product fields such as name, price, colour, number in stock etc.
 * They can also delete products.
 
-### Add Products
+### Add Products - ADMIN
 * Admins can find the "Add Products" page in the nav bar.
 * Here they add a product and define all of the features related to the product, which will then get added to the home page.
 * They also can see a preview of the image they uploaded.

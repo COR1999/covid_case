@@ -32,6 +32,12 @@ $(document).ready(function () {
     var cases_color = '#ffa600'
     var deaths_color = '#d45087'
     var recovered_color = '#003f5c'
+
+
+    // Pass from settings.py
+    var green_threshold = 3000
+    var red_threshold = 10000
+
     var json_array = [];
     for (i = 0; i < my_json.length; i++) {
         json_array.push([my_json[i].code, parseInt(my_json[i].Confirmed),
@@ -49,7 +55,7 @@ $(document).ready(function () {
         },
 
         chart: {
-            animation: false, // Disable animation, especially for zooming
+            animation: false,
             backgroundColor: "#bee0d3",
         },
         legend: {
@@ -71,15 +77,15 @@ $(document).ready(function () {
 
         colorAxis: {
             dataClasses: [{
-                to: 3000,
+                to: green_threshold,
                 color: "#488f31"
             }, {
-                from: 3000,
-                to: 10000,
+                from: green_threshold,
+                to: red_threshold,
                 color: "#ffa600"
 
             }, {
-                from: 10000,
+                from: red_threshold,
                 color: "#f95d6a"
             }]
         },
@@ -87,15 +93,12 @@ $(document).ready(function () {
         mapNavigation: {
             enabled: true
         },
-        // Limit zoom range
         yAxis: {
-            minRange: 2300
+            minRange: 1000
         },
-
         tooltip: {
             useHTML: true
         },
-
         series: [{
             mapData: Highcharts.maps['custom/world'],
             data: country_data,
@@ -108,17 +111,16 @@ $(document).ready(function () {
             tooltip: {
                 headerFormat: '',
                 pointFormatter: function () {
-                    var hoverCases = this.hoverCases; // Used by pie only
+                    var hoverCases = this.hoverCases;
                     return '<b>' + this.name + '</b><br />' +
                         Highcharts.map([
                             ['Cases', this.cases, cases_color],
                             ['Deaths', this.deaths, deaths_color],
+                            // Some country dont report recovered numbers and these show as 0
                             ['Recovered', this.recovered, recovered_color]
                         ], function (line) {
                             return '<span style="color:' + line[2] +
-                                // Colorized bullet
                                 '">\u25CF</span> ' +
-                                // Party and votes
                                 (line[0] === hoverCases ? '<b>' : '') +
                                 line[0] + ': ' +
                                 Highcharts.numberFormat(line[1], 0) +
@@ -129,22 +131,4 @@ $(document).ready(function () {
             }
         }]
     });
-    function createSeries(obj_in) {
-        var obj_out = [];
-        obj_in.forEach(function (obj) {
-            obj_out.push({
-                name: obj["country"],
-                code: obj["code"],
-                cases: obj["cases"],
-                todayCases: obj["todayCases"],
-                deaths: obj["deaths"],
-                recovered: obj["recovered"],
-                population: obj["country_population"],
-                casesPerOneMillion: obj["casesPerOneMillion"],
-                deathsPerOneMillion: obj["deathsPerOneMillion"],
-            });
-        });
-        // console.log("begin", obj_out);
-        return obj_out;
-    };
 });

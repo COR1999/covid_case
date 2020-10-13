@@ -42,7 +42,7 @@ def all_products(request):
             except Exception as e:
                 print("Exception:", e)
 
-    products = Product.objects.all().order_by("-number_in_stock")
+    products = Product.objects.filter(is_deleted=False).order_by("-number_in_stock")
     context = {
         "products": products,
         "country_data": country_data
@@ -86,6 +86,6 @@ def delete_product(request, id):
     product = Product.objects.get(id=id)
 
     if request.method == "POST":
-        print(product)
-        product.delete()
+        product.is_deleted = True
+        product.save()
         return redirect(reverse("products"))

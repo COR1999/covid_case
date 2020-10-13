@@ -19,7 +19,7 @@ class Product(models.Model):
     created_by = models.CharField(max_length=settings.CONST_PROFILE_ATTR, null=True)
     created_date = models.TimeField(auto_now_add=True, null=True)
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, null=True)
-
+    is_deleted = models.BooleanField(default=False, null=True)
     def __str__(self):
         return self.color
     

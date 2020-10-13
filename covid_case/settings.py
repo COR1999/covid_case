@@ -33,7 +33,7 @@ if os.environ.get('DEBUG') == "True":
     DEBUG = True
 else:
     DEBUG = False
-    
+
 ALLOWED_HOSTS = ['0.0.0.0',
                 'localhost',
                 '127.0.0.1',
@@ -151,6 +151,7 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
