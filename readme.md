@@ -152,23 +152,49 @@ v. I ran into some problems with basic html i solved them by googling.
 8. Type git clone, and then paste the URL
 9. Press Enter. A local clone will be created.
 
-#### Env variables:
+#### Environment variables:
 1. create a file named env.py in root of your project. use this file to define you environment variables
 2. create a file name .gitignore add env.py to this file
 3. in your env file we need to import os.
 4. a signing you enviorment variables is easy its as simple as doing the following:<br/>
 ```python
+    import os
     os.environ["Variable Name Here"] = "Value of Variable Goes Here"
 ```
-5. Then we need to import the env file we do this by first adding
-Then we check if the path exists
+5. Then we need to import the env file we do this by importing os.path then checking if "./covid_case/env.py" exists if it dose import it
 ```python
     import os.path
     if os.path.exists("./covid_case/env.py"):
         from . import env
-    
 ```
+#### Deploying to heroku:
+1. I started by creating an account at [Heroku](https://signup.heroku.com/)
+2. Then I created a package dependency file called requirements.txt by running the command "pip freeze > requirements.txt". This needs to be called requirements.txt and has to be in the root of the project for heroku to install the packages listed in the file.
+3. I created a new app by navigating to dashboard.heroku.com/apps then clicking the new button.
+4. Then I logged into the heroku CLI by typing heroku login into my terminal.
+5. In order to  get the application up and running i had to create a Procfile. The Profile tells Heroku which file is the entry point. A Procfile looks something like this "web: gunicorn covid_case.wsgi" (process type: command).
+6. To connect an existing repository from Github to Heroku use the following CLI syntax "heroku git:remote -a (followed by name of Heroku app)"
+7. To push to Heroku Master Branch, then simply use "git push heroku master"
+8. In order for our application to run on heroku we need to specify a few Config Vars in Heroku. To do this go to Settings tab > Config Variables followed by the various config variable needed.
+9. I needed to add the following lines to my settings.py in order to tell heroku what database to access
+```python
+    import dj_database_url
 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
+    db_from_env = dj_database_url.config(conn_max_age=600)
+    DATABASES['default'].update(db_from_env)
+```
+10. I used Django-heroku in order to configure DATABASE_URL , ALLOWED_HOSTS, WhiteNoise (for static assets), Logging, and Heroku CI for my application. This was done as follows.
+```python
+    import django_heroku
+    django_heroku.settings(locals())
+```
 
 
 
