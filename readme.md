@@ -202,13 +202,14 @@ v. I ran into some problems with basic html i solved them by googling.
 My product images and information were taken from Dunnes Stores website
 Favicon was created using 
 
-## Color Choice
+### Color Choice
 For this project these where my choice of colors
 ![https://coolors.co/ffffff-bee0d3-179967-41b085-0c3c26](/readmeimage/covidCasesColorPallet.png)
 
 
-Acknowledgements
-
+## Acknowledgements
+Id like to give a big thanks to the [code institute](https://codeinstitute.net/) team and the mentor they assigned me [Rhey Ann Magcalas]()
+Id also like to give a big thanks to family and friends who have helped me with ideas for projects and styling tweaks that could be made.
 
 
 
@@ -216,4 +217,5 @@ Acknowledgements
 ![](/readmeimage/iphone6smobileimage2.png)
 ![](/readmeimage/iphone6smobileimage1.png)
 ![](/readmeimage/motog4.png)
+
 ![](/readmeimage/database_schema.png)
