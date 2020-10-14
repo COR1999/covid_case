@@ -117,36 +117,36 @@ The application navigation is very simple and easy to understand. The customer's
 
 #### Navbar
 1. Check that all the links are working correctly. - :heavy_check_mark:
-2. Check that the navbar collapses into hamburger menu on mobile - [x]
+2. Check that the navbar collapses into hamburger menu on mobile - :heavy_check_mark:
 ![https://gyazo.com/738fa482eabc49edf3a2b77884cc4127](/readmeimage/hamburgermenu.png)
 3. 
 
 
 ### Sign up
-1. Register account using sign up - [x]
-    1. Go to django admin and check that user object was created with the email, first name and last name from sign up form - [x]
-    2. Attempt to create a user if successful check that it redirects to login page. - [x]
-2. Attempt to create a user with the same email address and check if it fails with a message - [x]
-3. Attempt to create a user with passwords that don't match. This should fail with a message. Check that it fails to create the user. - [x]
-4. Attempt to create a user with a password less then 8 characters. This should fail with a message. Check that it fails to create the user. - [x]
-5. Attempt to create a user with a password that is the same as the email. This should fail with a message. Check that it fails to create the user. - [x]
-6. Attempt to create a user with a password that is part of the email address. This should fail with a message. Check that it fails to create the user. - [x]
+1. Register account using sign up - :heavy_check_mark:
+    1. Go to django admin and check that user object was created with the email, first name and last name from sign up form - :heavy_check_mark:
+    2. Attempt to create a user if successful check that it redirects to login page. - :heavy_check_mark:
+2. Attempt to create a user with the same email address and check if it fails with a message - :heavy_check_mark:
+3. Attempt to create a user with passwords that don't match. This should fail with a message. Check that it fails to create the user. - :heavy_check_mark:
+4. Attempt to create a user with a password less then 8 characters. This should fail with a message. Check that it fails to create the user. - :heavy_check_mark:
+5. Attempt to create a user with a password that is the same as the email. This should fail with a message. Check that it fails to create the user. - :heavy_check_mark:
+6. Attempt to create a user with a password that is part of the email address. This should fail with a message. Check that it fails to create the user. - :heavy_check_mark:
 
 ### Login 
-1. Attempt to login with an account that dose not exist. This should fail with a message. User stays on login page. - [x]
-2. Attempt to login with an account that dose exist but using the wrong password. This should fail with a message. User stays on login page. - [x]
-3. Check that the forgot password button navigates you to the password reset page. - [x]
-4. On the password reset page enter an email address for user that dose not exist. Press the reset my password. This should fail with a message. - [x]
-5. On the password reset page enter an email address for user that dose exist. Press the reset my password. This should redirect you to password reset done page and you should receive an email. - [x]
-6. On the password reset done page check that the button to navigate to login page works. - [x]
-7. Open email account and check that when you click the link in the email it redirects you the change password page - [x]
-8. Check that on the change password page if you enter passwords that don't match this should fail with a error message. - [x]
-9. Attempt to change the password to less then 8 characters. This should fail with a message. Check that it fails to change password. - [x]
-11. Attempt to change the password to be part of the email address. This should fail with a message. - [x]
-12. Try to use the same password reset link a second time. This should fail telling the user its already been used  - [x]
-13. On the password reset page enter a new valid password. This should redirect you to password reset done page. - [x]
-### Known Issues
-14. On the password reset done page there is a pop up that is being displayed by the messages framework that should be removed -[]
+1. Attempt to login with an account that dose not exist. This should fail with a message. User stays on login page. - :heavy_check_mark:
+2. Attempt to login with an account that dose exist but using the wrong password. This should fail with a message. User stays on login page. - :heavy_check_mark:
+3. Check that the forgot password button navigates you to the password reset page. - :heavy_check_mark:
+4. On the password reset page enter an email address for user that dose not exist. Press the reset my password. This should fail with a message. - :heavy_check_mark:
+5. On the password reset page enter an email address for user that dose exist. Press the reset my password. This should redirect you to password reset done page and you should receive an email. - :heavy_check_mark:
+6. On the password reset done page check that the button to navigate to login page works. - :heavy_check_mark:
+7. Open email account and check that when you click the link in the email it redirects you the change password page - :heavy_check_mark:
+8. Check that on the change password page if you enter passwords that don't match this should fail with a error message. - :heavy_check_mark:
+9. Attempt to change the password to less then 8 characters. This should fail with a message. Check that it fails to change password. - :heavy_check_mark:
+11. Attempt to change the password to be part of the email address. This should fail with a message. - :heavy_check_mark:
+12. Try to use the same password reset link a second time. This should fail telling the user its already been used  - :heavy_check_mark:
+13. On the password reset page enter a new valid password. This should redirect you to password reset done page. - :heavy_check_mark:
+### Known Issues :small_red_triangle:
+14. On the password reset done page there is a pop up that is being displayed by the messages framework that should be removed -:x:
 
 
 
