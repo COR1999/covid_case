@@ -147,7 +147,7 @@ Check that it fails to create the user. :heavy_check_mark:
 12. Try to use the same password reset link a second time. This should fail telling the user its already been used. :heavy_check_mark:
 13. On the password reset page enter a new valid password. This should redirect you to password reset done page. :heavy_check_mark:
 
-### Home End User
+### Home
 #### Map 
 1. Attempt to zoom in and out with mouse wheel. This should let the user zoom in and out. :heavy_check_mark:
 2. Hover over countries. This should display a menu that has more information about each country. :heavy_check_mark:
