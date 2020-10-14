@@ -97,7 +97,7 @@ $(document).ready(function () {
             minRange: 1000
         },
         tooltip: {
-            useHTML: true
+            useHTML: true,
         },
         series: [{
             mapData: Highcharts.maps['custom/world'],
@@ -131,4 +131,5 @@ $(document).ready(function () {
             }
         }]
     });
+    
 });
