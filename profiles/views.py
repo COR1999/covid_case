@@ -22,7 +22,7 @@ def sign_up(request):
             last_name = form.cleaned_data["last_name"]
             customer = Customer.objects.filter(email=email).first()
             form.save()
-            user = User.objects.get(username=email).first()
+            user = User.objects.get(username=email)
             if customer:
                 customer.user = user
                 customer.save()
@@ -36,8 +36,7 @@ def sign_up(request):
             
             messages.success(request, "Account was created for " + email)
             return redirect(reverse("login_page"))
-        else:
-            messages.info(request, "Username OR password is incorrect")
+
     context = {
         "form": form,
     }
@@ -56,6 +55,8 @@ def login_page(request):
         if user is not None:
             login(request, user)
             return redirect("products")
+        else:
+            messages.info(request, "Sorry could not log in this user")
 
     return render(request, 'profiles/login.html')
 
