@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-12 mt-4 bag_bg bag_list">
             <h4 class="d-flex justify-content-between align-items-center my-3">
-                <span class="text-muted">Your Bag</span>
+                <span class="text-white">Your Bag</span>
                     <span class="badge badge-secondary badge-pill">{{ products | length }}
                     {% if products|length == 1 %}
                         Item in bag
@@ -15,7 +15,6 @@
                     {% endif %}
                     </span>
             </h4>
-            <!-- Cart -->
             <ul class="list-group mb-3 z-depth-1 ">
                 {% for product in products %}
                 <li class="list-group-item d-flex justify-content-between lh-condensed" style="max-height: 12.5rem; margin-bottom: 0.06rempx;">
@@ -41,18 +40,15 @@
                     </div>
                     <div class="col-md-3 text-center">
                         <h6 class="bag-title product-quantity" value="{{ product.quantity }}">Quantity: {{ product.quantity }}</h6>
-                        <div class="" style="text-align:center;">
                         {% if product.quantity == 0 %}
-                            <button class="add-product btn-secondary btn-sm my-1" style="float:right; border:none;" id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-plus"></i></button>
+                            <button class="add-product btn-secondary btn-sm my-1 float-right border-0"id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-plus"></i></button>
                         {% elif product.number_in_stock == product.quantity %}
-                            <button class="minus-product btn  btn-secondary btn-sm my-1" style="float:left; border:none;" id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-minus"></i></button>
-                            <p class="my-1 p-1 bg-secondary" style="float:right; color:#fff;">Not Enough in Stock</p>
+                            <button class="minus-product btn btn-secondary btn-sm my-1 float-left border-0" id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-minus"></i></button>
+                            <button class="minus-product btn btn-secondary btn-sm my-1 float-right border-0" disabled="disabled">Not more in Stock</button>
                         {% else %}
-                            <button class="minus-product btn  btn-secondary btn-sm my-1" style="float:left; border:none;" id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-minus"></i></button>
-                            <button class="add-product btn-secondary btn-sm my-1" style="float:right; border:none;"  id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-plus"></i></button>
+                            <button class="minus-product btn  btn-secondary btn-sm my-1 float-left border-0" id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-minus"></i></button>
+                            <button class="add-product btn-secondary btn-sm my-1 float-right border-0"  id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-plus"></i></button>
                         {% endif %}
-                            <br>
-                        </div>
                         <a href="{% url 'remove_from_bag' product.id %}" class="btn btn-danger btn-sm w-100">Remove</a>
 
                     </div>

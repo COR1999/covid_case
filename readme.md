@@ -193,7 +193,7 @@ Check that it fails to create the user. :heavy_check_mark:
 
 
 ### Shopping Bag
-
+1. Click on back to shopping button. Redirects the user back to the home page. 
 
 
 
