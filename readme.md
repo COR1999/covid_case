@@ -164,7 +164,10 @@ Check that it fails to create the user. :heavy_check_mark:
 2. Attempt to add product to basket when quantity is greater then number in stock. This should show a message saying not enough in stock. :heavy_check_mark:
 3. Attempt to put the quantity below 1. This should not allow the user to do so. :heavy_check_mark:
 4. Hover over product image. This should display an alternative view of the image. :heavy_check_mark:
-5. When the user is a admin they have the ability to click the update product button. Check that this button redirect to the update product page. 
+5. When the user is a admin they have the ability to click the update product button. Check that this button redirect to the update product page. :heavy_check_mark:
+
+### Add Products - Admin
+1. Attempt to Add a new product with no product name. Form should tell the user that this field is required. :heavy_check_mark:
 
 
 

@@ -21,7 +21,6 @@
                                     <br>
                                     {{ form.product_name }}
                                 </div>
-                                
                                 <div class="col-md-5 mb-3">
                                     {{ form.price.label }}
                                     <br>
@@ -48,6 +47,7 @@
                                 </div>
                             </div>
                             <div class="row">
+                                
                                 <div class="col-md-5 mb-3">
                                     {{ form.image.label }}
                                     <br>
@@ -63,6 +63,7 @@
                                 <div class="col-md-2 mb-3">
                                     <h8>Current image</h8>
                                     <br>
+                                    
                                     <img class="img-fluid" style="height:6.25rem;" src="{{ form.instance.image.url }}" />
                                 </div>
                                 <div class="col-md-3 mb-3">
