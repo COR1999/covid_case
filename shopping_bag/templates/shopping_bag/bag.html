@@ -67,7 +67,7 @@
                 <h4 class="col-md-6 my-3">
                     <a href="{% url 'products' %}"class="btn btn-success float-left">Back to Shopping</a>
                 </h4>
-                {% if products|length >= 1 %}
+                {% if products|length >= 1 and request.session.grand_total > 0 %}
                 <h4 class="col-md-6 my-3">
                     <a href="{% url 'checkout' %}"class="btn btn-success float-right">Proceed to Checkout</a>
                 </h4>
