@@ -166,8 +166,34 @@ Check that it fails to create the user. :heavy_check_mark:
 4. Hover over product image. This should display an alternative view of the image. :heavy_check_mark:
 5. When the user is a admin they have the ability to click the update product button. Check that this button redirect to the update product page. :heavy_check_mark:
 
-### Add Products - Admin
-1. Attempt to Add a new product with no product name. Form should tell the user that this field is required. :heavy_check_mark:
+### Update Product - Admin user only
+1. Attempt to update a new product with no product name. Form should tell the user that this field is required. :heavy_check_mark:
+2. Attempt to update a new product with no color entered. Form should tell the user that this field is required. :heavy_check_mark:
+3. Attempt to update a new product with no price entered. Form should tell the user that this field is required. :heavy_check_mark:
+4. Attempt to update a new product with no supplier chosen. Form should tell the user that this field is required. :heavy_check_mark:
+5. Attempt to update a new product with out number in stock filled out. Form should tell the user that this field is required. :heavy_check_mark:
+6. Attempt to delete product by clicking the delete button. Sets the is_deleted boolean to True. Redirects the user to home page. :heavy_check_mark:
+
+
+### Add Products - Admin user only
+1. Attempt to add a new product with no product name. Form should tell the user that this field is required. :heavy_check_mark:
+2. Attempt to add a new product with no color entered. Form should tell the user that this field is required. :heavy_check_mark:
+3. Attempt to add a new product with no price entered. Form should tell the user that this field is required. :heavy_check_mark:
+4. Attempt to add a new product with no supplier chosen. Form should tell the user that this field is required. :heavy_check_mark:
+5. Attempt to add a new product with out number in stock filled out. Form should tell the user that this field is required. :heavy_check_mark:
+
+
+### My Profile
+1. Attempt to Update profile without First name. Form should tell the user the this field is required. :heavy_check_mark:
+2. Attempt to Update profile without Last name. Form should tell the user the this field is required. :heavy_check_mark:
+3. Attempt to Update profile without Phone number. Form should tell the user the this field is required. :heavy_check_mark:
+4. Attempt to Update profile without Address line 1. Form should tell the user the this field is required. :heavy_check_mark:
+5. Attempt to Update profile without Country. Form should tell the user the this field is required. :heavy_check_mark:
+6. Click reset password button. Should redirects you to password reset page. :heavy_check_mark:
+
+
+### Shopping Bag
+
 
 
 

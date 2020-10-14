@@ -5,7 +5,7 @@ from django.db.models.fields import CharField
 from .models import Customer
 from django_countries.fields import CountryField
 from django.conf import settings
-
+from crispy_forms.helper import FormHelper
 
 class SignUpForm(UserCreationForm):
 
@@ -49,9 +49,14 @@ class CustomerForm(forms.ModelForm):
         fields = ("first_name",
         "last_name",
         "phone",
-        "email",
-        "country",
         "address_line_1",
         "address_line_2",
+        "country",
         "city")
     
+    def __init__(self, *args, **kwargs):
+        super(CustomerForm, self).__init__(*args, **kwargs)
+        for fieldname in ["first_name", "last_name", "phone", 
+        "address_line_1", "address_line_2", "country", "city"]:
+            self.fields[fieldname].helper = FormHelper()
+

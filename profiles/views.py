@@ -8,6 +8,7 @@ from .models import Customer
 from .forms import CustomerForm
 
 def sign_up(request):
+    """A View to sign up the user and create a customer"""
     form = SignUpForm()
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -44,10 +45,12 @@ def sign_up(request):
 
 
 def logout_user(request):
+    """A view to logout the user"""
     logout(request)
     return redirect(reverse("login_page"))
 
 def login_page(request):
+    """A view to login the user if there details are valid"""
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -62,13 +65,15 @@ def login_page(request):
 
 
 def edit_profile(request):
+    """A view to let the user edit their customer profile"""
     customer = Customer.objects.filter(email=request.user.username).first()
-    print(customer)
-    form = CustomerForm(request.POST or None,instance=customer)
-    if form.is_valid():
+    form = CustomerForm(request.POST or None, instance=customer)
+    if request.method == "POST":
+        if form.is_valid():
             form.save()
             return redirect(reverse("products"))
-            
+        # ELSE error message on the form
+                
     context = {
         "form": form,
     }
