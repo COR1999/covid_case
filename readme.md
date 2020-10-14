@@ -194,6 +194,24 @@ Check that it fails to create the user. :heavy_check_mark:
 
 ### Shopping Bag
 1. Click on back to shopping button. Redirects the user back to the home page. :heavy_check_mark:
+2. Click on the plus button to increment the quantity. quantity gets incremented. :heavy_check_mark:
+3. Click on minus button to decrement the quantity. Quantity get decremented. :heavy_check_mark:
+4. Check to see if quantity is equal to 0. If quantity is 0 hide minus button. :heavy_check_mark:
+5. Check to see if quantity is equal to number in stock. If quantity is equal number in stock hide plus button. :heavy_check_mark:
+6. Click remove button to. Removed the current product from shopping bag. :heavy_check_mark:
+7. Attempt to proceed to checkout if all quantity's are 0. The proceed to checkout button wont show if grand total is 0. :heavy_check_mark:
+
+### Checkout 
+1. Attempting to submit the checkout form without filling out the required fields. The form will display a message saying this field is required. :heavy_check_mark:
+2. Check to see if the card number is valid. If the card number is not valid an error message will be displayed under the card input. :heavy_check_mark:
+#### Checkout while not registered
+1. Check to see if the user can purchase item while not signed in. The user can complete the checkout process without having to be logged in or registered. :heavy_check_mark:
+2. Check to see if the user can still view order history if they sign up at a later date. The user can see their order history when ever they choose to create an account. :heavy_check_mark:
+
+#### Checkout while registered
+1. Check to see if registered users can complete the checkout process. The user can complete the checkout process while being registered. :heavy_check_mark:
+2. Check to see if the user can still purchase without being logged in while still being registered. The user can still complete the checkout process. :heavy_check_mark:
+3. The users information should be filled when the proceed to checkout if they have made purchase before or have edited there profile. :heavy_check_mark:
 
 
 

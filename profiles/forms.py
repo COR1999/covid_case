@@ -42,7 +42,7 @@ class CustomerForm(forms.ModelForm):
     first_name = forms.CharField(max_length=settings.CONST_PROFILE_ATTR)
     last_name = forms.CharField(max_length=settings.CONST_PROFILE_ATTR)
     phone = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=True)
-    city = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=False)
+    city = forms.CharField(max_length=settings.CONST_PROFILE_ATTR, required=True)
     address_line_2 = forms.CharField(max_length=settings.CONST_PROFILE_ADDRESS, required=False)
     class Meta:
         model = Customer

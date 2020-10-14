@@ -112,7 +112,6 @@ def remove_from_bag(request, item_id):
     return redirect((reverse("view_bag")))
 
 def checkout(request):
-    form = OrderForm()
     if request.user.is_anonymous:
         form = OrderForm()
     else:
@@ -166,12 +165,14 @@ def checkout_process(request):
     post_details = request.POST.get('form').split("&")
     post_data = {}
 
+    form = OrderForm(request.POST)
+    print(form)
+
     for _post_details in post_details:
         _post_details = _post_details.split("=")
         post_data[_post_details[0]] = _post_details[1]
     
     grand_total = request.session.get("grand_total", 0)
-    pid = request.POST.get('client_secret').split('_secret')[0]
     
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     stripe.api_key = stripe_secret_key
@@ -180,19 +181,21 @@ def checkout_process(request):
     try:
         email = post_data['email'].replace("%40", "@")
         token = request.POST.get('token')
+        first_name = post_data['first_name']
+        last_name = post_data['last_name'].replace("%20", " ")
+        phone = post_data['phone']
+        address_line_1 = post_data['address_line_1'].replace("%20", " ")
+        address_line_2 = post_data['address_line_2'].replace("%20", " ")
+        city = post_data['city'].replace("%20", " ")
+        country = post_data['country']
+
         current_customer_id = 0
         if request.user.is_anonymous:
             check_customer = Customer.objects.filter(email=email).first()
             if check_customer:
                 current_customer_id = check_customer.id
             else:
-                first_name = post_data['first_name']
-                last_name = post_data['last_name'].replace("%20", " ")
-                phone = post_data['phone']
-                address_line_1 = post_data['address_line_1'].replace("%20", " ")
-                address_line_2 = post_data['address_line_2'].replace("%20", " ")
-                city = post_data['city'].replace("%20", " ")
-                country = post_data['country']
+                
                 customer = Customer(
                     first_name=first_name,
                     last_name=last_name,
@@ -204,20 +207,29 @@ def checkout_process(request):
                     country=country,
                 )
                 customer.save()
-                print(customer)
                 current_customer_id = customer.id
         
         stripe_customer = stripe.Customer.create(
             card=token,
             description=email
         )
-        ## saving to Order
+
+        # Getting the Customer
         if request.user.is_anonymous:
-            curret_customer = Customer.objects.get(id=current_customer_id)
-            current_order = Order(customer_profile=curret_customer,stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
+            customer = Customer.objects.get(id=current_customer_id)
         else:
-            check_customer = Customer.objects.get(user=request.user)
-            current_order = Order(customer_profile=check_customer, stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
+            customer = Customer.objects.get(user=request.user)
+
+        customer.first_name = first_name
+        customer.last_name = last_name
+        customer.phone = phone
+        customer.address_line_1 = address_line_1
+        customer.address_line_2 = address_line_2
+        customer.city = city
+        customer.country = country
+        customer.save()
+        ## saving to Order
+        current_order = Order(customer_profile=customer, stripe_pid=stripe_customer.id, order_total=grand_total, order_confirmed=True)
         current_order.save()
 
         orders = request.session["bag"]
