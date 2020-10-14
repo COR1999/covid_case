@@ -116,37 +116,65 @@ The application navigation is very simple and easy to understand. The customer's
 1. Check that all success buttons are styled the same.
 
 #### Navbar
-1. Check that all the links are working correctly. - :heavy_check_mark:
-2. Check that the navbar collapses into hamburger menu on mobile - :heavy_check_mark:
+1. Check that all the links are working correctly. :heavy_check_mark:
+2. Check that the navbar collapses into hamburger menu on mobile. :heavy_check_mark:
 ![https://gyazo.com/738fa482eabc49edf3a2b77884cc4127](/readmeimage/hamburgermenu.png)
 3. 
 
-
 ### Sign up
-1. Register account using sign up - :heavy_check_mark:
-    1. Go to django admin and check that user object was created with the email, first name and last name from sign up form - :heavy_check_mark:
-    2. Attempt to create a user if successful check that it redirects to login page. - :heavy_check_mark:
-2. Attempt to create a user with the same email address and check if it fails with a message - :heavy_check_mark:
-3. Attempt to create a user with passwords that don't match. This should fail with a message. Check that it fails to create the user. - :heavy_check_mark:
-4. Attempt to create a user with a password less then 8 characters. This should fail with a message. Check that it fails to create the user. - :heavy_check_mark:
-5. Attempt to create a user with a password that is the same as the email. This should fail with a message. Check that it fails to create the user. - :heavy_check_mark:
-6. Attempt to create a user with a password that is part of the email address. This should fail with a message. Check that it fails to create the user. - :heavy_check_mark:
+1. Register account using sign up :heavy_check_mark:
+    1. Go to django admin and check that user object was created with the email, first name and last name from sign up form :heavy_check_mark:
+    2. Attempt to create a user if successful check that it redirects to login page. :heavy_check_mark:
+2. Attempt to create a user with the same email address and check if it fails with a message. :heavy_check_mark:
+3. Attempt to create a user with passwords that don't match. This should fail with a message. Check that it fails to create the user. :heavy_check_mark:
+4. Attempt to create a user with a password less then 8 characters. This should fail with a message. Check that it fails to create the user. :heavy_check_mark:
+5. Attempt to create a user with a password that is the same as the email. This should fail with a message.
+Check that it fails to create the user. :heavy_check_mark:
+6. Attempt to create a user with a password that is part of the email address. This should fail with a message.
+Check that it fails to create the user. :heavy_check_mark:
 
 ### Login 
-1. Attempt to login with an account that dose not exist. This should fail with a message. User stays on login page. - :heavy_check_mark:
-2. Attempt to login with an account that dose exist but using the wrong password. This should fail with a message. User stays on login page. - :heavy_check_mark:
-3. Check that the forgot password button navigates you to the password reset page. - :heavy_check_mark:
-4. On the password reset page enter an email address for user that dose not exist. Press the reset my password. This should fail with a message. - :heavy_check_mark:
-5. On the password reset page enter an email address for user that dose exist. Press the reset my password. This should redirect you to password reset done page and you should receive an email. - :heavy_check_mark:
-6. On the password reset done page check that the button to navigate to login page works. - :heavy_check_mark:
-7. Open email account and check that when you click the link in the email it redirects you the change password page - :heavy_check_mark:
-8. Check that on the change password page if you enter passwords that don't match this should fail with a error message. - :heavy_check_mark:
-9. Attempt to change the password to less then 8 characters. This should fail with a message. Check that it fails to change password. - :heavy_check_mark:
-11. Attempt to change the password to be part of the email address. This should fail with a message. - :heavy_check_mark:
-12. Try to use the same password reset link a second time. This should fail telling the user its already been used  - :heavy_check_mark:
-13. On the password reset page enter a new valid password. This should redirect you to password reset done page. - :heavy_check_mark:
+1. Attempt to login with an account that dose not exist. This should fail with a message. User stays on login page. :heavy_check_mark:
+2. Attempt to login with an account that dose exist but using the wrong password. This should fail with a message. User stays on login page. :heavy_check_mark:
+3. Check that the forgot password button navigates you to the password reset page. :heavy_check_mark:
+4. On the password reset page enter an email address for user that dose not exist. Press the reset my password. This should fail with a message. :heavy_check_mark:
+5. On the password reset page enter an email address for user that dose exist. Press the reset my password. This should redirect you to password reset done page and you should receive an email. :heavy_check_mark:
+6. On the password reset done page check that the button to navigate to login page works. :heavy_check_mark:
+7. Open email account and check that when you click the link in the email it redirects you the change password page. :heavy_check_mark:
+8. Check that on the change password page if you enter passwords that don't match this should fail with a error message. :heavy_check_mark:
+9. Attempt to change the password to less then 8 characters. This should fail with a message. Check that it fails to change password. :heavy_check_mark:
+11. Attempt to change the password to be part of the email address. This should fail with a message. :heavy_check_mark:
+12. Try to use the same password reset link a second time. This should fail telling the user its already been used. :heavy_check_mark:
+13. On the password reset page enter a new valid password. This should redirect you to password reset done page. :heavy_check_mark:
+
+### Home End User
+#### Map 
+1. Attempt to zoom in and out with mouse wheel. This should let the user zoom in and out. :heavy_check_mark:
+2. Hover over countries. This should display a menu that has more information about each country. :heavy_check_mark:
+3. Check that the full screen option in the hamburger menu works. This should take the user into a full screen view. :heavy_check_mark:
+4. Check that print chart button works in the hamburger menu. This should take the user into a print window. :heavy_check_mark:
+5. Check that download as PNG works in hamburger menu. This should download a image of the map in PNG format. :heavy_check_mark:
+6. Check that download as JPEG works in the hamburger menu. This should download a image of the map in JPEG format. :heavy_check_mark:
+7. Check that download as PDF works in the hamburger menu. This should download a PDF file with the map inside it. :heavy_check_mark:
+8. Check that download as SVG vector image works in hamburger menu. This should download as a SVG file. :heavy_check_mark:
+9. Check that the zoom in and out buttons work as intended. This should zoom the users view in/out. :heavy_check_mark:
+10. Check that when the user clicks on a color on the legend all countries of that color disappear. :heavy_check_mark:
+#### Products
+1. Attempt to add product to basket. This should update the total amount in the basket on the navbar. :heavy_check_mark:
+2. Attempt to add product to basket when quantity is greater then number in stock. This should show a message saying not enough in stock. :heavy_check_mark:
+3. Attempt to put the quantity below 1. This should not allow the user to do so. :heavy_check_mark:
+4. Hover over product image. This should display an alternative view of the image. :heavy_check_mark:
+5. When the user is a admin they have the ability to click the update product button. Check that this button redirect to the update product page. 
+
+
+
+
+
+
+
+
 ### Known Issues :small_red_triangle:
-14. On the password reset done page there is a pop up that is being displayed by the messages framework that should be removed -:x:
+1. On the password reset done page there is a pop up that is being displayed by the messages framework that should be removed. :x:
 
 
 
@@ -157,20 +185,6 @@ The application navigation is very simple and easy to understand. The customer's
 
 
 
-
-1. I used Chrome Dev Tools for debug Testing. !!REVIEW
-i. I used the inspect feature to check different elements on my page.
-ii. I used the coverage tab to check my css was being used on the given page.
-iii. I used the network tab to see what was taking a long time to load and what wasn't loading.
-iv. I used the computed tab to see the final state of a given element.
-v. I used the device toolbar to check that my website was rendered in a responsive manner on all device's.
-vi. I installed the chrome Lighthouse plugin to use the audit feature to check Performance, progressive web app, Best practices, accessibility and SEO.
-2. Application Testing !!CHANGE
-i. I tested that everything worked okay when resizing the browser.
-ii. I ran all my tests on localhost (root website) then pushed it onto github (where ran off the subdomain). Checked that all resources loaded properly off the root and subdomain.
-iii. I checked on mobile to see that everything was working correctly.
-iv. I ran into some problems trying to get blueprints to work and i solved this problem by changing how I initialised my DB.
-v. I ran into some problems with basic html i solved them by googling.
 ## Deployment
 #### To deploy the project to Github the following steps were taken:
 1. created a master branch in Github repository
