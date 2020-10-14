@@ -29,11 +29,11 @@ if os.path.exists("./covid_case/env.py"):
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# if os.environ.get('DEBUG') == "True":
-#     DEBUG = True
-# else:
-#     DEBUG = False
-DEBUG = True
+if os.environ.get('DEBUG') == "True":
+    DEBUG = True
+else:
+    DEBUG = False
+
 
 ALLOWED_HOSTS = ['0.0.0.0',
                 'localhost',
