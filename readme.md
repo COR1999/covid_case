@@ -116,7 +116,7 @@ The application navigation is very simple and easy to understand. The customer's
 1. Check that all success buttons are styled the same.
 
 #### Navbar
-1. Check that all the links are working correctly. - [x]
+1. Check that all the links are working correctly. - :heavy_check_mark:
 2. Check that the navbar collapses into hamburger menu on mobile - [x]
 ![https://gyazo.com/738fa482eabc49edf3a2b77884cc4127](/readmeimage/hamburgermenu.png)
 3. 
