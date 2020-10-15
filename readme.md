@@ -14,11 +14,18 @@ The web design links the need to purchase masks with the number of COVID-19 case
 The application navigation is very simple and easy to understand. The customer's decision making is simplified by using visual pictures of the products rather than lengthy descriptions. The customer does not need to have an account to view and purchase the products. The user can sign up at a later date and still see their order history from before they registered.
 ### Wireframes
 Home Page.
-![https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d](/readmeimage/wireframe-homepage-covid-case.png)
+<a href="https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d">
+<img src="/readmeimage/wireframe-homepage-covid-case.png" alt="homepage-wireframe" style="width:200px; height:200px;"/>
+</a>
 Login Page
-![https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d](/readmeimage/wireframe-login-covid-case.png)
+<a href="https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d">
+<img src="/readmeimage/wireframe-login-covid-case.png" alt="homepage-login-page" style="width:200px; height:200px;"/>
+</a>
 Sign up Page
-![https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d](/readmeimage/wireframe-signup-covid-case.png)
+<a href="https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d">
+<img src="/readmeimage/wireframe-signup-covid-case.png" alt="homepage-login-page" style="width:200px; height:200px;"/>
+</a>
+
 
 # Features
 ## Existing Functionality
