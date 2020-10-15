@@ -95,7 +95,9 @@ The application navigation is very simple and easy to understand. The customer's
 3. There is also a home button witch brings the user back to the home page and if the user is logged in a My profile button that takes the user to there profile.
 ## Database Schema
 * Below you will find a picture of my database schema i couldnt get the exact SQL code ran by django to create this so i did it manually. This isnt 100% accurate but it give you an idea of what it looks like.
-![https://gyazo.com/38b8fe5a21fb608c4750434f6be1cb39](/readmeimage/database_schema.png)
+<a href="https://gyazo.com/38b8fe5a21fb608c4750434f6be1cb39">
+    <img src="/readmeimage/database_schema.png" alt="homepage-login-page" width="500" height="500"/>
+</a>
 
 ## Future Enhancements
 1. Search/filter functionality would be a good addition
