@@ -106,13 +106,13 @@ def adjust_bag(request, item_id, updated_value, delta):
 
 
 def remove_from_bag(request, item_id):
-
-
+    """A view that deletes the item from the session"""
     del request.session["bag"][item_id]
     request.session.modified = True
     return redirect((reverse("view_bag")))
 
 def checkout(request):
+    """A view that loads the checkout page. if the user is signed in populates the form with their information"""
     if request.user.is_anonymous:
         form = OrderForm()
     else:
@@ -163,6 +163,7 @@ def checkout(request):
 
 @require_http_methods(["POST"])
 def checkout_process(request):
+    """A view that proccess the checkout information and adds the necessary objects to the database."""
     post_details = request.POST.get('form').split("&")
     post_data = {}
 
@@ -264,6 +265,7 @@ def checkout_process(request):
 
 
 def order_success(request, order_id):
+    """A view that renders the order success page"""
     order = Order.objects.get(id=order_id)
     order_items = OrderItem.objects.filter(order=order)
     context = {
@@ -276,6 +278,7 @@ def order_success(request, order_id):
 
 @login_required
 def order_history(request):
+    """Load a view that shows the order history"""
     customer = Customer.objects.filter(email=request.user.email).first()
     all_orders = Order.objects.filter(customer_profile=customer).order_by("-ordered_date")
     customers_orders = []
@@ -295,6 +298,7 @@ def order_history(request):
 
 @login_required
 def place_order_again(request, order_id):
+    """View that lets the user replace that same order"""
     order = Order.objects.get(id=order_id)
     order_items = OrderItem.objects.filter(order=order)
     bag = request.session.get("bag", {})

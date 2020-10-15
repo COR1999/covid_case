@@ -40,7 +40,7 @@
                     <div class="col-md-3 text-center">
                         <h6 class="bag-title product-quantity" value="{{ product.quantity }}">Quantity: {{ product.quantity }}</h6>
                         {% if product.quantity == 0 %}
-                            <button class="add-product btn-secondary btn-sm my-1 float-right border-0"id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-plus"></i></button>
+                            <button class="add-product btn-secondary btn-sm my-1 float-right border-0" id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-plus"></i></button>
                         {% elif product.number_in_stock == product.quantity %}
                             <button class="minus-product btn btn-secondary btn-sm my-1 float-left border-0" id="{{ product.id }}" value="{{ product.quantity }}"><i class="fas fa-minus"></i></button>
                             <button class="minus-product btn btn-secondary btn-sm my-1 float-right border-0" disabled="disabled">Not more in Stock</button>
@@ -60,7 +60,7 @@
             </ul>
             <li class="list-group-item d-flex justify-content-between">
                 <span>Total (USD)</span>
-                <strong>{% if request.session.grand_total %}$ {{ request.session.grand_total |floatformat:2 }}{% else %}$0{% endif %}</strong>
+                <strong>{% if request.session.grand_total %}${{ request.session.grand_total |floatformat:2 }}{% else %}$0{% endif %}</strong>
             </li>
             <div class="d-flex justify-content-center mt-3">
                 <a href="{% url 'products' %}" class="btn btn-success float-left mr-auto my-1 p-1">Back to Shopping</a>

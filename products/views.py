@@ -9,6 +9,10 @@ from django.core.files.base import ContentFile
 
 
 def all_products(request):
+    """
+        A view that calls the api and if the status code is 200 
+        pass the information from the api call to the template.
+    """
     response = requests.get(
         settings.BASE_URL + settings.COUNTRY_DATA_WORLDMETERS)
 
@@ -51,6 +55,7 @@ def all_products(request):
 
 
 def create_product(request):
+    """A view the creates a product"""
     form = ProductForm(request.POST or None, request.FILES)
     if form.is_valid():
         form.save()
@@ -65,6 +70,7 @@ def create_product(request):
 
 
 def update_product(request, id):
+    """This view gets a product from the database by using the id then updateing it if the form is valid"""
     product = Product.objects.get(id=id)
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES, instance=product)
@@ -83,6 +89,7 @@ def update_product(request, id):
 
 
 def delete_product(request, id):
+    """A view that set the is_deleted attribute to True"""
     product = Product.objects.get(id=id)
 
     if request.method == "POST":

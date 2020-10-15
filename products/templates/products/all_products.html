@@ -10,6 +10,9 @@
     </div>
     {{ country_data | json_script:"country_data" }}
     <div class="row">
+        <a class="view_bag_button btn btn-success" href="{% url 'view_bag' %}">View Bag</a>
+    </div>
+    <div class="row">
         {% for product in products %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-2 mb-2">
             <div class="card border-0">
@@ -36,7 +39,7 @@
                                 <span  class="float-right mr-3">${{ product.price }}</span>
                             </div>
                         </div>
-                        <div class="row" style="">
+                        <div class="row">
                             <div class="col-md-12">
                                 <span  class="float-left ml-2 mt-1">Quantity: </span>
                                 {% include "products/add_to_bag_form.html" %}

@@ -21,19 +21,13 @@ The application navigation is very simple and easy to understand. The customer's
     </tr>
     <tr>
         <td>
-            <a href="https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d">
-                <img src="/readmeimage/wireframe-homepage-covid-case.png" alt="homepage-wireframe" width="250" height="250"/>
-            </a>
+            <img src="/readmeimage/wireframe-homepage-covid-case.png" alt="homepage-wireframe" width="500" height="500"/>
+        </td>SSS
+        <td>
+            <img src="/readmeimage/wireframe-login-covid-case.png" alt="homepage-login-page" width="500" height="500"/>
         </td>
         <td>
-            <a href="https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d">
-                <img src="/readmeimage/wireframe-login-covid-case.png" alt="homepage-login-page" width="250" height="250"/>
-            </a>
-        </td>
-        <td>
-            <a href="https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d">
-                <img src="/readmeimage/wireframe-signup-covid-case.png" alt="homepage-login-page" width="250" height="250"/>
-            </a>
+            <img src="/readmeimage/wireframe-signup-covid-case.png" alt="homepage-login-page" width="500" height="500"/>
         </td>
     </tr>
 <table>
@@ -41,7 +35,6 @@ The application navigation is very simple and easy to understand. The customer's
 
 # Features
 ## Existing Functionality
-
 ### Nav Bar
 * The nav bar is used to navigate throughout the website pages. There is different functionality depending on the user's access level.
 * Before a user is logged in, they can navigate to the home page, can log in or sign up and can see their shopping basket.
@@ -57,12 +50,12 @@ The application navigation is very simple and easy to understand. The customer's
 
 ### Update Product - ADMIN
 * An admin can update the product fields such as name, price, colour, number in stock etc.
-* They can also delete products.
+* They can also delete products. This marks a product with a deleted status rather than actually deleting them as orders refer to products.  
 
 ### Add Products - ADMIN
 * Admins can find the "Add Products" page in the nav bar.
-* Here they add a product and define all of the features related to the product, which will then get added to the home page.
-* They also can see a preview of the images they uploaded.
+* A user can add a product and define all of the attributes related to the product, which will then get added to the home page.
+* They also can see a preview of the image(s) they uploaded.
 
 ### My Profile
 * The user has the ability to view the current information associated with their profile.
@@ -74,7 +67,6 @@ The application navigation is very simple and easy to understand. The customer's
 
 ### Sign up
 * On this page the user can fill out the form to register an account with Covid-Case.
-* If they clicked the wrong page there is a link to log in on the sign up form.
 
 ### Login
 * The user can log into the account they have created.
@@ -86,36 +78,42 @@ The application navigation is very simple and easy to understand. The customer's
 * The user can then continue to the checkout page.
 
 ### Checkout
-* The user can fill in their billing details to let them buy their products.
+* If the is logged in the form shall be pre-populated with the data from their profile. 
+* The user can fill in / edit their details to let them buy their products. 
 * It shows a list of items in the bag.
 
 ### Order Summary
-1. After completing order process the user can see a other summary page wich showcases
-2. A overview of the order the users delivery information and a small table of the items ordered.
-3. There is also a home button witch brings the user back to the home page and if the user is logged in a My profile button that takes the user to there profile.
+1. After completing the order process, the user can see a summary page which shows the order ID and date, the delivery information and a table of the items ordered and the total.
+2. There is also a home button and an Order History which navigate to the appropriate page.
+
 ## Database Schema
-* Below you will find a picture of my database schema i couldnt get the exact SQL code ran by django to create this so i did it manually. This isnt 100% accurate but it give you an idea of what it looks like.
-<a href="https://gyazo.com/38b8fe5a21fb608c4750434f6be1cb39">
-    <img src="/readmeimage/database_schema.png" alt="homepage-login-page" width="500" height="500"/>
-</a>
+* Below you will find a picture of my database schema I could not get the exact SQL code ran by django to create this so I did it manually. The data types are not 100% accurate but it shows the table relationships and foreign keys.
+<img src="/readmeimage/database_schema.png" alt="homepage-login-page"/>
 
 ## Future Enhancements
 1. Search/filter functionality would be a good addition
 2. Customer reviews
-3. List of all orders received that admins can see
-4. The application could be improved with Internationalization for coving date, time and currency format
-5. On the order history page i would like to make it so the order total date dispatched and place order again button all sit at the bottom of the card.
+3. UI for the Admin to manage the fulfillment process by filling in the order date_dispatched when its shipped. The Django Admin UI can be used until this is added, so lower priority.
+4. The application could be improved with Internationalization for displaying date, time and currency in a localised user format.
+5. On the order history page I would like to make it so the order total date dispatched and place order again button all sit at the bottom of the card.
+<img src="/readmeimage/orderhistory_styling.png" alt="orderhistory_styling" />
+
+6. Add shipping options/charges.
+7. Additional statistics and Covid trends could easily be added using the API and Highcharts/Highmaps or some other client side graphing library. 
+8. Update the map to have a configurable time period such as last 7 days, last 30 days and all time.
+9. Make the traffic light thresholds used for the map configurable in my settings.py file or in database.
+10. Update the map tool tip to have thousand separator.
+
 ## Technologies Used
 1. [VSCODE](https://code.visualstudio.com/) - VSCODE was used as the development environment.
 3. [Bootstrap Version 4.4.1](https://getbootstrap.com/) - Bootstrap components such as grid, card, button, table, navbar where used in my project to simplify creating responsive web application.
 4. [Github](https://github.com/) - GitHub has been used for version control of the code by using Git functions in the control panel.
-5. [Font-awesome Version 5.11.1](https://fontawesome.com/) - 
+5. [Font-awesome Version 5.11.1](https://fontawesome.com/) - I used fontawesome for the quantity control and the shopping bag icons.
 6. [Heroku](https://heroku.com/) - This is a cloud based application platform that allows deployment of an application to the web and connection to the database.
-7. [AWS S3](https://aws.amazon.com/s3/) - Amazon S3 is an object storage service that offers industry-leading scalability, data availability, security, and performance.
+7. [AWS S3](https://aws.amazon.com/s3/) - Amazon S3 is an object storage service that offers industry-leading scalability, data availability, security, and performance. This was used to store my media files and static content.
 8. [StackOverflow](https://stackoverflow.com/) - Stack Overflow is a question and answer site for professional and enthusiast programmers.
 9. [Mozilla](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django) - I found Mozilla documentation for django very helpful when solving problems.
 10. [favicon.io](https://favicon.io/) - I used favicon.io to generate my favicon.
-
 
 ### Programming Languages
 1. [Python 3.8.2](https://www.python.org/) - Python is an interpreted, high-level and general-purpose programming language.
@@ -124,32 +122,30 @@ The application navigation is very simple and easy to understand. The customer's
 3. [CSS3](https://en.wikipedia.org/wiki/CSS) - CSS is a style language used for describing the presentation of a document.
 4. [JavaScript](https://www.javascript.com/) - JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions.
 5. [jQuery](https://jquery.com/) - jQuery is a JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling.
-6. [Markdown](https://www.markdownguide.org/) - Markdown is a lightweight markup language with plain-text-formatting syntax.
-
+6. [Markdown](https://www.markdownguide.org/) - Markdown is a lightweight markup language with plain-text-formatting syntax. This was used for the readme.md
 
 ### Django Extension and tools
 1. [dj-database-url](https://pypi.org/project/dj-database-url/) - Allows use of environment variable for database connections
 2. [django-crispy-forms](https://pypi.org/project/django-crispy-forms/) - Crispy forms where used to style most of my forms
-3. [stripe](https://pypi.org/project/stripe/) - This libary allowed me to talk with stripes api
+3. [stripe](https://pypi.org/project/stripe/) - This libary allowed me to easily intergrate with the Stripe api 
 4. [gunicorn](https://pypi.org/project/gunicorn/) - Python WSGI HTTP Server for UNIX so you can host your application on heroku
-5. Thease Database's where used to store all users information and models.
-    * [SQLite](https://www.sqlite.org/index.html) I used SQLite for dev
-    * [Postgres](https://www.postgresql.org/) DB as part of Heroku was used for production
+5. These Database's where used to store all users information and models.
+    * [SQLite](https://www.sqlite.org/index.html) was used for development.
+    * [PostgresSQL](https://www.postgresql.org/) as part of Heroku environment was used for production.
 6. [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) - Jinja is a modern and designer-friendly templating language for Python, modelled after Django’s templates.
 
 ### APIs
-1. [Stripe](https://stripe.com/) - Stripes APIs allow you to accept credit cards, manage subscriptions, send money, run a marketplace.
+1. [Stripe](https://stripe.com/) - Stripes APIs allow you to accept credit cards, manage subscriptions, send money, run a marketplace. I used the api for payment processing in a secure manner.
 2. [Disease.sh](https://disease.sh/docs/) - An open API for disease-related statistics
 3. [HIGHCHARTS](https://www.highcharts.com/) - Highcharts where used to present the information from Disase.sh api to the user
-
 
 ## Testing
 #### Styling
 1. Check that all success buttons are styled the same.
 2. I checked my css file to make sure that i removed use of px and replaced it with REM. :heavy_check_mark:
 3. I check all html files for inline styling to see if i could move this styling into a bootstrap class. :heavy_check_mark:
-4. I check that there was consistant use of buttons across the site. I navigated to each page to see if i was using the correct button classes on each page. :heavy_check_mark:
-5. I checked each page for a consitant  color scheme. :heavy_check_mark:
+4. I check that there was consistent use of buttons across the site. I navigated to each page to see if i was using the correct button classes on each page. :heavy_check_mark:
+5. I checked each page for a consistent  color scheme. :heavy_check_mark:
  
 #### Navbar
 1. Check that all the links are working correctly. :heavy_check_mark:
@@ -195,6 +191,8 @@ Check that it fails to create the user. :heavy_check_mark:
 8. Check that download as SVG vector image works in hamburger menu. This should download as a SVG file. :heavy_check_mark:
 9. Check that the zoom in and out buttons work as intended. This should zoom the users view in/out. :heavy_check_mark:
 10. Check that when the user clicks on a color on the legend all countries of that color disappear. :heavy_check_mark:
+11. Check that when the user clicks on the view bag button it redirects the user to the shopping bag page. :heavy_check_mark:
+
 #### Products
 1. Attempt to add product to basket. This should update the total amount in the basket on the navbar. :heavy_check_mark:
 2. Attempt to add product to basket when quantity is greater then number in stock. This should show a message saying not enough in stock. :heavy_check_mark:
@@ -210,14 +208,12 @@ Check that it fails to create the user. :heavy_check_mark:
 5. Attempt to update a new product with out number in stock filled out. Form should tell the user that this field is required. :heavy_check_mark:
 6. Attempt to delete product by clicking the delete button. Sets the is_deleted boolean to True. Redirects the user to home page. :heavy_check_mark:
 
-
 ### Add Products - Admin user only
 1. Attempt to add a new product with no product name. Form should tell the user that this field is required. :heavy_check_mark:
 2. Attempt to add a new product with no color entered. Form should tell the user that this field is required. :heavy_check_mark:
 3. Attempt to add a new product with no price entered. Form should tell the user that this field is required. :heavy_check_mark:
 4. Attempt to add a new product with no supplier chosen. Form should tell the user that this field is required. :heavy_check_mark:
 5. Attempt to add a new product with out number in stock filled out. Form should tell the user that this field is required. :heavy_check_mark:
-
 
 ### My Profile
 1. Attempt to Update profile without First name. Form should tell the user the this field is required. :heavy_check_mark:
@@ -226,7 +222,6 @@ Check that it fails to create the user. :heavy_check_mark:
 4. Attempt to Update profile without Address line 1. Form should tell the user the this field is required. :heavy_check_mark:
 5. Attempt to Update profile without Country. Form should tell the user the this field is required. :heavy_check_mark:
 6. Click reset password button. Should redirects you to password reset page. :heavy_check_mark:
-
 
 ### Shopping Bag
 1. Click on back to shopping button. Redirects the user back to the home page. :heavy_check_mark:
@@ -240,6 +235,10 @@ Check that it fails to create the user. :heavy_check_mark:
 ### Checkout 
 1. Attempting to submit the checkout form without filling out the required fields. The form will display a message saying this field is required. :heavy_check_mark:
 2. Check to see if the card number is valid. If the card number is not valid an error message will be displayed under the card input. :heavy_check_mark:
+3. For testing i used Stripe Development Card
+Card number - 4242 4242 4242 4242
+CVC - Any 3 digit number.
+Expire date - Any date in the future
 
 #### Checkout while not registered
 1. Check to see if the user can purchase item while not signed in. The user can complete the checkout process without having to be logged in or registered. :heavy_check_mark:
@@ -254,57 +253,40 @@ Check that it fails to create the user. :heavy_check_mark:
 1. Click place order again. The same order will be placed if the items are in stock. :heavy_check_mark:
 2. Check that Order history page looks okay on mobile. :heavy_check_mark:
 
-
-
 #### Order success
 1. Click the Home button. The user will be redirected to the home page. :heavy_check_mark:
 2. Click the edit profile button. the user will be redirect to the My profile page. :heavy_check_mark:
-
 
 #### Responsive Testing
 1. When i deployed the project to heroku i navigated to deployed url on my mobile and added the website as a app on my mobile. I checked that all pages where responsive on mobile and was a pleasant user experience. :heavy_check_mark:
 2. I used chrome dev tools mobile view to check across different mobile devices but i found out this isn't always accurate. The dev tools showed some pages not being responsive yet on my mobile it looked okay. :heavy_check_mark:
 3. When i was first checking out how it looked on mobile i realised that the user couldn't see there shopping bag unless they clicked the hamburger menu. So i took the shopping bag out of the hamburger menus and just displayed it on the navbar.
 
-
 ### Known Issues :small_red_triangle:
 1. On the password reset done page there is a pop up that is being displayed by the messages framework that should be removed. :x:
-2. In my database model i have the price set to the products price so if the price of a product changes then the orders price will to. to fix this i should copy the price to the OrderItem when the order is placed. 
-
-
-
-
-
-
-
-
+2. In my database model i have the price set to the products price so if the price of a product changes then the orders price will to. To fix this I could copy the price to the OrderItem when the order is placed. An alternative may be to have an effective date on the price so that we can have the price history in the product by using something like a ProductPrice table with columns: ProductID, EffectiveStartDT, EffectiveEndDT, ProductPrice.
 
 
 ## Deployment
 #### To deploy the project to Github the following steps were taken:
-1. created a master branch in Github repository
+<!-- todo -->
+1. Created a master branch in Github repository
 2. Committed files to the staging area using bash terminal commands: git status; git add (specify directory); git commit -m"add message"
 3. Pushed files to the working environment using git push, which then updates the repository.
 4. Published site from master branch using settings tab in the main page of the repository, select source as master branch, then save
 5. git push -u origin master
 
-6. The repository can be cloned by clicking Clone or Download on the main page of the repository
-7. In the Clone with HTTPs section, click the clipboard icon to copy the clone URL for the repository
-8. Open Git Bash Terminal
-9. Type git clone, and then paste the URL, Press Enter. A local clone will be created.
-10. git push -u origin master
-
 
 #### Environment variables:
-1. create a file named env.py in root of your project. use this file to define you environment variables
-2. create a file name .gitignore add env.py to this file
-3. in your env file we need to import os.
-4. To assign your environment variables is easy its as simple as doing the following:
+1. I created a file named env.py in root of your project. I used this file to define the environment variables
+2. I created a file name .gitignore added env.py to this file so that it got excluded from github.
+3. In my  env.py file I needed to import os.
+4. To assign my environment variables its as simple as doing the following:
 ```python
     import os
     os.environ["Variable Name Here"] = "Value of Variable Goes Here"
 ```
-5. Then we need to import the env file we do this by importing os.path then checking if "./covid_case/env.py" exists if it dose import it. Like in the following example:
+5. Then we need to import the env file we do this by importing os.path then checking if "./covid_case/env.py" exists if it does import it. Like in the following example:
 ```python
     import os.path
     if os.path.exists("./covid_case/env.py"):
@@ -322,14 +304,14 @@ Check that it fails to create the user. :heavy_check_mark:
 9. I needed to add the following lines to my settings.py in order to tell heroku what database to access
 ```python
     import dj_database_url
-
+    
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
+    # Update the SQL database to the database in the heroku environment
     db_from_env = dj_database_url.config(conn_max_age=600)
     DATABASES['default'].update(db_from_env)
 ```
@@ -339,7 +321,8 @@ Check that it fails to create the user. :heavy_check_mark:
     django_heroku.settings(locals())
 ```
 
-
+#### Deploying files to AWS
+<!-- Todo -->
 
 ## Credits
 ## Content
@@ -355,8 +338,8 @@ For this project these where my choice of colors
 
 
 ## Acknowledgements
-Id like to give a big thanks to the [code institute](https://codeinstitute.net/) team and the mentor they assigned me [Rhey Ann Magcalas]()
-Id also like to give a big thanks to family and friends who have helped me with ideas for projects and styling tweaks that could be made.
+I'd like to give a big thanks to the [code institute](https://codeinstitute.net/) team and the mentor they assigned me [Rhey Ann Magcalas]()
+I'd also like to give a big thanks to family and friends who have helped me with ideas for projects and styling tweaks that could be made.
 
 
 
