@@ -22,17 +22,17 @@ The application navigation is very simple and easy to understand. The customer's
     <tr>
         <td>
             <a href="https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d">
-                <img src="/readmeimage/wireframe-homepage-covid-case.png" alt="homepage-wireframe" width="200" height="200"/>
+                <img src="/readmeimage/wireframe-homepage-covid-case.png" alt="homepage-wireframe" width="250" height="250"/>
             </a>
         </td>
         <td>
             <a href="https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d">
-                <img src="/readmeimage/wireframe-login-covid-case.png" alt="homepage-login-page" width="200" height="200"/>
+                <img src="/readmeimage/wireframe-login-covid-case.png" alt="homepage-login-page" width="250" height="250"/>
             </a>
         </td>
         <td>
             <a href="https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d">
-                <img src="/readmeimage/wireframe-signup-covid-case.png" alt="homepage-login-page" width="200" height="200"/>
+                <img src="/readmeimage/wireframe-signup-covid-case.png" alt="homepage-login-page" width="250" height="250"/>
             </a>
         </td>
     </tr>
