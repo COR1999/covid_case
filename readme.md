@@ -21,13 +21,13 @@ The application navigation is very simple and easy to understand. The customer's
     </tr>
     <tr>
         <td>
-            <img src="/readmeimage/wireframe-homepage-covid-case.png" alt="homepage-wireframe" width="500" height="500"/>
+            <img src="/readmeimage/wireframe-homepage-covid-case.png" alt="homepage-wireframe" width="250" height="250"/>
         </td>SSS
         <td>
-            <img src="/readmeimage/wireframe-login-covid-case.png" alt="homepage-login-page" width="500" height="500"/>
+            <img src="/readmeimage/wireframe-login-covid-case.png" alt="homepage-login-page" width="250" height="250"/>
         </td>
         <td>
-            <img src="/readmeimage/wireframe-signup-covid-case.png" alt="homepage-login-page" width="500" height="500"/>
+            <img src="/readmeimage/wireframe-signup-covid-case.png" alt="homepage-login-page" width="250" height="250"/>
         </td>
     </tr>
 <table>
@@ -103,6 +103,7 @@ The application navigation is very simple and easy to understand. The customer's
 8. Update the map to have a configurable time period such as last 7 days, last 30 days and all time.
 9. Make the traffic light thresholds used for the map configurable in my settings.py file or in database.
 10. Update the map tool tip to have thousand separator.
+11. Use [django logging](https://lincolnloop.com/blog/django-logging-right-way/) framework.
 
 ## Technologies Used
 1. [VSCODE](https://code.visualstudio.com/) - VSCODE was used as the development environment.
@@ -142,9 +143,9 @@ The application navigation is very simple and easy to understand. The customer's
 ## Testing
 #### Styling
 1. Check that all success buttons are styled the same.
-2. I checked my css file to make sure that i removed use of px and replaced it with REM. :heavy_check_mark:
-3. I check all html files for inline styling to see if i could move this styling into a bootstrap class. :heavy_check_mark:
-4. I check that there was consistent use of buttons across the site. I navigated to each page to see if i was using the correct button classes on each page. :heavy_check_mark:
+2. I checked my css file to make sure that I removed use of px and replaced it with REM. :heavy_check_mark:
+3. I check all html files for inline styling to see if I could move this styling into a bootstrap class. :heavy_check_mark:
+4. I check that there was consistent use of buttons across the site. I navigated to each page to see if I was using the correct button classes on each page. :heavy_check_mark:
 5. I checked each page for a consistent  color scheme. :heavy_check_mark:
  
 #### Navbar
@@ -192,6 +193,8 @@ Check that it fails to create the user. :heavy_check_mark:
 9. Check that the zoom in and out buttons work as intended. This should zoom the users view in/out. :heavy_check_mark:
 10. Check that when the user clicks on a color on the legend all countries of that color disappear. :heavy_check_mark:
 11. Check that when the user clicks on the view bag button it redirects the user to the shopping bag page. :heavy_check_mark:
+12. Changed the request url for Disease.sh and made sure that the user is given an suitable message. :heavy_check_mark:
+13. If the URL for Disease.sh is correct but it returns malformed data then the user is given a suitable message. :heavy_check_mark:
 
 #### Products
 1. Attempt to add product to basket. This should update the total amount in the basket on the navbar. :heavy_check_mark:
@@ -235,7 +238,7 @@ Check that it fails to create the user. :heavy_check_mark:
 ### Checkout 
 1. Attempting to submit the checkout form without filling out the required fields. The form will display a message saying this field is required. :heavy_check_mark:
 2. Check to see if the card number is valid. If the card number is not valid an error message will be displayed under the card input. :heavy_check_mark:
-3. For testing i used Stripe Development Card
+3. For testing I used Stripe Development Card
 Card number - 4242 4242 4242 4242
 CVC - Any 3 digit number.
 Expire date - Any date in the future
@@ -258,13 +261,13 @@ Expire date - Any date in the future
 2. Click the edit profile button. the user will be redirect to the My profile page. :heavy_check_mark:
 
 #### Responsive Testing
-1. When i deployed the project to heroku i navigated to deployed url on my mobile and added the website as a app on my mobile. I checked that all pages where responsive on mobile and was a pleasant user experience. :heavy_check_mark:
-2. I used chrome dev tools mobile view to check across different mobile devices but i found out this isn't always accurate. The dev tools showed some pages not being responsive yet on my mobile it looked okay. :heavy_check_mark:
-3. When i was first checking out how it looked on mobile i realised that the user couldn't see there shopping bag unless they clicked the hamburger menu. So i took the shopping bag out of the hamburger menus and just displayed it on the navbar.
+1. When I deployed the project to heroku I navigated to deployed url on my mobile and added the website as a app on my mobile. I checked that all pages where responsive on mobile and was a pleasant user experience. :heavy_check_mark:
+2. I used chrome dev tools mobile view to check across different mobile devices but I found out this isn't always accurate. The dev tools showed some pages not being responsive yet on my mobile it looked okay. :heavy_check_mark:
+3. When I was first checking out how it looked on mobile I realised that the user couldn't see there shopping bag unless they clicked the hamburger menu. So I took the shopping bag out of the hamburger menus and just displayed it on the navbar.
 
 ### Known Issues :small_red_triangle:
 1. On the password reset done page there is a pop up that is being displayed by the messages framework that should be removed. :x:
-2. In my database model i have the price set to the products price so if the price of a product changes then the orders price will to. To fix this I could copy the price to the OrderItem when the order is placed. An alternative may be to have an effective date on the price so that we can have the price history in the product by using something like a ProductPrice table with columns: ProductID, EffectiveStartDT, EffectiveEndDT, ProductPrice.
+2. In my database model I have the price set to the products price so if the price of a product changes then the orders price will to. To fix this I could copy the price to the OrderItem when the order is placed. An alternative may be to have an effective date on the price so that we can have the price history in the product by using something like a ProductPrice table with columns: ProductID, EffectiveStartDT, EffectiveEndDT, ProductPrice.
 
 
 ## Deployment
@@ -297,7 +300,7 @@ Expire date - Any date in the future
 2. Then I created a package dependency file called requirements.txt by running the command "pip freeze > requirements.txt". This needs to be called requirements.txt and has to be in the root of the project for heroku to install the packages listed in the file.
 3. I created a new app by navigating to dashboard.heroku.com/apps then clicking the new button.
 4. Then I logged into the heroku CLI by typing heroku login into my terminal.
-5. In order to  get the application up and running i had to create a Procfile. The Profile tells Heroku which file is the entry point. A Procfile looks something like this "web: gunicorn covid_case.wsgi" (process type: command).
+5. In order to  get the application up and running I had to create a Procfile. The Profile tells Heroku which file is the entry point. A Procfile looks something like this "web: gunicorn covid_case.wsgi" (process type: command).
 6. To connect an existing repository from Github to Heroku use the following CLI syntax "heroku git:remote -a (followed by name of Heroku app)"
 7. To push to Heroku Master Branch, then simply use "git push heroku master"
 8. In order for our application to run on heroku we need to specify a few Config Vars in Heroku. To do this go to Settings tab > Config Variables followed by the various config variable needed.
@@ -321,8 +324,15 @@ Expire date - Any date in the future
     django_heroku.settings(locals())
 ```
 
-#### Deploying files to AWS
-<!-- Todo -->
+#### Deploying files to AWS S3
+<!-- https://dev.to/oyetoket/how-to-deploy-your-frontend-application-on-aws-s3-31m9 -->
+1. I started by setting up my AWS account so that I can depoly my applications static and media files to S3
+2. Once I had set up my AWS account I navigated to S3 on the Services tab on AWS this took me to a page that shows all available buckets. A bucket is a virutal container while object are files belonging to that container.
+3. Click on Create Bucket to create a new bucket for my frontend application. I put in the name and region I wanted my bucket to be deployed to. Once I was done with that I pressed Next to the configure tab then pressed next.
+4. On the permissions tab I unchecked "Block all public access" since we need access to the built files. Then I click next followed by Create Bucket.
+5. Next I clicked on the properties tab and selected Static website hosting box. This then prompted a popup that let me click on "Use this bucket to host a website", it will ask for a index.html file and error.html I just put in "index.html" and "error.html" because we wont be using these.
+6. 
+
 
 ## Credits
 ## Content

@@ -4,8 +4,7 @@ from django.conf import settings
 import requests
 import json
 from .forms import ProductForm
-import os
-from django.core.files.base import ContentFile
+from django.contrib import messages
 
 
 def all_products(request):
@@ -16,36 +15,40 @@ def all_products(request):
     response = requests.get(
         settings.BASE_URL + settings.COUNTRY_DATA_WORLDMETERS)
 
+    country_data = []
     if response.status_code == 200:
         all_data = json.loads(response.content.decode("utf-8"))
-        country_data = []
-        for country in all_data:
-            try:
-                country_name = country["country"]
-                country_code = country["countryInfo"]["iso2"]
-                country_cases = country["cases"]
-                country_todayCases = country["todayCases"]
-                country_deaths = country["deaths"]
-                country_recovered = country["recovered"]
-                casesPerOneMillion = country["casesPerOneMillion"]
-                deathsPerOneMillion = country["deathsPerOneMillion"]
-                country_population = country["population"]
-                country_data_set = {
-                    "country": country_name,
-                    "code": country_code,
-                    "cases": country_cases,
-                    "todayCases": country_todayCases,
-                    "deaths": country_deaths,
-                    "recovered": country_recovered,
-                    "population": country_population,
-                    "casesPerOneMillion": casesPerOneMillion,
-                    "deathsPerOneMillion": deathsPerOneMillion,
-                }
-                country_data.append(country_data_set)
-
-            except Exception as e:
-                print("Exception:", e)
-
+        try:
+            for country in all_data:               
+                    country_name = country["country"]
+                    country_code = country["countryInfo"]["iso2"]
+                    country_cases = country["cases"]
+                    country_todayCases = country["todayCases"]
+                    country_deaths = country["deaths"]
+                    country_recovered = country["recovered"]
+                    casesPerOneMillion = country["casesPerOneMillion"]
+                    deathsPerOneMillion = country["deathsPerOneMillion"]
+                    country_population = country["population"]
+                    country_data_set = {
+                        "country": country_name,
+                        "code": country_code,
+                        "cases": country_cases,
+                        "todayCases": country_todayCases,
+                        "deaths": country_deaths,
+                        "recovered": country_recovered,
+                        "population": country_population,
+                        "casesPerOneMillion": casesPerOneMillion,
+                        "deathsPerOneMillion": deathsPerOneMillion,
+                    }
+                    country_data.append(country_data_set)
+        except Exception as e:
+            # If there is any problem proccessing the response data - inform the user.
+            print("Exception:", e)
+            messages.error(request, "Sorry failed loading map data")
+    else:
+        # Problem with Disease.sh - inform user.
+        messages.error(request, "There has been a problem getting map data. Please try again later.")
+        
     products = Product.objects.filter(is_deleted=False).order_by("-number_in_stock")
     context = {
         "products": products,
@@ -57,9 +60,10 @@ def all_products(request):
 def create_product(request):
     """A view the creates a product"""
     form = ProductForm(request.POST or None, request.FILES)
-    if form.is_valid():
-        form.save()
-        return redirect(reverse("products"))
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("products"))
 
     context = {
         "form": form,
@@ -79,7 +83,6 @@ def update_product(request, id):
             return redirect(reverse("products"))
     else:
         form = ProductForm(request.POST or None, instance=product)
-
     
     context = {
         "form": form,
@@ -90,9 +93,12 @@ def update_product(request, id):
 
 def delete_product(request, id):
     """A view that set the is_deleted attribute to True"""
-    product = Product.objects.get(id=id)
-
     if request.method == "POST":
-        product.is_deleted = True
-        product.save()
-        return redirect(reverse("products"))
+        product = Product.objects.get(id=id)
+        # Checking to see if the get returns the product incase product has allready been deleted from database.
+        if product:
+            product.is_deleted = True
+            product.save()
+            
+    return redirect(reverse("products"))
+        
