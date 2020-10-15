@@ -15,15 +15,15 @@ The application navigation is very simple and easy to understand. The customer's
 ### Wireframes
 Home Page.
 <a href="https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d">
-<img src="/readmeimage/wireframe-homepage-covid-case.png" alt="homepage-wireframe" style="width:50%; height:50%;"/>
+<img src="/readmeimage/wireframe-homepage-covid-case.png" alt="homepage-wireframe" width="200" height="200"/>
 </a>
 Login Page
 <a href="https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d">
-<img src="/readmeimage/wireframe-login-covid-case.png" alt="homepage-login-page" style="width:50%; height:50%;"/>
+<img src="/readmeimage/wireframe-login-covid-case.png" alt="homepage-login-page" width="200" height="200"/>
 </a>
 Sign up Page
 <a href="https://gyazo.com/8907744c87dbac915e4b6de2ac8aee4d">
-<img src="/readmeimage/wireframe-signup-covid-case.png" alt="homepage-login-page" style="width:50%; height:50%;"/>
+<img src="/readmeimage/wireframe-signup-covid-case.png" alt="homepage-login-page" width="200" height="200"/>
 </a>
 
 
