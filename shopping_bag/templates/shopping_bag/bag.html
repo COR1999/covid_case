@@ -18,7 +18,7 @@
                 {% for product in products %}
                 <li class="list-group-item d-flex justify-content-between lh-condensed" style="max-height: 12.5rem; margin-bottom: 0.06rempx;">
                     {% if product.image %}
-                    <div class="float-left col-md-3" style="">
+                    <div class="d-none d-sm-block d-md-block d-lg-block float-left col-md-3 " style="">
                         <img class="card-img-top img-fluid" src="{{MEDIA_URL}}{{ product.image }}" alt="{{ product.name }}"
                             onmouseover="this.src='{{MEDIA_URL}}{{ product.image_2 }}';"
                             onmouseout="this.src='{{MEDIA_URL}}{{ product.image }}';"
@@ -32,7 +32,7 @@
                         <br>
                         <small>Color: {{ product.color }}</small>
                     </div>
-                    <div class="col-md-2" >
+                    <div class="col-md-2">
                         <h6 class="bag-title my-0 float-left">Price</h6>
                         <br>
                         <small>${{ product.price }}</small>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-md-2" style="text-align:right;">
                         <h6 class="bag-title my-0">Total Price</h6>
-                        <small class="" style="margin-top: 0.625rem;">${{ product.item_total_price |floatformat:2 }}</small>
+                        <small style="margin-top: 0.625rem;">${{ product.item_total_price |floatformat:2 }}</small>
                     </div>
                 </li>
                 {% endfor %}
@@ -62,14 +62,10 @@
                 <span>Total (USD)</span>
                 <strong>{% if request.session.grand_total %}$ {{ request.session.grand_total |floatformat:2 }}{% else %}$0{% endif %}</strong>
             </li>
-            <div class="row">
-                <h4 class="col-md-6 my-3">
-                    <a href="{% url 'products' %}" class="btn btn-success float-left">Back to Shopping</a>
-                </h4>
+            <div class="d-flex justify-content-center mt-3">
+                <a href="{% url 'products' %}" class="btn btn-success float-left mr-auto my-1 p-1">Back to Shopping</a>
                 {% if products|length >= 1 and request.session.grand_total > 0 %}
-                <h4 class="col-md-6 my-3">
-                    <a href="{% url 'checkout' %}" class="btn btn-success float-right">Proceed to Checkout</a>
-                </h4>
+                <a href="{% url 'checkout' %}" class="btn btn-success float-right ml-auto my-1 p-1">Proceed to Checkout</a>
                 {% endif  %}
             </div>
         </div>

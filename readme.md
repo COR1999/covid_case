@@ -104,7 +104,7 @@ The application navigation is very simple and easy to understand. The customer's
 2. Customer reviews
 3. List of all orders received that admins can see
 4. The application could be improved with Internationalization for coving date, time and currency format
-
+5. On the order history page i would like to make it so the order total date dispatched and place order again button all sit at the bottom of the card.
 ## Technologies Used
 1. [VSCODE](https://code.visualstudio.com/) - VSCODE was used as the development environment.
 3. [Bootstrap Version 4.4.1](https://getbootstrap.com/) - Bootstrap components such as grid, card, button, table, navbar where used in my project to simplify creating responsive web application.
