@@ -13,7 +13,7 @@
                     {% endif %}
 				</div>
 				<div class="justify-content-center form_container">
-					<form class="form-group mx-auto" method="POST" action="" enctype="multipart/form-data">
+					<form class="form-group mx-auto" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -48,7 +48,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                
                                 <div class="col-md-6 mb-3">
                                     {{ form.image.label }}
                                     <br>
@@ -64,7 +63,6 @@
                                 <div class="col-md-3 mb-3">
                                     <h8>Current image</h8>
                                     <br>
-                                    
                                     <img class="img-fluid" style="height:6.25rem;" src="{{ form.instance.image.url }}" />
                                 </div>
                                 <div class="col-md-2  mb-3">
@@ -88,15 +86,14 @@
                                     <div class="form_errors">{{ form_errors }}</div>
                                 </div>
                             </div>
-						</div>
-                        <div class="d-flex justify-content-center mt-3 product_container">
-                            {% if product %}
-                                <button class="btn btn-info" type="submit">Update</button>
-                                <a class="btn btn-danger ml-2" data-toggle="modal" data-target="#deleteProduct">Delete</a>
-                            {% else %}
-                                <button class="btn btn-success" type="submit">Add Product</button>
-                            {% endif %}
-                        </div>
+                            <div class="d-flex justify-content-center mt-3 product_container">
+                                {% if product %}
+                                    <button class="btn btn-info" type="submit">Update</button>
+                                    <a class="btn btn-danger ml-2" data-toggle="modal" data-target="#deleteProduct">Delete</a>
+                                {% else %}
+                                    <button class="btn btn-success" type="submit">Add Product</button>
+                                {% endif %}
+                            </div>
 					</form>
 
 				</div>
@@ -119,7 +116,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="delete-form btn btn-danger ml-auto"type="submit">Confirm</button>
+                    <button class="delete-form btn btn-danger ml-auto" type="submit">Confirm</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>

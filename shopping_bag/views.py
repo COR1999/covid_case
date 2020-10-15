@@ -3,6 +3,7 @@ from shopping_bag.forms import OrderForm
 from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404
 )
+from django.contrib.auth.decorators import login_required
 from profiles.models import Customer
 from django.contrib import messages
 from products.models import Product
@@ -273,7 +274,7 @@ def order_success(request, order_id):
 
 
 
-
+@login_required
 def order_history(request):
     customer = Customer.objects.filter(email=request.user.email).first()
     all_orders = Order.objects.filter(customer_profile=customer).order_by("-ordered_date")
@@ -292,7 +293,7 @@ def order_history(request):
     return render(request, "shopping_bag/order_history.html", context)
 
 
-
+@login_required
 def place_order_again(request, order_id):
     order = Order.objects.get(id=order_id)
     order_items = OrderItem.objects.filter(order=order)

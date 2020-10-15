@@ -64,8 +64,12 @@ The application navigation is very simple and easy to understand. The customer's
 * It shows a list of items in the bag.
 
 ### Order Summary
- !!!
- 
+1. After completing order process the user can see a other summary page wich showcases
+2. A overview of the order the users delivery information and a small table of the items ordered.
+3. There is also a home button witch brings the user back to the home page and if the user is logged in a My profile button that takes the user to there profile.
+## Database Schema
+* Below you will find a picture of my database schema i couldnt get the exact SQL code ran by django to create this so i did it manually. This isnt 100% accurate but it give you an idea of what it looks like.
+![https://gyazo.com/38b8fe5a21fb608c4750434f6be1cb39](/readmeimage/database_schema.png)
 
 ## Future Enhancements
 1. Search/filter functionality would be a good addition
@@ -114,7 +118,11 @@ The application navigation is very simple and easy to understand. The customer's
 ## Testing
 #### Styling
 1. Check that all success buttons are styled the same.
-
+2. I checked my css file to make sure that i removed use of px and replaced it with REM. :heavy_check_mark:
+3. I check all html files for inline styling to see if i could move this styling into a bootstrap class. :heavy_check_mark:
+4. I check that there was consistant use of buttons across the site. I navigated to each page to see if i was using the correct button classes on each page. :heavy_check_mark:
+5. I checked each page for a consitant  color scheme. :heavy_check_mark:
+ 
 #### Navbar
 1. Check that all the links are working correctly. :heavy_check_mark:
 2. Check that the navbar collapses into hamburger menu on mobile. :heavy_check_mark:
@@ -204,6 +212,7 @@ Check that it fails to create the user. :heavy_check_mark:
 ### Checkout 
 1. Attempting to submit the checkout form without filling out the required fields. The form will display a message saying this field is required. :heavy_check_mark:
 2. Check to see if the card number is valid. If the card number is not valid an error message will be displayed under the card input. :heavy_check_mark:
+
 #### Checkout while not registered
 1. Check to see if the user can purchase item while not signed in. The user can complete the checkout process without having to be logged in or registered. :heavy_check_mark:
 2. Check to see if the user can still view order history if they sign up at a later date. The user can see their order history when ever they choose to create an account. :heavy_check_mark:
@@ -213,15 +222,26 @@ Check that it fails to create the user. :heavy_check_mark:
 2. Check to see if the user can still purchase without being logged in while still being registered. The user can still complete the checkout process. :heavy_check_mark:
 3. The users information should be filled when the proceed to checkout if they have made purchase before or have edited there profile. :heavy_check_mark:
 
+#### Order history
+1. Click place order again. The same order will be placed if the items are in stock. :heavy_check_mark:
+2. Check that Order history page looks okay on mobile. :heavy_check_mark:
 
 
 
+#### Order success
+1. Click the Home button. The user will be redirected to the home page. :heavy_check_mark:
+2. Click the edit profile button. the user will be redirect to the My profile page. :heavy_check_mark:
 
 
+#### Responsive Testing
+1. When i deployed the project to heroku i navigated to deployed url on my mobile and added the website as a app on my mobile. I checked that all pages where responsive on mobile and was a pleasant user experience. :heavy_check_mark:
+2. I used chrome dev tools mobile view to check across different mobile devices but i found out this isn't always accurate. The dev tools showed some pages not being responsive yet on my mobile it looked okay. :heavy_check_mark:
+3. When i was first checking out how it looked on mobile i realised that the user couldn't see there shopping bag unless they clicked the hamburger menu. So i took the shopping bag out of the hamburger menus and just displayed it on the navbar.
 
 
 ### Known Issues :small_red_triangle:
 1. On the password reset done page there is a pop up that is being displayed by the messages framework that should be removed. :x:
+2. In my database model i have the price set to the products price so if the price of a product changes then the orders price will to. to fix this i should copy the price to the OrderItem when the order is placed. 
 
 
 
@@ -238,11 +258,14 @@ Check that it fails to create the user. :heavy_check_mark:
 2. Committed files to the staging area using bash terminal commands: git status; git add (specify directory); git commit -m"add message"
 3. Pushed files to the working environment using git push, which then updates the repository.
 4. Published site from master branch using settings tab in the main page of the repository, select source as master branch, then save
-5. The repository can be cloned by clicking Clone or Download on the main page of the repository
-6. In the Clone with HTTPs section, click the clipboard icon to copy the clone URL for the repository
-7. Open Git Bash Terminal
-8. Type git clone, and then paste the URL, Press Enter. A local clone will be created.
-9. 
+5. git push -u origin master
+
+6. The repository can be cloned by clicking Clone or Download on the main page of the repository
+7. In the Clone with HTTPs section, click the clipboard icon to copy the clone URL for the repository
+8. Open Git Bash Terminal
+9. Type git clone, and then paste the URL, Press Enter. A local clone will be created.
+10. git push -u origin master
+
 
 #### Environment variables:
 1. create a file named env.py in root of your project. use this file to define you environment variables
@@ -313,5 +336,3 @@ Id also like to give a big thanks to family and friends who have helped me with 
 ![](/readmeimage/iphone6smobileimage2.png)
 ![](/readmeimage/iphone6smobileimage1.png)
 ![](/readmeimage/motog4.png)
-
-![](/readmeimage/database_schema.png)

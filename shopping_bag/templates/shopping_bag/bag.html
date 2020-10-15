@@ -1,6 +1,5 @@
 {% extends 'base.html'%}
 {% load static %}
-
 {% block content %}
 <div class="container " style="width:100%;">
     <div class="row">
@@ -65,11 +64,11 @@
             </li>
             <div class="row">
                 <h4 class="col-md-6 my-3">
-                    <a href="{% url 'products' %}"class="btn btn-success float-left">Back to Shopping</a>
+                    <a href="{% url 'products' %}" class="btn btn-success float-left">Back to Shopping</a>
                 </h4>
                 {% if products|length >= 1 and request.session.grand_total > 0 %}
                 <h4 class="col-md-6 my-3">
-                    <a href="{% url 'checkout' %}"class="btn btn-success float-right">Proceed to Checkout</a>
+                    <a href="{% url 'checkout' %}" class="btn btn-success float-right">Proceed to Checkout</a>
                 </h4>
                 {% endif  %}
             </div>

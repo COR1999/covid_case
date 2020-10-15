@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import Customer
 from .forms import CustomerForm
-
+from django.contrib.auth.decorators import login_required
 def sign_up(request):
     """A View to sign up the user and create a customer"""
     form = SignUpForm()
@@ -43,7 +43,7 @@ def sign_up(request):
     }
     return render(request, 'profiles/sign_up.html', context)
 
-
+@login_required
 def logout_user(request):
     """A view to logout the user"""
     logout(request)
@@ -63,7 +63,7 @@ def login_page(request):
 
     return render(request, 'profiles/login.html')
 
-
+@login_required
 def edit_profile(request):
     """A view to let the user edit their customer profile"""
     customer = Customer.objects.filter(email=request.user.username).first()
