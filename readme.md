@@ -134,6 +134,7 @@ The application navigation is very simple and easy to understand. The customer's
     * [SQLite](https://www.sqlite.org/index.html) was used for development.
     * [PostgresSQL](https://www.postgresql.org/) as part of Heroku environment was used for production.
 6. [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) - Jinja is a modern and designer-friendly templating language for Python, modelled after Django’s templates.
+7. [django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) - Django allauth was used to control the sign up of users
 
 ### APIs
 1. [Stripe](https://stripe.com/) - Stripes APIs allow you to accept credit cards, manage subscriptions, send money, run a marketplace. I used the api for payment processing in a secure manner.
@@ -142,12 +143,12 @@ The application navigation is very simple and easy to understand. The customer's
 
 ## Testing
 #### Styling
-1. Check that all success buttons are styled the same.
+1. Check that all buttons are styled the same.
 2. I checked my css file to make sure that I removed use of px and replaced it with REM. :heavy_check_mark:
 3. I check all html files for inline styling to see if I could move this styling into a bootstrap class. :heavy_check_mark:
 4. I check that there was consistent use of buttons across the site. I navigated to each page to see if I was using the correct button classes on each page. :heavy_check_mark:
 5. I checked each page for a consistent  color scheme. :heavy_check_mark:
- 
+
 #### Navbar
 1. Check that all the links are working correctly. :heavy_check_mark:
 2. Check that the navbar collapses into hamburger menu on mobile. :heavy_check_mark:
@@ -157,8 +158,8 @@ The application navigation is very simple and easy to understand. The customer's
 ### Sign up
 1. Register account using sign up :heavy_check_mark:
     1. Go to django admin and check that user object was created with the email, first name and last name from sign up form :heavy_check_mark:
-    2. Attempt to create a user if successful check that it redirects to login page. :heavy_check_mark:
-2. Attempt to create a user with the same email address and check if it fails with a message. :heavy_check_mark:
+    2. After a successful user sign up, check that it redirects to login page. :heavy_check_mark:
+2. Attempt to create a user with the same email address that already exists and check if it fails with a message. :heavy_check_mark:
 3. Attempt to create a user with passwords that don't match. This should fail with a message. Check that it fails to create the user. :heavy_check_mark:
 4. Attempt to create a user with a password less then 8 characters. This should fail with a message. Check that it fails to create the user. :heavy_check_mark:
 5. Attempt to create a user with a password that is the same as the email. This should fail with a message.
@@ -170,8 +171,8 @@ Check that it fails to create the user. :heavy_check_mark:
 1. Attempt to login with an account that dose not exist. This should fail with a message. User stays on login page. :heavy_check_mark:
 2. Attempt to login with an account that dose exist but using the wrong password. This should fail with a message. User stays on login page. :heavy_check_mark:
 3. Check that the forgot password button navigates you to the password reset page. :heavy_check_mark:
-4. On the password reset page enter an email address for user that dose not exist. Press the reset my password. This should fail with a message. :heavy_check_mark:
-5. On the password reset page enter an email address for user that dose exist. Press the reset my password. This should redirect you to password reset done page and you should receive an email. :heavy_check_mark:
+4. On the password reset page enter an email address for user that does not exist. Press the reset my password. This should fail with a message. :heavy_check_mark:
+5. On the password reset page enter an email address for user that does exist. Press the reset my password. This should redirect you to password reset done page and you should receive an email. :heavy_check_mark:
 6. On the password reset done page check that the button to navigate to login page works. :heavy_check_mark:
 7. Open email account and check that when you click the link in the email it redirects you the change password page. :heavy_check_mark:
 8. Check that on the change password page if you enter passwords that don't match this should fail with a error message. :heavy_check_mark:
@@ -183,18 +184,18 @@ Check that it fails to create the user. :heavy_check_mark:
 ### Home
 #### Map 
 1. Attempt to zoom in and out with mouse wheel. This should let the user zoom in and out. :heavy_check_mark:
-2. Hover over countries. This should display a menu that has more information about each country. :heavy_check_mark:
-3. Check that the full screen option in the hamburger menu works. This should take the user into a full screen view. :heavy_check_mark:
-4. Check that print chart button works in the hamburger menu. This should take the user into a print window. :heavy_check_mark:
-5. Check that download as PNG works in hamburger menu. This should download a image of the map in PNG format. :heavy_check_mark:
-6. Check that download as JPEG works in the hamburger menu. This should download a image of the map in JPEG format. :heavy_check_mark:
-7. Check that download as PDF works in the hamburger menu. This should download a PDF file with the map inside it. :heavy_check_mark:
-8. Check that download as SVG vector image works in hamburger menu. This should download as a SVG file. :heavy_check_mark:
-9. Check that the zoom in and out buttons work as intended. This should zoom the users view in/out. :heavy_check_mark:
+2. Check that the zoom in and out buttons work as intended. This should zoom the users view in/out. :heavy_check_mark:
+3. Hover over countries. This should display a menu that has more information about each country. :heavy_check_mark:
+4. Check that the full screen option in the hamburger menu works. This should take the user into a full screen view. :heavy_check_mark:
+5. Check that print chart button works in the hamburger menu. This should take the user into a print window. :heavy_check_mark:
+6. Check that download as PNG works in hamburger menu. This should download a image of the map in PNG format. :heavy_check_mark:
+7. Check that download as JPEG works in the hamburger menu. This should download a image of the map in JPEG format. :heavy_check_mark:
+8. Check that download as PDF works in the hamburger menu. This should download a PDF file with the map inside it. :heavy_check_mark:
+9. Check that download as SVG vector image works in hamburger menu. This should download as a SVG file. :heavy_check_mark:
 10. Check that when the user clicks on a color on the legend all countries of that color disappear. :heavy_check_mark:
-11. Check that when the user clicks on the view bag button it redirects the user to the shopping bag page. :heavy_check_mark:
-12. Changed the request url for Disease.sh and made sure that the user is given an suitable message. :heavy_check_mark:
-13. If the URL for Disease.sh is correct but it returns malformed data then the user is given a suitable message. :heavy_check_mark:
+11. Check that when the user clicks on the view bag button at the top of the page it redirects the user to the shopping bag page. :heavy_check_mark:
+12. Changed the request url for Disease.sh and made sure that the user is given a suitable message. The map data wont load but the rest of the application should continue to work. :heavy_check_mark:
+13. If the URL for Disease.sh is correct but it returns malformed data then the user is given a suitable message. This was tested by modifying the code. :heavy_check_mark:
 
 #### Products
 1. Attempt to add product to basket. This should update the total amount in the basket on the navbar. :heavy_check_mark:
@@ -219,14 +220,16 @@ Check that it fails to create the user. :heavy_check_mark:
 5. Attempt to add a new product with out number in stock filled out. Form should tell the user that this field is required. :heavy_check_mark:
 
 ### My Profile
-1. Attempt to Update profile without First name. Form should tell the user the this field is required. :heavy_check_mark:
-2. Attempt to Update profile without Last name. Form should tell the user the this field is required. :heavy_check_mark:
-3. Attempt to Update profile without Phone number. Form should tell the user the this field is required. :heavy_check_mark:
-4. Attempt to Update profile without Address line 1. Form should tell the user the this field is required. :heavy_check_mark:
-5. Attempt to Update profile without Country. Form should tell the user the this field is required. :heavy_check_mark:
+* Navigate to the my profile page
+1. Attempt to Update profile without First name. Form should tell the user that this field is required. :heavy_check_mark:
+2. Attempt to Update profile without Last name. Form should tell the user that this field is required. :heavy_check_mark:
+3. Attempt to Update profile without Phone number. Form should tell the user that this field is required. :heavy_check_mark:
+4. Attempt to Update profile without Address line 1. Form should tell the user that this field is required. :heavy_check_mark:
+5. Attempt to Update profile without Country. Form should tell the user that this field is required. :heavy_check_mark:
 6. Click reset password button. Should redirects you to password reset page. :heavy_check_mark:
 
 ### Shopping Bag
+* Navigate to the shopping bag page by selecting the "View" button or clicking the bag on the navbar
 1. Click on back to shopping button. Redirects the user back to the home page. :heavy_check_mark:
 2. Click on the plus button to increment the quantity. quantity gets incremented. :heavy_check_mark:
 3. Click on minus button to decrement the quantity. Quantity get decremented. :heavy_check_mark:
@@ -236,38 +239,41 @@ Check that it fails to create the user. :heavy_check_mark:
 7. Attempt to proceed to checkout if all quantity's are 0. The proceed to checkout button wont show if grand total is 0. :heavy_check_mark:
 
 ### Checkout 
+* Navigate to the checkout page
 1. Attempting to submit the checkout form without filling out the required fields. The form will display a message saying this field is required. :heavy_check_mark:
 2. Check to see if the card number is valid. If the card number is not valid an error message will be displayed under the card input. :heavy_check_mark:
 3. For testing I used Stripe Development Card
 Card number - 4242 4242 4242 4242
 CVC - Any 3 digit number.
 Expire date - Any date in the future
+Post Code - any 5 digits
 
 #### Checkout while not registered
 1. Check to see if the user can purchase item while not signed in. The user can complete the checkout process without having to be logged in or registered. :heavy_check_mark:
-2. Check to see if the user can still view order history if they sign up at a later date. The user can see their order history when ever they choose to create an account. :heavy_check_mark:
+2. Check to see if the user can still view order history. Register the user, check that the user can see their order history if they sign up at a later date. The user can see their order history when ever they choose to create an account. :heavy_check_mark:
 
 #### Checkout while registered
 1. Check to see if registered users can complete the checkout process. The user can complete the checkout process while being registered. :heavy_check_mark:
 2. Check to see if the user can still purchase without being logged in while still being registered. The user can still complete the checkout process. :heavy_check_mark:
-3. The users information should be filled when the proceed to checkout if they have made purchase before or have edited there profile. :heavy_check_mark:
+3. The users information should be filled when the proceed to checkout if they have made purchase before or have edited there profile and are logged in. :heavy_check_mark:
 
 #### Order history
-1. Click place order again. The same order will be placed if the items are in stock. :heavy_check_mark:
-2. Check that Order history page looks okay on mobile. :heavy_check_mark:
+1. Click place order again. The same order will be added to bag if the items are in stock. :heavy_check_mark:
+
 
 #### Order success
 1. Click the Home button. The user will be redirected to the home page. :heavy_check_mark:
-2. Click the edit profile button. the user will be redirect to the My profile page. :heavy_check_mark:
+2. Click the edit profile button. The user will be redirected to the My profile page. :heavy_check_mark:
 
 #### Responsive Testing
-1. When I deployed the project to heroku I navigated to deployed url on my mobile and added the website as a app on my mobile. I checked that all pages where responsive on mobile and was a pleasant user experience. :heavy_check_mark:
+1. When I deployed the project to heroku I navigated to the deployed url on my mobile and added the website as a app on my mobile. I checked that all pages where responsive on mobile and was a pleasant user experience. :heavy_check_mark:
 2. I used chrome dev tools mobile view to check across different mobile devices but I found out this isn't always accurate. The dev tools showed some pages not being responsive yet on my mobile it looked okay. :heavy_check_mark:
 3. When I was first checking out how it looked on mobile I realised that the user couldn't see there shopping bag unless they clicked the hamburger menu. So I took the shopping bag out of the hamburger menus and just displayed it on the navbar.
 
 ### Known Issues :small_red_triangle:
-1. On the password reset done page there is a pop up that is being displayed by the messages framework that should be removed. :x:
-2. In my database model I have the price set to the products price so if the price of a product changes then the orders price will to. To fix this I could copy the price to the OrderItem when the order is placed. An alternative may be to have an effective date on the price so that we can have the price history in the product by using something like a ProductPrice table with columns: ProductID, EffectiveStartDT, EffectiveEndDT, ProductPrice.
+1. On the password reset done page there is a pop up that is being displayed by the messages framework that should be removed.
+<img src="/readmeimage/resetdonepopup.png" alt="resetdonepopup"/> :x:
+2. In my database model I reference the product from the orderItem. So if the product price is changed by admin it will change on all historic orders. To fix this I could copy the price to the OrderItem when the order is placed. An alternative may be to have an effective date on the price so that we can have the price history in the product by using something like a ProductPrice table with columns: ProductID, EffectiveStartDT, EffectiveEndDT, ProductPrice.
 
 
 ## Deployment
@@ -295,16 +301,16 @@ Expire date - Any date in the future
     if os.path.exists("./covid_case/env.py"):
         from . import env
 ```
-#### Deploying to heroku:
+#### Deploying to Heroku:
 1. I started by creating an account at [Heroku](https://signup.heroku.com/)
-2. Then I created a package dependency file called requirements.txt by running the command "pip freeze > requirements.txt". This needs to be called requirements.txt and has to be in the root of the project for heroku to install the packages listed in the file.
-3. I created a new app by navigating to dashboard.heroku.com/apps then clicking the new button.
-4. Then I logged into the heroku CLI by typing heroku login into my terminal.
+2. Then I created a package dependency file called requirements.txt by running the command "pip freeze > requirements.txt". This needs to be called requirements.txt and has to be in the root of the project for Heroku to install the packages listed in the file.
+3. I created a new app by navigating to dashboard.Heroku.com/apps then clicking the new button.
+4. Then I logged into the Heroku CLI by typing Heroku login into my terminal.
 5. In order to  get the application up and running I had to create a Procfile. The Profile tells Heroku which file is the entry point. A Procfile looks something like this "web: gunicorn covid_case.wsgi" (process type: command).
 6. To connect an existing repository from Github to Heroku use the following CLI syntax "heroku git:remote -a (followed by name of Heroku app)"
-7. To push to Heroku Master Branch, then simply use "git push heroku master"
-8. In order for our application to run on heroku we need to specify a few Config Vars in Heroku. To do this go to Settings tab > Config Variables followed by the various config variable needed.
-9. I needed to add the following lines to my settings.py in order to tell heroku what database to access
+7. To push to Heroku Master Branch, then simply use "git push Heroku master"
+8. In order for our application to run on Heroku we need to specify a few Config Vars in Heroku. To do this go to Settings tab > Config Variables followed by the various config variable needed.
+9. I needed to add the following lines to my settings.py in order to tell Heroku what database to access
 ```python
     import dj_database_url
     
@@ -314,25 +320,80 @@ Expire date - Any date in the future
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-    # Update the SQL database to the database in the heroku environment
+    # Update the SQL database to the database in the Heroku environment
     db_from_env = dj_database_url.config(conn_max_age=600)
     DATABASES['default'].update(db_from_env)
 ```
-10. I used Django-heroku in order to configure DATABASE_URL , ALLOWED_HOSTS, WhiteNoise (for static assets), Logging, and Heroku CI for my application. This was done as follows.
+10. I used the Django-heroku extension in order to configure DATABASE_URL , ALLOWED_HOSTS, WhiteNoise (for static assets), Logging, and Heroku CI for my application. This was done as follows.
 ```python
     import django_heroku
     django_heroku.settings(locals())
 ```
 
 #### Deploying files to AWS S3
-<!-- https://dev.to/oyetoket/how-to-deploy-your-frontend-application-on-aws-s3-31m9 -->
-1. I started by setting up my AWS account so that I can depoly my applications static and media files to S3
-2. Once I had set up my AWS account I navigated to S3 on the Services tab on AWS this took me to a page that shows all available buckets. A bucket is a virutal container while object are files belonging to that container.
+##### Using AWS IAM
+###### Creating Group
+1. First I navigated to the IAM dashboard and selected Groups tab under access management then pressed Create New Group button.
+2. Then I gave the group a name of manage-covid-case. Then I searched for "AmazonS3FullAccess" in the search bar Then clicked next step followed by Create Group
+###### Creating User
+1. Next I navigated to the IAM dashboard and selected Users under access management then selected the Add user button.
+2. Then I filled in a username for the user and selected access type Programmatic access and selected next permissions button
+3. Then selected the group with the attached policy I created. Then i continued to the end of the form and took note of my username, Access key ID and Secret access key.
+
+###### Setting up AWS S3 settings
+1. I started by setting up my AWS account so that I can deploy my applications static and media files to S3 
+2. Once I had set up my AWS account I navigated to S3 on the Services tab on AWS this took me to a page that shows all available buckets. A bucket is a virtual container while object are files belonging to that container.
 3. Click on Create Bucket to create a new bucket for my frontend application. I put in the name and region I wanted my bucket to be deployed to. Once I was done with that I pressed Next to the configure tab then pressed next.
 4. On the permissions tab I unchecked "Block all public access" since we need access to the built files. Then I click next followed by Create Bucket.
 5. Next I clicked on the properties tab and selected Static website hosting box. This then prompted a popup that let me click on "Use this bucket to host a website", it will ask for a index.html file and error.html I just put in "index.html" and "error.html" because we wont be using these.
-6. 
-
+6. Next i need to set up my bucket so that only I could write to it but others can view it. To do this I clicked the Permissions tab and then click Bucket Policy, There is a text editor on this page where policies are saved. I pasted the below policy in json format.
+```json
+    {
+    "Version": "2012-10-17",
+    "Id": "Policy1602586695215",
+    "Statement": [
+        {
+            "Sid": "Stmt1602586691496",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::covid-case-bucket/*"
+        }
+    ]
+}
+```
+7. In Heroku's environment variables I added the AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME and USE_AWS which was set to True.
+###### Setting up my settings.py
+1. First I went to my settings.py file and started by typing a if statement to check if USE_AWS is in the environment variables. If it is use these settings(only for Heroku).
+2. Next I set AWS_S3_OBJECT_PARAMETERS Which included the date of expiry and CacheControl.
+3. Then I set the AWS_S3_REGION_NAME to "eu-west-1". I created the bucket with the country of ireland so I checked what region ireland fell under according to AWS.
+4. Next I set the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to the values we got from creating the user in AWS IAM.
+5. After I set the AWS_STORAGE_BUCKET_NAME to my bucket name and AWS_S3_CUSTOM_DOMAIN to equal a f string so I could use my AWS_STORAGE_BUCKET_NAME.
+* An example of these values being set is shown below.
+```python
+    AWS_S3_REGION_NAME = 'eu-west-1'
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+```
+6. After this I had to set up STATICFILES_STORAGE, STATICFILES_LOCATION, DEFAULT_FILE_STORAGE, MEDIAFILES_LOCATION, STATIC_URL, MEDIA_URL
+7. STATICFILES_STORAGE and DEFAULT_FILE_STORAGE are set by creating a new python script called "custom_storages.py".
+8. This file is very simple we are just inheriting S3BotoStorage and setting the values for static storage and media storage as shown below.
+```python
+    class StaticStorage(S3Boto3Storage):
+        location = settings.STATICFILES_LOCATION
+        
+    class MediaStorage(S3Boto3Storage):
+        location = settings.MEDIAFILES_LOCATION
+```
+9. The STATICFILES_LOCATION is just set to a string with the value of "static" and MEDIAFILES_LOCATION is set with the value of "media".
+10. Next we have to build the url for the static files and media files we will do this using a f string as shown below.
+```python
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+```
+11. Lastly I set the AWS_S3_FILE_OVERWRITE to equal False so files with the same name don't get overwritten and the AWS_DEFAULT_ACL to equal None so it get inherited from the bucket.
 
 ## Credits
 ## Content
