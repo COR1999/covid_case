@@ -114,13 +114,13 @@ a{
     margin-left: auto;
     margin-right: 1%;
 }
-
+/* Not working on heroku */
 @media(max-width: 576px){
     .all-products-image{
         width: 50% !important;
         height: 50% !important;
         margin: auto !important;
-        margin-top: 4% !important;
+        margin-top: 1% !important;
     }
     .view_bag_button{
         margin-right: auto !important;
@@ -252,7 +252,10 @@ a{
     }
 }
 
+
+
 /* Bag */
+
 .bag_bg{
     background: #0C3C26;
 }
@@ -273,7 +276,6 @@ a{
 #profile_form input{
     width: 9.375rem;
 }
-
 /* Country input */
 #sign_up_country input{
     width: 23.438rem;
@@ -319,6 +321,8 @@ a{
     list-style: none;
 }
 
+
+
 /* update product/add product */
 .form_container label{
     text-align: left;
@@ -341,8 +345,8 @@ a{
     }
 
 }
-
 /* Modals */
+
 .modal-content{
     background: #0C3C26;
     color: #fff;

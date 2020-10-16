@@ -1,4 +1,5 @@
 # Covid Case
+<img src="/readmeimage/screenshotofapp.png" alt="screenshotofapp">
 ## Overview
 In this project users can visually see the statistics for corona virus for each country. Simple thresholds are used to determine the safety level of each country, displayed using a traffic light system (green, orange, red).
 The website's business function is to sell facemasks and other corona virus-related products, such as hand sanitizers and visors.
@@ -112,10 +113,8 @@ The application navigation is very simple and easy to understand. The customer's
 5. [Font-awesome Version 5.11.1](https://fontawesome.com/) - I used fontawesome for the quantity control and the shopping bag icons.
 6. [Heroku](https://heroku.com/) - This is a cloud based application platform that allows deployment of an application to the web and connection to the database.
 7. [AWS S3](https://aws.amazon.com/s3/) - Amazon S3 is an object storage service that offers industry-leading scalability, data availability, security, and performance. This was used to store my media files and static content.
-8. [StackOverflow](https://stackoverflow.com/) - Stack Overflow is a question and answer site for professional and enthusiast programmers.
-9. [Mozilla](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django) - I found Mozilla documentation for django very helpful when solving problems.
-10. [favicon.io](https://favicon.io/) - I used favicon.io to generate my favicon.
-
+8. [favicon.io](https://favicon.io/) - I used favicon.io to generate my favicon.
+9. [responsivedesign.is](http://ami.responsivedesign.is/) - Used for screenshot of the application on different devices.
 ### Programming Languages
 1. [Python 3.8.2](https://www.python.org/) - Python is an interpreted, high-level and general-purpose programming language.
 2. [Django 3.1.1](https://www.djangoproject.com/) - Django is designed to help developers take applications from concept to completion as quickly as possible.
@@ -135,7 +134,7 @@ The application navigation is very simple and easy to understand. The customer's
     * [PostgresSQL](https://www.postgresql.org/) as part of Heroku environment was used for production.
 6. [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) - Jinja is a modern and designer-friendly templating language for Python, modelled after Django’s templates.
 7. [django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) - Django allauth was used to control the sign up of users
-
+8. [WhiteNoise](http://whitenoise.evans.io/en/stable/index.html) - Used to simplify hosting static files.
 ### APIs
 1. [Stripe](https://stripe.com/) - Stripes APIs allow you to accept credit cards, manage subscriptions, send money, run a marketplace. I used the api for payment processing in a secure manner.
 2. [Disease.sh](https://disease.sh/docs/) - An open API for disease-related statistics
@@ -324,10 +323,12 @@ Post Code - any 5 digits
     db_from_env = dj_database_url.config(conn_max_age=600)
     DATABASES['default'].update(db_from_env)
 ```
-10. I used the Django-heroku extension in order to configure DATABASE_URL , ALLOWED_HOSTS, WhiteNoise (for static assets), Logging, and Heroku CI for my application. This was done as follows.
+10. I used the following extensions
+    1. Django-heroku extension in order to configure DATABASE_URL, ALLOWED_HOSTS
+    2. WhiteNoise (for static assets) by running "python manage.py collectstatic"
 ```python
     import django_heroku
-    django_heroku.settings(locals())
+    django_heroku.settings(locals(), staticfiles=False)
 ```
 
 #### Deploying files to AWS S3
@@ -411,8 +412,6 @@ For this project these where my choice of colors
 ## Acknowledgements
 I'd like to give a big thanks to the [code institute](https://codeinstitute.net/) team and the mentor they assigned me [Rhey Ann Magcalas]()
 I'd also like to give a big thanks to family and friends who have helped me with ideas for projects and styling tweaks that could be made.
-
-
 
 
 ![](/readmeimage/iphone6smobileimage2.png)
