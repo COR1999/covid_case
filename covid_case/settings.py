@@ -257,6 +257,6 @@ STRIPE_CURRENCY = "USD"
 CONST_PROFILE_ATTR = 200
 CONST_PROFILE_ADDRESS = 1000
 
-django_heroku.settings(locals())
+django_heroku.settings(locals(), staticfiles=False)
 
 
