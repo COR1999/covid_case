@@ -114,15 +114,16 @@ a{
     margin-left: auto;
     margin-right: 1%;
 }
+/* Not working on heroku */
 @media(max-width: 576px){
-    .card-img-top{
+    .all-products-image{
         width: 50% !important;
         height: 50% !important;
         margin: auto !important;
         margin-top: 1% !important;
     }
     .view_bag_button{
-        margin-right: auto;
+        margin-right: auto !important;
     }
     
 }
