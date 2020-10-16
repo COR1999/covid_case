@@ -188,8 +188,10 @@ a{
     background: #179967 !important;
     color: #fff;
 }
+.login_container{
+    padding: 0 1rem;
+}
 
-.login_container,
 .product_container,
 .purchase_container {
     padding: 0 2rem;

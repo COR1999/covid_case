@@ -63,7 +63,7 @@
                 <strong>{% if request.session.grand_total %}${{ request.session.grand_total |floatformat:2 }}{% else %}$0{% endif %}</strong>
             </li>
             <div class="d-flex justify-content-center mt-3">
-                <a href="{% url 'products' %}" class="btn btn-success float-left mr-auto my-1 p-1">Back to Shopping</a>
+                <a href="{% url 'products' %}" class="btn btn-info float-left mr-auto my-1 p-1">Back to Shopping</a>
                 {% if products|length >= 1 and request.session.grand_total > 0 %}
                 <a href="{% url 'checkout' %}" class="btn btn-success float-right ml-auto my-1 p-1">Proceed to Checkout</a>
                 {% endif  %}

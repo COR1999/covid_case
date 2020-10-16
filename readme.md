@@ -1,5 +1,6 @@
 # Covid Case
 <img src="/readmeimage/screenshotofapp.png" alt="screenshotofapp">
+
 ## Overview
 In this project users can visually see the statistics for corona virus for each country. Simple thresholds are used to determine the safety level of each country, displayed using a traffic light system (green, orange, red).
 The website's business function is to sell facemasks and other corona virus-related products, such as hand sanitizers and visors.
@@ -88,7 +89,7 @@ The application navigation is very simple and easy to understand. The customer's
 2. There is also a home button and an Order History which navigate to the appropriate page.
 
 ## Database Schema
-* Below you will find a picture of my database schema I could not get the exact SQL code ran by django to create this so I did it manually. The data types are not 100% accurate but it shows the table relationships and foreign keys.
+* Below you will find a picture of my database schema I did not use the exact SQL code ran by django to create this so I did it manually. The data types are not 100% accurate but it shows the table relationships and foreign keys.
 <img src="/readmeimage/database_schema.png" alt="homepage-login-page"/>
 
 ## Future Enhancements
@@ -115,14 +116,15 @@ The application navigation is very simple and easy to understand. The customer's
 7. [AWS S3](https://aws.amazon.com/s3/) - Amazon S3 is an object storage service that offers industry-leading scalability, data availability, security, and performance. This was used to store my media files and static content.
 8. [favicon.io](https://favicon.io/) - I used favicon.io to generate my favicon.
 9. [responsivedesign.is](http://ami.responsivedesign.is/) - Used for screenshot of the application on different devices.
+
 ### Programming Languages
 1. [Python 3.8.2](https://www.python.org/) - Python is an interpreted, high-level and general-purpose programming language.
 2. [Django 3.1.1](https://www.djangoproject.com/) - Django is designed to help developers take applications from concept to completion as quickly as possible.
 3. [HTML5](https://en.wikipedia.org/wiki/HTML5) - HTML is the standard markup language for documents designed to be displayed in a web browser.
-3. [CSS3](https://en.wikipedia.org/wiki/CSS) - CSS is a style language used for describing the presentation of a document.
-4. [JavaScript](https://www.javascript.com/) - JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions.
-5. [jQuery](https://jquery.com/) - jQuery is a JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling.
-6. [Markdown](https://www.markdownguide.org/) - Markdown is a lightweight markup language with plain-text-formatting syntax. This was used for the readme.md
+4. [CSS3](https://en.wikipedia.org/wiki/CSS) - CSS is a style language used for describing the presentation of a document.
+5. [JavaScript](https://www.javascript.com/) - JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions.
+6. [jQuery](https://jquery.com/) - jQuery is a JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling.
+7. [Markdown](https://www.markdownguide.org/) - Markdown is a lightweight markup language with plain-text-formatting syntax. This was used for the readme.md
 
 ### Django Extension and tools
 1. [dj-database-url](https://pypi.org/project/dj-database-url/) - Allows use of environment variable for database connections
@@ -135,6 +137,7 @@ The application navigation is very simple and easy to understand. The customer's
 6. [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) - Jinja is a modern and designer-friendly templating language for Python, modelled after Django’s templates.
 7. [django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) - Django allauth was used to control the sign up of users
 8. [WhiteNoise](http://whitenoise.evans.io/en/stable/index.html) - Used to simplify hosting static files.
+
 ### APIs
 1. [Stripe](https://stripe.com/) - Stripes APIs allow you to accept credit cards, manage subscriptions, send money, run a marketplace. I used the api for payment processing in a secure manner.
 2. [Disease.sh](https://disease.sh/docs/) - An open API for disease-related statistics
@@ -142,17 +145,19 @@ The application navigation is very simple and easy to understand. The customer's
 
 ## Testing
 #### Styling
-1. Check that all buttons are styled the same.
-2. I checked my css file to make sure that I removed use of px and replaced it with REM. :heavy_check_mark:
-3. I check all html files for inline styling to see if I could move this styling into a bootstrap class. :heavy_check_mark:
-4. I check that there was consistent use of buttons across the site. I navigated to each page to see if I was using the correct button classes on each page. :heavy_check_mark:
-5. I checked each page for a consistent  color scheme. :heavy_check_mark:
+1. Check that all success buttons are styled with a green color. :heavy_check_mark:
+2. Check that all info buttons use bootstraps default blue color. :heavy_check_mark:
+3. Check that all secondary buttons use bootstrap default grey color. :heavy_check_mark:
+4. Check that all delete/remove buttons use bootstrap default red color. :heavy_check_mark:
+5. I checked my css file to make sure that I removed use of px and replaced it with REM. :heavy_check_mark:
+6. I check all html files for inline styling to see if I could move this styling into a bootstrap class. :heavy_check_mark:
+7. I check that there was consistent use of buttons across the site. I navigated to each page to see if I was using the correct button classes on each page :heavy_check_mark:
+8. I checked each page for a consistent  color scheme. :heavy_check_mark:
 
 #### Navbar
 1. Check that all the links are working correctly. :heavy_check_mark:
 2. Check that the navbar collapses into hamburger menu on mobile. :heavy_check_mark:
-![https://gyazo.com/738fa482eabc49edf3a2b77884cc4127](/readmeimage/hamburgermenu.png)
-3. 
+![https://gyazo.com/738fa482eabc49edf3a2b77884cc4127](/readmeimage/hamburgermenu.png) 
 
 ### Sign up
 1. Register account using sign up :heavy_check_mark:
@@ -219,7 +224,7 @@ Check that it fails to create the user. :heavy_check_mark:
 5. Attempt to add a new product with out number in stock filled out. Form should tell the user that this field is required. :heavy_check_mark:
 
 ### My Profile
-* Navigate to the my profile page
+Navigate to the my profile page
 1. Attempt to Update profile without First name. Form should tell the user that this field is required. :heavy_check_mark:
 2. Attempt to Update profile without Last name. Form should tell the user that this field is required. :heavy_check_mark:
 3. Attempt to Update profile without Phone number. Form should tell the user that this field is required. :heavy_check_mark:
@@ -228,7 +233,7 @@ Check that it fails to create the user. :heavy_check_mark:
 6. Click reset password button. Should redirects you to password reset page. :heavy_check_mark:
 
 ### Shopping Bag
-* Navigate to the shopping bag page by selecting the "View" button or clicking the bag on the navbar
+Navigate to the shopping bag page by selecting the "View" button or clicking the bag on the navbar
 1. Click on back to shopping button. Redirects the user back to the home page. :heavy_check_mark:
 2. Click on the plus button to increment the quantity. quantity gets incremented. :heavy_check_mark:
 3. Click on minus button to decrement the quantity. Quantity get decremented. :heavy_check_mark:
@@ -238,7 +243,7 @@ Check that it fails to create the user. :heavy_check_mark:
 7. Attempt to proceed to checkout if all quantity's are 0. The proceed to checkout button wont show if grand total is 0. :heavy_check_mark:
 
 ### Checkout 
-* Navigate to the checkout page
+Navigate to the checkout page
 1. Attempting to submit the checkout form without filling out the required fields. The form will display a message saying this field is required. :heavy_check_mark:
 2. Check to see if the card number is valid. If the card number is not valid an error message will be displayed under the card input. :heavy_check_mark:
 3. For testing I used Stripe Development Card

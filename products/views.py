@@ -5,9 +5,10 @@ import requests
 import json
 from .forms import ProductForm
 from django.contrib import messages
-from django.views.decorators.clickjacking import xframe_options_exempt
+# Enabled this to get the screenshot for the readme using http://ami.responsivedesign.is/
+# from django.views.decorators.clickjacking import xframe_options_exempt
+# @xframe_options_exempt
 
-@xframe_options_exempt
 def all_products(request):
     """
         A view that calls the api and if the status code is 200 
