@@ -272,23 +272,31 @@ Post Code - any 5 digits
 #### Responsive Testing
 1. When I deployed the project to heroku I navigated to the deployed url on my mobile and added the website as a app on my mobile. I checked that all pages where responsive on mobile and was a pleasant user experience. :heavy_check_mark:
 2. I used chrome dev tools mobile view to check across different mobile devices but I found out this isn't always accurate. The dev tools showed some pages not being responsive yet on my mobile it looked okay. :heavy_check_mark:
-3. When I was first checking out how it looked on mobile I realised that the user couldn't see there shopping bag unless they clicked the hamburger menu. So I took the shopping bag out of the hamburger menus and just displayed it on the navbar.
+3. When I was first checking out how it looked on mobile I realised that the user couldn't see there shopping bag unless they clicked the hamburger menu. So I took the shopping bag out of the hamburger menus and just displayed it on the navbar. :heavy_check_mark:
 
 ### Known Issues :small_red_triangle:
 1. On the password reset done page there is a pop up that is being displayed by the messages framework that should be removed.
 <img src="/readmeimage/resetdonepopup.png" alt="resetdonepopup"/> :x:
-2. In my database model I reference the product from the orderItem. So if the product price is changed by admin it will change on all historic orders. To fix this I could copy the price to the OrderItem when the order is placed. An alternative may be to have an effective date on the price so that we can have the price history in the product by using something like a ProductPrice table with columns: ProductID, EffectiveStartDT, EffectiveEndDT, ProductPrice.
 
+2. In my database model I reference the product from the orderItem. So if the product price is changed by admin it will change on all historic orders. To fix this I could copy the price to the OrderItem when the order is placed. An alternative may be to have an effective date on the price so that we can have the price history in the product by using something like a ProductPrice table with columns: ProductID, EffectiveStartDT, EffectiveEndDT, ProductPrice.
+3. My css seems to be failing because of the line below
+```css
+    .product-quantity[value=0] {
+        visibility: hidden;
+    }
+```
+4. My html is failing the validator on the home page because of the line shown below
+```html
+    <a class="center btn btn-danger btn-sm add_to_bag" disabled="disabled">Not in stock</a>
+```
 
 ## Deployment
 #### To deploy the project to Github the following steps were taken:
-<!-- todo -->
 1. Created a master branch in Github repository
 2. Committed files to the staging area using bash terminal commands: git status; git add (specify directory); git commit -m"add message"
 3. Pushed files to the working environment using git push, which then updates the repository.
 4. Published site from master branch using settings tab in the main page of the repository, select source as master branch, then save
 5. git push -u origin master
-
 
 #### Environment variables:
 1. I created a file named env.py in root of your project. I used this file to define the environment variables
@@ -369,6 +377,7 @@ Post Code - any 5 digits
 }
 ```
 7. In Heroku's environment variables I added the AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME and USE_AWS which was set to True.
+
 ###### Setting up my settings.py
 1. First I went to my settings.py file and started by typing a if statement to check if USE_AWS is in the environment variables. If it is use these settings(only for Heroku).
 2. Next I set AWS_S3_OBJECT_PARAMETERS Which included the date of expiry and CacheControl.
@@ -403,22 +412,13 @@ Post Code - any 5 digits
 
 ## Credits
 ## Content
-
-
-## Media
+### Media
 My product images and information were taken from Dunnes Stores website
-Favicon was created using 
 
 ### Color Choice
 For this project these where my choice of colors
 ![https://coolors.co/ffffff-bee0d3-179967-41b085-0c3c26](/readmeimage/covidCasesColorPallet.png)
 
-
 ## Acknowledgements
 I'd like to give a big thanks to the [code institute](https://codeinstitute.net/) team and the mentor they assigned me [Rhey Ann Magcalas]()
 I'd also like to give a big thanks to family and friends who have helped me with ideas for projects and styling tweaks that could be made.
-
-
-![](/readmeimage/iphone6smobileimage2.png)
-![](/readmeimage/iphone6smobileimage1.png)
-![](/readmeimage/motog4.png)

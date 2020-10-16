@@ -221,6 +221,7 @@ a{
     box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2), 0 0.375rem 1.25rem 0 rgba(0, 0, 0, 0.19);
     border-radius: 0.3rem;
 }
+
 /* Checkout form */
 .checkout{
     background: #0C3C26;
@@ -259,9 +260,11 @@ a{
     background: #0C3C26;
 }
 
-.product-quantity[value=0]{
+/* This line here seems to fail W3C validation and i cant seem to figure out why */
+.product-quantity[value=0] {
     visibility: hidden;
 }
+
 
 #payment_form label{
     padding: 0;

@@ -5,6 +5,7 @@ import requests
 import json
 from .forms import ProductForm
 from django.contrib import messages
+
 # Enabled this to get the screenshot for the readme using http://ami.responsivedesign.is/
 # from django.views.decorators.clickjacking import xframe_options_exempt
 # @xframe_options_exempt

@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from .models import Customer
 from .forms import CustomerForm
 from django.contrib.auth.decorators import login_required
+
+
 def sign_up(request):
     """A View to sign up the user and create a customer"""
     if request.method == "POST":

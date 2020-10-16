@@ -31,7 +31,6 @@
                         <li><span class="order-confirmed-label">Country: </span><span class="float-right">{{ order.customer_profile.country.name }}</span></li>
                     </ul>              
                             
-
                 </div>
                 <div class="col-md-6 mx-auto ">
                     <h6 class="text-center mt-2">Items Ordered</h6>
@@ -59,14 +58,12 @@
                     </table>
                     <p><span class="order-confirmed-label">Order Total: </span><span class="float-right">${{ order.order_total }}</span></p>
                 </div>
-
                 
             </div>
-                {% if user.is_authenticated %}
-                    <a class="btn btn-info btn-sm " href="{% url 'order_history' %}">Order History</a>
-                {% endif %}
-                <a class="btn btn-success btn-sm float-right" href="{% url 'products' %}">Home</a>
-
+            {% if user.is_authenticated %}
+                <a class="btn btn-info btn-sm " href="{% url 'order_history' %}">Order History</a>
+            {% endif %}
+            <a class="btn btn-success btn-sm float-right" href="{% url 'products' %}">Home</a>
         </div>
     </div>
 {% endblock %}

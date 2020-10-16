@@ -1,16 +1,13 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.db.models.fields import CharField
 from .models import Customer
-from django_countries.fields import CountryField
 from django.conf import settings
 from crispy_forms.helper import FormHelper
 
 class SignUpForm(UserCreationForm):
 
     email = forms.EmailField(max_length=settings.CONST_PROFILE_ATTR)
-
     class Meta:
         model = User
         fields = (

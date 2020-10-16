@@ -1,19 +1,19 @@
 import random
-import csv
 import json
 from time import time
-import datetime
 RECORD_COUNT = 9
 
 my_json_file = open("./products/fixtures/products.json", "w")
 
 
+# This was used to created the products.json files in fixtures.
+# This was then loaded into the database using python manage.py loaddata
+# I did this to give me random sample data for each product.
 def write_to_json():
     with my_json_file as json_file:
-
         fieldnames = ["product_name", "price", "color", "size", "image"]
         product_colors = ["black", "denim", "dotted", "multi",
-                          "gold", "leopard", "navy", "white"]
+                            "gold", "leopard", "navy", "white"]
         all_products = []
         pk_id = 1
         visor = {

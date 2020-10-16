@@ -193,7 +193,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 
-
 if 'USE_AWS' in os.environ:
     AWS_S3_OBJECT_PARAMETERS = {
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
@@ -219,6 +218,7 @@ if 'USE_AWS' in os.environ:
 
     AWS_S3_FILE_OVERWRITE = False
     AWS_DEFAULT_ACL = None
+
     # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 else:
@@ -234,17 +234,6 @@ else:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
     
-
-
-
-
-
-
-
-
-
-
-
 
 
 

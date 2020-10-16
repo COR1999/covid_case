@@ -58,10 +58,10 @@
                 </li>
                 {% endfor %}
             </ul>
-            <li class="list-group-item d-flex justify-content-between">
+            <div class="list-group-item d-flex justify-content-between">
                 <span>Total (USD)</span>
                 <strong>{% if request.session.grand_total %}${{ request.session.grand_total |floatformat:2 }}{% else %}$0{% endif %}</strong>
-            </li>
+            </div>
             <div class="d-flex justify-content-center mt-3">
                 <a href="{% url 'products' %}" class="btn btn-info float-left mr-auto my-1 p-1">Back to Shopping</a>
                 {% if products|length >= 1 and request.session.grand_total > 0 %}
@@ -71,7 +71,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
+<script>
     $(document).ready(function() {
         $(".minus-product").on("click", function(){ 
             let updated_value = Number(this.value);     
