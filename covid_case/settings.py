@@ -208,7 +208,7 @@ if 'USE_AWS' in os.environ:
 
 
     STATICFILES_STORAGE = "custom_storages.StaticStorage"
-    STATICFILES_LOCATION = "static"
+    STATICFILES_LOCATION = "staticfiles"
     
     DEFAULT_FILE_STORAGE = "custom_storages.MediaStorage"
     MEDIAFILES_LOCATION = "media"
@@ -229,7 +229,7 @@ else:
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-    
+
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
