@@ -24,7 +24,7 @@ The application navigation is very simple and easy to understand. The customer's
     <tr>
         <td>
             <img src="/readmeimage/wireframe-homepage-covid-case.png" alt="homepage-wireframe" width="250" height="250"/>
-        </td>SSS
+        </td>
         <td>
             <img src="/readmeimage/wireframe-login-covid-case.png" alt="homepage-login-page" width="250" height="250"/>
         </td>
@@ -149,10 +149,11 @@ The application navigation is very simple and easy to understand. The customer's
 2. Check that all info buttons use bootstraps default blue color. :heavy_check_mark:
 3. Check that all secondary buttons use bootstrap default grey color. :heavy_check_mark:
 4. Check that all delete/remove buttons use bootstrap default red color. :heavy_check_mark:
-5. I checked my css file to make sure that I removed use of px and replaced it with REM. :heavy_check_mark:
-6. I check all html files for inline styling to see if I could move this styling into a bootstrap class. :heavy_check_mark:
-7. I check that there was consistent use of buttons across the site. I navigated to each page to see if I was using the correct button classes on each page :heavy_check_mark:
+5. Check css file to make sure that I removed use of px and replaced it with REM. :heavy_check_mark:
+6. Check all html files for inline styling to see if I could move this styling into a bootstrap class. :heavy_check_mark:
+7. Check that there was consistent use of buttons across the site. I navigated to each page to see if I was using the correct button classes on each page :heavy_check_mark:
 8. I checked each page for a consistent  color scheme. :heavy_check_mark:
+9. Check that text boxes and controls where aligned on forms. :heavy_check_mark:
 
 #### Navbar
 1. Check that all the links are working correctly. :heavy_check_mark:
@@ -163,7 +164,7 @@ The application navigation is very simple and easy to understand. The customer's
 1. Register account using sign up :heavy_check_mark:
     1. Go to django admin and check that user object was created with the email, first name and last name from sign up form :heavy_check_mark:
     2. After a successful user sign up, check that it redirects to login page. :heavy_check_mark:
-2. Attempt to create a user with the same email address that already exists and check if it fails with a message. :heavy_check_mark:
+2. Attempt to create a user with the an email address that already exists and check if it fails with a message. :heavy_check_mark:
 3. Attempt to create a user with passwords that don't match. This should fail with a message. Check that it fails to create the user. :heavy_check_mark:
 4. Attempt to create a user with a password less then 8 characters. This should fail with a message. Check that it fails to create the user. :heavy_check_mark:
 5. Attempt to create a user with a password that is the same as the email. This should fail with a message.
@@ -178,7 +179,7 @@ Check that it fails to create the user. :heavy_check_mark:
 4. On the password reset page enter an email address for user that does not exist. Press the reset my password. This should fail with a message. :heavy_check_mark:
 5. On the password reset page enter an email address for user that does exist. Press the reset my password. This should redirect you to password reset done page and you should receive an email. :heavy_check_mark:
 6. On the password reset done page check that the button to navigate to login page works. :heavy_check_mark:
-7. Open email account and check that when you click the link in the email it redirects you the change password page. :heavy_check_mark:
+7. Open my email account and check that a "reset password" email was received. Then check that when you click the link in the email it redirects you the change password page in the application. :heavy_check_mark:
 8. Check that on the change password page if you enter passwords that don't match this should fail with a error message. :heavy_check_mark:
 9. Attempt to change the password to less then 8 characters. This should fail with a message. Check that it fails to change password. :heavy_check_mark:
 11. Attempt to change the password to be part of the email address. This should fail with a message. :heavy_check_mark:
@@ -187,41 +188,45 @@ Check that it fails to create the user. :heavy_check_mark:
 
 ### Home
 #### Map 
-1. Attempt to zoom in and out with mouse wheel. This should let the user zoom in and out. :heavy_check_mark:
-2. Check that the zoom in and out buttons work as intended. This should zoom the users view in/out. :heavy_check_mark:
-3. Hover over countries. This should display a menu that has more information about each country. :heavy_check_mark:
-4. Check that the full screen option in the hamburger menu works. This should take the user into a full screen view. :heavy_check_mark:
-5. Check that print chart button works in the hamburger menu. This should take the user into a print window. :heavy_check_mark:
-6. Check that download as PNG works in hamburger menu. This should download a image of the map in PNG format. :heavy_check_mark:
-7. Check that download as JPEG works in the hamburger menu. This should download a image of the map in JPEG format. :heavy_check_mark:
-8. Check that download as PDF works in the hamburger menu. This should download a PDF file with the map inside it. :heavy_check_mark:
-9. Check that download as SVG vector image works in hamburger menu. This should download as a SVG file. :heavy_check_mark:
-10. Check that when the user clicks on a color on the legend all countries of that color disappear. :heavy_check_mark:
-11. Check that when the user clicks on the view bag button at the top of the page it redirects the user to the shopping bag page. :heavy_check_mark:
+1. Attempt to zoom in and out with mouse wheel and the plus minus buttons. This should let the user zoom in and out. :heavy_check_mark:
+2. Check that after zooming in, the user can then drag to recenter the map. :heavy_check_mark:
+3. Hover over countries. This should display a tooltip that has more information about each country. :heavy_check_mark:
+4. Check that the full screen option in the map hamburger menu works. This should take the user into a full screen view. :heavy_check_mark:
+5. Check that print chart button works in the map hamburger menu. This should take the user into a print window. :heavy_check_mark:
+6. Check that download as PNG works in  map hamburger menu. This should download a image of the map in PNG format. :heavy_check_mark:
+7. Check that download as JPEG works in the map hamburger menu. This should download a image of the map in JPEG format. :heavy_check_mark:
+8. Check that download as PDF works in the map hamburger menu. This should download a PDF file with the map inside it. :heavy_check_mark:
+9. Check that download as SVG vector image works in map hamburger menu. This should download as a SVG file. :heavy_check_mark:
+10. Check that when the user clicks on a color on the legend all countries of that color are hidden. :heavy_check_mark:
+11. Check that when the user clicks on the view bag button at the bottom of the map it redirects the user to the shopping bag page. :heavy_check_mark:
 12. Changed the request url for Disease.sh and made sure that the user is given a suitable message. The map data wont load but the rest of the application should continue to work. :heavy_check_mark:
 13. If the URL for Disease.sh is correct but it returns malformed data then the user is given a suitable message. This was tested by modifying the code. :heavy_check_mark:
 
 #### Products
-1. Attempt to add product to basket. This should update the total amount in the basket on the navbar. :heavy_check_mark:
-2. Attempt to add product to basket when quantity is greater then number in stock. This should show a message saying not enough in stock. :heavy_check_mark:
-3. Attempt to put the quantity below 1. This should not allow the user to do so. :heavy_check_mark:
-4. Hover over product image. This should display an alternative view of the image. :heavy_check_mark:
-5. When the user is a admin they have the ability to click the update product button. Check that this button redirect to the update product page. :heavy_check_mark:
+### Add Products - Admin user only
+1. Attempt to add a new product with no supplier chosen. Form should tell the user that this field is required. :heavy_check_mark:
+2. Attempt to add a new product with no product name. Form should tell the user that this field is required. :heavy_check_mark:
+3. Attempt to add a new product with no color entered. Form should tell the user that this field is required. :heavy_check_mark:
+4. Attempt to add a new product with no price entered. Form should tell the user that this field is required. :heavy_check_mark:
+5. Attempt to add a new product with out number in stock filled out. Form should tell the user that this field is required. :heavy_check_mark:
+6. If two products with the same image file name are created check that it creates a new instance of that image in the media files. :heavy_check_mark:
 
 ### Update Product - Admin user only
 1. Attempt to update a new product with no product name. Form should tell the user that this field is required. :heavy_check_mark:
 2. Attempt to update a new product with no color entered. Form should tell the user that this field is required. :heavy_check_mark:
 3. Attempt to update a new product with no price entered. Form should tell the user that this field is required. :heavy_check_mark:
 4. Attempt to update a new product with no supplier chosen. Form should tell the user that this field is required. :heavy_check_mark:
-5. Attempt to update a new product with out number in stock filled out. Form should tell the user that this field is required. :heavy_check_mark:
-6. Attempt to delete product by clicking the delete button. Sets the is_deleted boolean to True. Redirects the user to home page. :heavy_check_mark:
+5. Attempt to update a new product with no number_in_stock filled out. Form should tell the user that this field is required. :heavy_check_mark:
+6. Attempt to delete product by clicking the delete button. Check that is_deleted boolean to True in the django admin. Redirects the user to home page. :heavy_check_mark:
 
-### Add Products - Admin user only
-1. Attempt to add a new product with no product name. Form should tell the user that this field is required. :heavy_check_mark:
-2. Attempt to add a new product with no color entered. Form should tell the user that this field is required. :heavy_check_mark:
-3. Attempt to add a new product with no price entered. Form should tell the user that this field is required. :heavy_check_mark:
-4. Attempt to add a new product with no supplier chosen. Form should tell the user that this field is required. :heavy_check_mark:
-5. Attempt to add a new product with out number in stock filled out. Form should tell the user that this field is required. :heavy_check_mark:
+### View Products 
+1. Attempt to add product to basket. This should update the total amount in the basket on the navbar. :heavy_check_mark:
+2. Attempt to add product to basket when quantity is greater then number in stock. This should show a message saying not enough in stock. :heavy_check_mark:
+3. Attempt to put the quantity below 1. This should not allow the user to do so. :heavy_check_mark:
+4. Hover over product image. This should display an alternative view of the image if available. :heavy_check_mark:
+5. When the user is a admin they have the ability to click the update product button. Check that this button redirect to the update product page. :heavy_check_mark:
+6. Delete a product and Check that the deleted product is not shown to the user. :heavy_check_mark:
+
 
 ### My Profile
 Navigate to the my profile page
@@ -235,11 +240,11 @@ Navigate to the my profile page
 ### Shopping Bag
 Navigate to the shopping bag page by selecting the "View" button or clicking the bag on the navbar
 1. Click on back to shopping button. Redirects the user back to the home page. :heavy_check_mark:
-2. Click on the plus button to increment the quantity. quantity gets incremented. :heavy_check_mark:
+2. Click on the plus button to increment the quantity. Quantity gets incremented. :heavy_check_mark:
 3. Click on minus button to decrement the quantity. Quantity get decremented. :heavy_check_mark:
 4. Check to see if quantity is equal to 0. If quantity is 0 hide minus button. :heavy_check_mark:
 5. Check to see if quantity is equal to number in stock. If quantity is equal number in stock hide plus button. :heavy_check_mark:
-6. Click remove button to. Removed the current product from shopping bag. :heavy_check_mark:
+6. Click remove button to remove the current product from shopping bag. Check that price has been updated. :heavy_check_mark:
 7. Attempt to proceed to checkout if all quantity's are 0. The proceed to checkout button wont show if grand total is 0. :heavy_check_mark:
 
 ### Checkout 
@@ -254,16 +259,16 @@ Post Code - any 5 digits
 
 #### Checkout while not registered
 1. Check to see if the user can purchase item while not signed in. The user can complete the checkout process without having to be logged in or registered. :heavy_check_mark:
-2. Check to see if the user can still view order history. Register the user, check that the user can see their order history if they sign up at a later date. The user can see their order history when ever they choose to create an account. :heavy_check_mark:
+2. Check to see if the user can view order history after they have registered. Register the user, check that the user can now see their order history. :heavy_check_mark:
 
 #### Checkout while registered
 1. Check to see if registered users can complete the checkout process. The user can complete the checkout process while being registered. :heavy_check_mark:
 2. Check to see if the user can still purchase without being logged in while still being registered. The user can still complete the checkout process. :heavy_check_mark:
-3. The users information should be filled when the proceed to checkout if they have made purchase before or have edited there profile and are logged in. :heavy_check_mark:
+3. The users information should be filled when they proceed to checkout if they are logged in. :heavy_check_mark:
+4. If the user is not logged in you can still make a purchase but the form wont be pre-populated. :heavy_check_mark:
 
 #### Order history
 1. Click place order again. The same order will be added to bag if the items are in stock. :heavy_check_mark:
-
 
 #### Order success
 1. Click the Home button. The user will be redirected to the home page. :heavy_check_mark:
@@ -289,7 +294,7 @@ Post Code - any 5 digits
 ```html
     <a class="center btn btn-danger btn-sm add_to_bag" disabled="disabled">Not in stock</a>
 ```
-
+5. Country dropdown height should be the same height as other controls. :x:
 ## Deployment
 #### To deploy the project to Github the following steps were taken:
 1. Created a master branch in Github repository
@@ -348,19 +353,19 @@ Post Code - any 5 digits
 ##### Using AWS IAM
 ###### Creating Group
 1. First I navigated to the IAM dashboard and selected Groups tab under access management then pressed Create New Group button.
-2. Then I gave the group a name of manage-covid-case. Then I searched for "AmazonS3FullAccess" in the search bar Then clicked next step followed by Create Group
+2. Then I gave the group a name of manage-covid-case. Then I searched for "AmazonS3FullAccess" in the search bar Then clicked next step followed by Create Group.
 ###### Creating User
 1. Next I navigated to the IAM dashboard and selected Users under access management then selected the Add user button.
-2. Then I filled in a username for the user and selected access type Programmatic access and selected next permissions button
+2. Then I filled in a username for the user and selected access type Programmatic access and selected next permissions button.
 3. Then selected the group with the attached policy I created. Then i continued to the end of the form and took note of my username, Access key ID and Secret access key.
 
 ###### Setting up AWS S3 settings
-1. I started by setting up my AWS account so that I can deploy my applications static and media files to S3 
-2. Once I had set up my AWS account I navigated to S3 on the Services tab on AWS this took me to a page that shows all available buckets. A bucket is a virtual container while object are files belonging to that container.
+1. I started by setting up my AWS account so that I can deploy my applications static and media files to S3. 
+2. Once I had set up my AWS account I navigated to S3 on the Services tab on AWS. This took me to a page that shows all available buckets. A bucket is a virtual container while object are files belonging to that container.
 3. Click on Create Bucket to create a new bucket for my frontend application. I put in the name and region I wanted my bucket to be deployed to. Once I was done with that I pressed Next to the configure tab then pressed next.
 4. On the permissions tab I unchecked "Block all public access" since we need access to the built files. Then I click next followed by Create Bucket.
 5. Next I clicked on the properties tab and selected Static website hosting box. This then prompted a popup that let me click on "Use this bucket to host a website", it will ask for a index.html file and error.html I just put in "index.html" and "error.html" because we wont be using these.
-6. Next i need to set up my bucket so that only I could write to it but others can view it. To do this I clicked the Permissions tab and then click Bucket Policy, There is a text editor on this page where policies are saved. I pasted the below policy in json format.
+6. Next I need to set up my bucket so that only I could write to it but others can view it. To do this I clicked the Permissions tab and then click Bucket Policy, There is a text editor on this page where policies are saved. I pasted the below policy in json format.
 ```json
 {
     "Version": "2012-10-17",
@@ -379,11 +384,11 @@ Post Code - any 5 digits
 7. In Heroku's environment variables I added the AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME and USE_AWS which was set to True.
 
 ###### Setting up my settings.py
-1. First I went to my settings.py file and started by typing a if statement to check if USE_AWS is in the environment variables. If it is use these settings(only for Heroku).
-2. Next I set AWS_S3_OBJECT_PARAMETERS Which included the date of expiry and CacheControl.
-3. Then I set the AWS_S3_REGION_NAME to "eu-west-1". I created the bucket with the country of ireland so I checked what region ireland fell under according to AWS.
+1. First I went to my settings.py file and started by typing a if statement to check if USE_AWS is in the environment variables. If USE_AWS is set to True use these settings (only for Heroku).
+2. Next I set AWS_S3_OBJECT_PARAMETERS which included the date of expiry and CacheControl.
+3. Then I set the AWS_S3_REGION_NAME to "eu-west-1". I created the bucket with the country of Ireland so I checked what region Ireland fell under according to AWS.
 4. Next I set the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to the values we got from creating the user in AWS IAM.
-5. After I set the AWS_STORAGE_BUCKET_NAME to my bucket name and AWS_S3_CUSTOM_DOMAIN to equal a f string so I could use my AWS_STORAGE_BUCKET_NAME.
+5. After I set the AWS_STORAGE_BUCKET_NAME to my bucket name and AWS_S3_CUSTOM_DOMAIN to equal a formatted string (using f) so I could use my AWS_STORAGE_BUCKET_NAME.
 * An example of these values being set is shown below.
 ```python
     AWS_S3_REGION_NAME = 'eu-west-1'
@@ -394,7 +399,7 @@ Post Code - any 5 digits
 ```
 6. After this I had to set up STATICFILES_STORAGE, STATICFILES_LOCATION, DEFAULT_FILE_STORAGE, MEDIAFILES_LOCATION, STATIC_URL, MEDIA_URL
 7. STATICFILES_STORAGE and DEFAULT_FILE_STORAGE are set by creating a new python script called "custom_storages.py".
-8. This file is very simple we are just inheriting S3BotoStorage and setting the values for static storage and media storage as shown below.
+8. This file is very simple as we are just inheriting S3BotoStorage and setting the values for static storage and media storage as shown below.
 ```python
     class StaticStorage(S3Boto3Storage):
         location = settings.STATICFILES_LOCATION
@@ -403,7 +408,7 @@ Post Code - any 5 digits
         location = settings.MEDIAFILES_LOCATION
 ```
 9. The STATICFILES_LOCATION is just set to a string with the value of "static" and MEDIAFILES_LOCATION is set with the value of "media".
-10. Next we have to build the url for the static files and media files we will do this using a f string as shown below.
+10. Next we have to build the url for the static files and media files we will do this using a formatted string as shown below.
 ```python
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
@@ -420,5 +425,5 @@ For this project these where my choice of colors
 ![https://coolors.co/ffffff-bee0d3-179967-41b085-0c3c26](/readmeimage/covidCasesColorPallet.png)
 
 ## Acknowledgements
-I'd like to give a big thanks to the [code institute](https://codeinstitute.net/) team and the mentor they assigned me [Rhey Ann Magcalas]()
+I'd like to give a big thanks to the [code institute](https://codeinstitute.net/) team and the mentor they assigned me Rhey Ann Magcalas
 I'd also like to give a big thanks to family and friends who have helped me with ideas for projects and styling tweaks that could be made.
