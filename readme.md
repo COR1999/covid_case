@@ -348,7 +348,7 @@ Post Code - any 5 digits
 5. Next I clicked on the properties tab and selected Static website hosting box. This then prompted a popup that let me click on "Use this bucket to host a website", it will ask for a index.html file and error.html I just put in "index.html" and "error.html" because we wont be using these.
 6. Next i need to set up my bucket so that only I could write to it but others can view it. To do this I clicked the Permissions tab and then click Bucket Policy, There is a text editor on this page where policies are saved. I pasted the below policy in json format.
 ```json
-    {
+{
     "Version": "2012-10-17",
     "Id": "Policy1602586695215",
     "Statement": [

@@ -114,13 +114,12 @@ a{
     margin-left: auto;
     margin-right: 1%;
 }
-/* Not working on mobile todo */
 @media(max-width: 576px){
     .card-img-top{
-        width: 50%;
-        height: 50%;
-        margin: auto;
-        margin-top: 1%;
+        width: 50% !important;
+        height: 50% !important;
+        margin: auto !important;
+        margin-top: 1% !important;
     }
     .view_bag_button{
         margin-right: auto;
